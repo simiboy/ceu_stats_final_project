@@ -1,0 +1,24 @@
+---
+title: "Final Project - Draft Analysis"
+author: Simon Fernezelyi, Thea Goslicki, Blanka Balazs
+data: "Due 8 January 2022, 23h59"
+output:
+  bookdown::pdf_document2: default
+urlcolor: blue
+bibliography: references.bib
+csl: american-political-science-association.csl
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+\newpage
+
+```{r}
+library(haven)
+data <- read_dta("CCES2014_raw.dta")
+```
+
+\newpage
+
+# References

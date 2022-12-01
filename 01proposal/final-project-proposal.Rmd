@@ -1,0 +1,16 @@
+---
+title: "Final Project Step 1: Find Data and Write Proposal"
+author: Simon Fernezelyi, Thea Goslicki, Blanka Balazs
+date: "Due 19 November 2022, 23h59"
+output:
+  bookdown::pdf_document2: default
+urlcolor: blue
+bibliography: references.bib
+csl: american-political-science-association.csl
+---
+
+# Attitudes Towards Homelessness and Possible Casual Factors
+
+In the last couple of year, it gets more obvious that big city\'s trying to displace homeless people out of the city centre through the construction of ant-homeless architecture. In our final project, we are planning to focus on people's attitude towards homeless people. Therefore, we chose Boston University\'s dataset (Clifford and Piston Disgust and Opinion About Homelessness Policy Dataverse [@dataset_harvard]) which was based on a survey of 1000 US participants. The dataset includes different variables about participants attitudes towards homeless people and their social economic backgrounds like income, race, or age. For this reason, our research question is the following: To what extent does income effect people's attitude towards homeless people?
+
+# References
