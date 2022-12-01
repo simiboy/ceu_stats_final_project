@@ -20,6 +20,9 @@ data <- read_dta("CCES2014_raw.dta")
 blanka <- "hungarian kaki"
 thea <- "german avocado"
 group <- cat(thea, blanka)
+
+simi<- "hungarian hamster"
+simiboy<- print(simi)
 ```
 
 \newpage
