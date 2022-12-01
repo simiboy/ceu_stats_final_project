@@ -19,6 +19,12 @@ library(haven)
 data <- read_dta("CCES2014_raw.dta")
 ```
 
+
+```{r}
+
+numbers <- c(1, 5, 76)
+
+```
 \newpage
 
 # References
