@@ -1,6 +1,6 @@
 ---
 title: "Final Project - Draft Analysis"
-author: Simon Fernezelyi, Thea Goslicki, Blanka Balazs
+author:  Blanka Balazs, Simon Fernezelyi, Thea Goslicki
 data: "Due 8 January 2022, 23h59"
 output:
   bookdown::pdf_document2: default
@@ -15,22 +15,51 @@ editor_options:
 \newpage
 
 ```{r}
-library(haven)
-data <- read_dta("CCES2014_raw.dta")
-blanka <- "hungarian kaki"
-thea <- "german avocado"
-group <- cat(thea, blanka)
-
-simi<- "hungarian hamster"
-simiboy<- print(simi)
+data <- read.csv("foxnews.csv")
+data$state <- factor(data$state)
 ```
 
+Mean gop by states
 
 ```{r}
 
-numbers <- c(1, 5, 76)
-
+gop2000_by_states <- tapply(data$gopvoteshare2000, data$state, mean, na.rm = TRUE)
+gop2000_by_states
 ```
+
+*we could make this into a nice table*
+
+Other years
+
+```{r}
+gop1996_by_states <- tapply(data$gopvoteshare1996, data$state, mean, na.rm = TRUE)
+gop1992_by_states <- tapply(data$gopvoteshare1992, data$state, mean, na.rm = TRUE)
+
+# this dataframe contains the mean gop for the three years (1992, 1996, 2000) by state
+gop_by_states <- data.frame(gop1992_by_states, gop1996_by_states, gop2000_by_states)
+
+#sort it for easier use
+gop_by_states <- gop_by_states[order(gop_by_states$gop2000_by_states), ]
+
+#plot the results
+plot(1, type = "n", xlab = "",
+     ylab = "", xlim = c(1992, 2003), 
+     ylim = c(0.3, 0.8))
+for(x in 1:nrow(gop_by_states)){
+  lines(as.numeric(gop_by_states[x, ]) ~ c(1992, 1996, 2000))
+  text(2000.5+((x-1)%%6)/2, gop_by_states$gop2000_by_states[x], row.names(gop_by_states)[x])
+}
+
+lines(c(mean(gop1992_by_states, na.rm=T), mean(gop1996_by_states), mean(gop2000_by_states)) ~ c(1992, 1996, 2000), 
+      lty=2, 
+      col="red",
+      lwd=3)
+```
+
+```{r}
+cor(data[,c(3, 4, 5, 6, 7, 12)])
+```
+
 \newpage
 
 # References
