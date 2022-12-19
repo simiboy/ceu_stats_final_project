@@ -11,18 +11,34 @@ editor_options:
   markdown: 
     wrap: 72
 ---
-##Potential research question: To what extend had the implementation of Fox News an effect on the US voting behavior during the presidential elections 1996 & 2000
+##Potential research question: 
+To what extend had the implementation of Fox News an effect on the US voting behavior during the presidential elections 1996 & 2000?
 
 
+##Short literature review 
+Given existing literature, explain in a few sentences what is your contribution with this project. (What has been done in the literature, what is missing and how you make a contribution).
+
+
+##hypotheses
+Write initial theoretical expectations and hypotheses - so that you know what kind of analyses you would like to run.
+
+
+
+Load the data you have selected
+Run any preprocessing that you need to conduct to prepare your data for analysis (e.g. renaming, recoding of variables, creating new variables, merging files, tackling NAs etc.) 
+Produces summary statistics (e.g. tables and plots) of the relevant dependent and independent variables
+Conduct the main regression of interest for the project. Discuss initial findings and problems.
 
 
 
 \newpage
 
+##Load the data you have selected
 ```{r}
 data <- read.csv("foxnews.csv")
 data$state <- factor(data$state)
 ```
+
 
 Mean gop by states
 
@@ -90,6 +106,44 @@ plot(gop2000_df$state, gop2000_df$subrf2000,
       ylab = "Share of Fox News subscribers")
 
 ```
+```{r}
+towns_w_foxnews<- subset(data, (subset = subrf2000 >0))
+towns_no_foxnews<-subset(data, (subset = subrf2000 ==0))
+
+means.all.elections.wFN<-colMeans(towns_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
+means.all.elections.wFN
+
+means.all.elections.noFN<-colMeans(towns_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
+means.all.elections.noFN
+
+years<- c(1992, 1996, 2000)
+
+plot(years, means.all.elections.noFN, pch = 16, col = "black",
+xlim = c(1992, 2000), ylim = c(0.4, 0.55), xlab = "Election years",
+ylab = "Average vote share for the Republicans ",
+main = "Difference in Average vote share across towns with/without fox news")
+
+points(years, means.all.elections.wFN,pch = 16, col = "red")
+
+
+lines(years, means.all.elections.noFN, type = "c")
+lines(years, means.all.elections.wFN, type = "c", col="red")
+text(1994,0.51, "Towns with Fox News", col="red")
+text(1994,0.46, "Towns without Fox News")
+
+```
+
+##A Question I (Thea) would like to do
+
+
+
+Our hypotheses stating, that it might be possible that education, gender, and people with different race reacting differently to the implementation of Fox News. 
+It could be also possible that voters with different incomes get effected differently by the input of Fox News.
+
+We will evaluate whether these hypotheses are supported by finding the differences in sample average treatment effects by education, gender, race and income in towns with access to Fox News and towns without access to Fox News. 
+
+
+
 
 
 \newpage
