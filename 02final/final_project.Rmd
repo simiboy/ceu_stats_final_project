@@ -18,9 +18,29 @@ To what extend had the implementation of Fox News an effect on the US voting beh
 ##Short literature review 
 Given existing literature, explain in a few sentences what is your contribution with this project. (What has been done in the literature, what is missing and how you make a contribution).
 
+-->idea: http://exedra.esec.pt/docs/N4/10C_Rui-Antunes_pp_145-170.pdf
+
 
 ##hypotheses
 Write initial theoretical expectations and hypotheses - so that you know what kind of analyses you would like to run.
+
+This paper will follow Lazarsfeld et al.'s (1944) approach and main Hypotheses,called: 
+
+HP1: The act of voting is an individual act, affected mainly by the personality of the voter and his exposure to the media.
+
+In the case of our research and our available data, we categorize the variables about socioeconomic background of the people as personality trades and the exposure to media via the existence or non-existence of Fox News. 
+
+Sociological model of voting Kriesi's (2008)
+
+HP2: People’s voting behavior is just shaped by long-term factors (socialization: controlvaribales). Independent from fox news.
+
+Rational expectation theories (Bray and Kreps 1987)
+
+HP3: Voters often filter out reporting bias without being influenced. The implementation of Fox News will not effect election results.
+
+Behavioral Theories (De Marzo, Vayanos, and Zwiebel 2003)
+
+HP4:assert that media influence on voters exists.
 
 
 
@@ -142,6 +162,7 @@ It could be also possible that voters with different incomes get effected differ
 
 We will evaluate whether these hypotheses are supported by finding the differences in sample average treatment effects by education, gender, race and income in towns with access to Fox News and towns without access to Fox News. 
 
+Furthermore,Computeing the average change of votes for republican (during presidential elections) among towns before and after the availability of Fox News could be an crucial indicator to understand the effect.
 
 
 
