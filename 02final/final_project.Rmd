@@ -5,11 +5,8 @@ data: "Due 8 January 2022, 23h59"
 output:
   bookdown::pdf_document2: default
 urlcolor: blue
-bibliography: references.bib
-csl: american-political-science-association.csl
-editor_options: 
-  markdown: 
-    wrap: 72
+
+bibliography: citations.bib 
 ---
 
 **##Potential research question:** To what extend had the implementation
@@ -26,20 +23,19 @@ answer to the question is that news media does not have an actual effect
 on people's voting behavior. It is called the sociological model of
 voting behavior which states that people's voting behavior is determined
 by long-term factors. This theory is supported by Lazarsfeld, Berelson,
-and Gaudet's (1944)[@Lazarsfeld] research analysis whose results show
+and Gaudet's [@Lazarsfeld1968] research analysis whose results show
 that the effect of media on electoral decisions is minimal but people
 belonging to different social groups is what determines their voting
-behavior. Kriesi, Grande, and Lachat (2008) also argue people's voting
+behavior. Kriesi, Grande, and Lachat [@Kriesi2008] also argue people's voting
 behavior is determined by their belonging to different cleavages.
 However, instead of the old cleavages, there is a new social division
 within society that defines people's voting behavior which is the
-distinction between the winners and losers of globalization (Kriesi et
-al., 2008). Losers of globalization feel that their social status is
+distinction between the winners and losers of globalization [@Kriesi2008]. Losers of globalization feel that their social status is
 protected by the nation-state and therefore they are strongly connected
 and identify themselves with the national community and that is what
-determines their voting behavior (Kriesi et al.: 2008). In contrast, the
+determines their voting behavior [@Kriesi2008]. In contrast, the
 winners of globalization benefit from open borders, they have more
-opportunities and therefore they vote differently (Kriesi et al.: 2008)
+opportunities and therefore they vote differently [@Kriesi2008]
 (I wrote this down because maybe we could test if there is any
 relationship between the number of Fox news subscribers in states that
 are doing worse economically and those that have developed in the last
@@ -50,7 +46,7 @@ choice which is based on voters' preferences on salient political
 issues. This theory argues that short-term factors like media attention,
 campaigns, and current determinant issues in politics determine people's
 voting behavior. This theory is supported by DeMarzo, Vayanos, and
-Zwiebel's (2003) research analysis that persuasion bias (like
+Zwiebel's [@DeMarzo2003] research analysis that persuasion bias (like
 propaganda, censorship, political spin, and marketing) plays an
 important role in the process of social opinion formation and as a
 consequence, it determines people's voting behavior.
@@ -68,20 +64,20 @@ the exposure to media via the existence or non-existence of Fox News.
 **HP1:** Fox news and the socioeconomic background effects the behavior
 of the electorate.
 
-Sociological model of voting Kriesi's (2008): People's voting behavior
+Sociological model of voting Kriesi's [@Kriesi2008]: People's voting behavior
 is just shaped by long-term factors (socialization).
 
 **HP2:** Just socioeconomic background effects the behavior of the
 electorate.
 
-Rational expectation theories (Bray and Kreps 1987):Voters often filter
+Rational expectation theories [@Bray1987] :Voters often filter
 out reporting bias without being influenced. The implementation of Fox
 News will not effect election results.
 
 **HP3:** Neither the socioeconomic background of the electorate, nor Fox
 News influences the electorate
 
-Behavioral Theories (De Marzo, Vayanos, and Zwiebel 2003): assert that
+Behavioral Theories [@DeMarzo2003]: assert that
 media influence on voters exists.
 
 **HP4:** Primarily Fox News effects the behavior of the electorate.
@@ -330,3 +326,7 @@ text(1999, 0.05, "low income", col="brown")
 \newpage
 
 # References
+
+
+
+
