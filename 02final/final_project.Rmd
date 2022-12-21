@@ -11,59 +11,96 @@ editor_options:
   markdown: 
     wrap: 72
 ---
-##Potential research question: 
-To what extend had the implementation of Fox News an effect on the US voting behavior during the presidential elections 1996 & 2000?
 
+**##Potential research question:** To what extend had the implementation
+of Fox News an effect on the US voting behavior during the presidential
+elections 1996 & 2000?
 
-##Short literature review 
-Given existing literature, explain in a few sentences what is your contribution with this project. (What has been done in the literature, what is missing and how you make a contribution).
+**##Short literature review**
 
-In recent decades, there has been increasing attention on the role of media during political campaigns and its effects on the actual outcomes of elections. However, it is still debated within academia to what extent news media influence the behavior of the electorate. A potential answer to the question is that news media does not have an actual effect on people’s voting behavior. It is called the sociological model of voting behavior which states that people’s voting behavior is determined by long-term factors. This theory is supported by Lazarsfeld, Berelson, and Gaudet’s (1944) research analysis whose results show that the effect of media on electoral decisions is minimal but people belonging to different social groups is what determines their voting behavior. Kriesi, Grande, and Lachat (2008) also argue people’s voting behavior is determined by their belonging to different cleavages. However, instead of the old cleavages, there is a new social division within society that defines people’s voting behavior which is the distinction between the winners and losers of globalization (Kriesi et al., 2008). Losers of globalization feel that their social status is protected by the nation-state and therefore they are strongly connected and identify themselves with the national community and that is what determines their voting behavior (Kriesi et al.: 2008). In contrast, the winners of globalization benefit from open borders, they have more opportunities and therefore they vote differently (Kriesi et al.: 2008) (I wrote this down because maybe we could test if there is any relationship between the number of Fox news subscribers in states that are doing worse economically and those that have developed in the last few decades)
+In recent decades, there has been increasing attention on the role of
+media during political campaigns and its effects on the actual outcomes
+of elections. However, it is still debated within academia to what
+extent news media influence the behavior of the electorate. A potential
+answer to the question is that news media does not have an actual effect
+on people's voting behavior. It is called the sociological model of
+voting behavior which states that people's voting behavior is determined
+by long-term factors. This theory is supported by Lazarsfeld, Berelson,
+and Gaudet's (1944)[@Lazarsfeld] research analysis whose results show
+that the effect of media on electoral decisions is minimal but people
+belonging to different social groups is what determines their voting
+behavior. Kriesi, Grande, and Lachat (2008) also argue people's voting
+behavior is determined by their belonging to different cleavages.
+However, instead of the old cleavages, there is a new social division
+within society that defines people's voting behavior which is the
+distinction between the winners and losers of globalization (Kriesi et
+al., 2008). Losers of globalization feel that their social status is
+protected by the nation-state and therefore they are strongly connected
+and identify themselves with the national community and that is what
+determines their voting behavior (Kriesi et al.: 2008). In contrast, the
+winners of globalization benefit from open borders, they have more
+opportunities and therefore they vote differently (Kriesi et al.: 2008)
+(I wrote this down because maybe we could test if there is any
+relationship between the number of Fox news subscribers in states that
+are doing worse economically and those that have developed in the last
+few decades)
 
-However, other authors argue that issue voting explains voters’ party choice which is based on voters’ preferences on salient political issues. This theory argues that short-term factors like media attention, campaigns, and current determinant issues in politics determine people’s voting behavior. This theory is supported by DeMarzo, Vayanos, and Zwiebel’s (2003) research analysis that persuasion bias (like propaganda, censorship, political spin, and marketing) plays an important role in the process of social opinion formation and as a consequence, it determines people’s voting behavior.
+However, other authors argue that issue voting explains voters' party
+choice which is based on voters' preferences on salient political
+issues. This theory argues that short-term factors like media attention,
+campaigns, and current determinant issues in politics determine people's
+voting behavior. This theory is supported by DeMarzo, Vayanos, and
+Zwiebel's (2003) research analysis that persuasion bias (like
+propaganda, censorship, political spin, and marketing) plays an
+important role in the process of social opinion formation and as a
+consequence, it determines people's voting behavior.
 
+**##Hypotheses** Write initial theoretical expectations and hypotheses -
+so that you know what kind of analyses you would like to run.
 
+This paper will follow Lazarsfeld et al.'s (1944) approach and main
+Hypotheses: The act of voting is an individual act, affected mainly by
+the personality of the voter and his exposure to the media.In the case
+of our research and our available data, we categorize the variables
+about socioeconomic background of the people as personality trades and
+the exposure to media via the existence or non-existence of Fox News.
 
--->idea: http://exedra.esec.pt/docs/N4/10C_Rui-Antunes_pp_145-170.pdf
+**HP1:** Fox news and the socioeconomic background effects the behavior
+of the electorate.
 
+Sociological model of voting Kriesi's (2008): People's voting behavior
+is just shaped by long-term factors (socialization).
 
-##hypotheses
-Write initial theoretical expectations and hypotheses - so that you know what kind of analyses you would like to run.
+**HP2:** Just socioeconomic background effects the behavior of the
+electorate.
 
-This paper will follow Lazarsfeld et al.'s (1944) approach and main Hypotheses: The act of voting is an individual act, affected mainly by the personality of the voter and his exposure to the media.In the case of our research and our available data, we categorize the variables about socioeconomic background of the people as personality trades and the exposure to media via the existence or non-existence of Fox News. 
+Rational expectation theories (Bray and Kreps 1987):Voters often filter
+out reporting bias without being influenced. The implementation of Fox
+News will not effect election results.
 
-HP1: Fox news and the socioeconomic background effects the behavior of the electorate.
+**HP3:** Neither the socioeconomic background of the electorate, nor Fox
+News influences the electorate
 
-Sociological model of voting Kriesi's (2008): People’s voting behavior is just shaped by long-term factors (socialization).
+Behavioral Theories (De Marzo, Vayanos, and Zwiebel 2003): assert that
+media influence on voters exists.
 
-HP2: Just socioeconomic background effects the behavior of the electorate.
+**HP4:** Primarily Fox News effects the behavior of the electorate.
 
-Rational expectation theories (Bray and Kreps 1987):Voters often filter out reporting bias without being influenced. The implementation of Fox News will not effect election results.
-
-HP3: Neither the socioeconomic background of the electorate, nor Fox News influences the electorate
-
-Behavioral Theories (De Marzo, Vayanos, and Zwiebel 2003): assert that media influence on voters exists.
-
-HP4: Primarily Fox News effects the behavior of the electorate. 
-
-
-
-
-Load the data you have selected
-Run any preprocessing that you need to conduct to prepare your data for analysis (e.g. renaming, recoding of variables, creating new variables, merging files, tackling NAs etc.) 
-Produces summary statistics (e.g. tables and plots) of the relevant dependent and independent variables
-Conduct the main regression of interest for the project. Discuss initial findings and problems.
-
-
+Load the data you have selected Run any preprocessing that you need to
+conduct to prepare your data for analysis (e.g. renaming, recoding of
+variables, creating new variables, merging files, tackling NAs etc.) 
+Produces summary statistics (e.g. tables and plots) of the relevant
+dependent and independent variables Conduct the main regression of
+interest for the project. Discuss initial findings and problems.
 
 \newpage
 
 ##Load the data you have selected
+
 ```{r}
 data <- read.csv("foxnews.csv")
 data$state <- factor(data$state)
 ```
-
 
 Mean gop by states
 
@@ -105,8 +142,8 @@ lines(c(mean(gop1992_by_states, na.rm=T), mean(gop1996_by_states), mean(gop2000_
 ```{r}
 cor(data[,c(3, 4, 5, 6, 7, 12)])
 ```
-```{r}
 
+```{r}
 gop1992_df<- data[ , c("state","town","college1990", "male1990", "black1990", "hisp1990", "income1990","subrf2000", "gopvoteshare1992")] 
 gop1996_df<- data[ , c("state","town","college1990", "male1990", "black1990", "hisp1990", "income1990","subrf2000", "gopvoteshare1996")] 
 gop2000_df<- data[ , c("state","town","college1990", "male1990", "black1990", "hisp1990", "income1990","subrf2000", "gopvoteshare2000")] 
@@ -118,8 +155,8 @@ plot(gop2000_df$gopvoteshare2000, gop2000_df$subrf2000,
 
 
 tapply(gop2000_df$gopvoteshare2000, gop2000_df$subrf2000, mean,na.rm=T)
-lines()
 ```
+
 ```{r}
 gop_by_s92<- data.frame(gop1992_by_states)
 gop_by_s96<- data.frame(gop1996_by_states)
@@ -131,6 +168,7 @@ plot(gop2000_df$state, gop2000_df$subrf2000,
       ylab = "Share of Fox News subscribers")
 
 ```
+
 ```{r}
 towns_w_foxnews<- subset(data, (subset = subrf2000 >0))
 towns_no_foxnews<-subset(data, (subset = subrf2000 ==0))
@@ -158,16 +196,22 @@ text(1994,0.46, "Towns without Fox News")
 
 ```
 
-##A Question I (Thea) would like to do for final assignment 
+##A Question I (Thea) would like to do for final assignment
 
+Our hypotheses stating, that it might be possible that education,
+gender, and people with different race reacting differently to the
+implementation of Fox News. It could be also possible that voters with
+different incomes get effected differently by the input of Fox News.
 
+We will evaluate whether these hypotheses are supported by finding the
+differences in sample average treatment effects by education, gender,
+race and income in towns with access to Fox News and towns without
+access to Fox News.
 
-Our hypotheses stating, that it might be possible that education, gender, and people with different race reacting differently to the implementation of Fox News. 
-It could be also possible that voters with different incomes get effected differently by the input of Fox News.
-
-We will evaluate whether these hypotheses are supported by finding the differences in sample average treatment effects by education, gender, race and income in towns with access to Fox News and towns without access to Fox News. 
-
-Furthermore,Computeing the average change of votes for republican (during presidential elections) among towns before and after the availability of Fox News could be an crucial indicator to understand the effect.
+Furthermore,Computeing the average change of votes for republican
+(during presidential elections) among towns before and after the
+availability of Fox News could be an crucial indicator to understand the
+effect.
 
 ```{r}
 ##SATE town with high proportion of a black population 
@@ -226,6 +270,7 @@ text(1998,0,"Low black Population", col="darkseagreen4")
 text(1999, 0.05, "No black Population", col="mediumorchid1")
 
 ```
+
 ```{r}
 summary(data$income1990)
 
@@ -281,11 +326,6 @@ text(1993,0.06,"High income", col="green")
 text(1998,0,"medium income", col="orange")
 text(1999, 0.05, "low income", col="brown")
 ```
-
-
-
-
-
 
 \newpage
 
