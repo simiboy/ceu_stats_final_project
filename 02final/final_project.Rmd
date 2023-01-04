@@ -59,6 +59,7 @@ Afterwards the two-party vote share is calculated for the other two measurement 
 ```{r}
 gop1996_by_states <- tapply(data$gopvoteshare1996, data$state, mean, na.rm = TRUE)
 gop1992_by_states <- tapply(data$gopvoteshare1992, data$state, mean, na.rm = TRUE)
+gop2000_by_states <- tapply(data$gopvoteshare2000, data$state, mean, na.rm = TRUE)
 
 # this dataframe contains the mean gop for the three years (1992, 1996, 2000) by state
 gop_by_states <- data.frame(gop1992_by_states, gop1996_by_states, gop2000_by_states)
@@ -98,7 +99,7 @@ gop1996_df<- data[ , c("state","town","college1990", "male1990", "black1990", "h
 gop2000_df<- data[ , c("state","town","college1990", "male1990", "black1990", "hisp1990", "income1990","subrf2000", "gopvoteshare2000")] 
 
 plot(gop2000_df$gopvoteshare2000, gop2000_df$subrf2000, 
-     pch = 16, col = "black",
+     pch = 16, col = "black",cex=0.5,
       xlab = "Two-party vote share for the Republicans (2000 Presidential election)",
       ylab = "Share of Fox News subscribers by town")
 
@@ -111,10 +112,26 @@ gop_by_s92<- data.frame(gop1992_by_states)
 gop_by_s96<- data.frame(gop1996_by_states)
 gop_by_s20<- data.frame(gop2000_by_states)
 
-plot(gop2000_df$state, gop2000_df$subrf2000,
-     pch = 16, col="black",
+mean(gop2000_df$subrf2000,na.rm= TRUE)
+
+subrf2000_by_states <- tapply(data$subrf2000, data$state, mean, na.rm = TRUE)
+
+
+# this dataframe contains the mean gop for the three years (1992, 1996, 2000) by state
+subrf2000_by_states_df <- data.frame(subrf2000_by_states)
+
+dim(subrf2000_by_states_df)
+dim(gop_by_s20)
+
+states<- c("Ak","Al","Ar","Ca","Ct","Hi","Ia","Id","Ma","Me","Mi","Mn","Mo","Mt","Nd","Nh","Nj","Ny","Oh","Pa","Ri","Sc","Tn","Ut","Va","Vt","Wi","Wy")
+
+
+barplot(subrf2000_by_states_df$subrf2000_by_states ~states,
+      col="steelblue2",
       xlab = "State",
-      ylab = "Share of Fox News subscribers")
+      ylab = "Share of Fox News subscribers", 
+      main= "Share of Fox News subscribers by state"
+      )
 
 ```
 
