@@ -9,7 +9,7 @@ urlcolor: blue
 bibliography: citations.bib 
 ---
 
-**##Potential research question:** To what extend had the implementation of Fox News an effect on the US voting behavior during the presidential elections 1996 & 2000?
+**##Potential research question:** To what extent had the implementation of Fox News an effect on the US voting behavior during the presidential elections 1996 & 2000?
 
 # **Introduction**
 
@@ -267,6 +267,20 @@ text(1998,0,"medium income", col="orange")
 text(1999, 0.05, "low income", col="brown")
 ```
 
+
+```{r}
+#regression analysis
+
+fit1 <- lm(gopvoteshare1992 ~ subrf2000, data=data)
+fit1
+
+fit2 <- lm(gopvoteshare1996 ~ subrf2000, data = data)
+fit2
+
+fit3 <- lm(gopvoteshare2000 ~ subrf2000, data = data)
+fit3
+
+```
 # Conclusion
 
 \newpage
