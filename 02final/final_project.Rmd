@@ -270,17 +270,42 @@ text(1999, 0.05, "low income", col="brown")
 
 ```{r}
 #regression analysis
+#effect of Fox News subscribes 
 
 fit1 <- lm(gopvoteshare1992 ~ subrf2000, data=data)
 fit1
+summary(fit1)$adj.r.squared
 
 fit2 <- lm(gopvoteshare1996 ~ subrf2000, data = data)
 fit2
+summary(fit2)$adj.r.squared
 
 fit3 <- lm(gopvoteshare2000 ~ subrf2000, data = data)
 fit3
+summary(fit3)$adj.r.squared
 
 ```
+```{r}
+#effect of social background
+
+data$hisp_or_black <- data$black1990 + data$hisp1990
+
+
+socio_1 <- lm(gopvoteshare1992 ~ income1990 + hisp_or_black + college1990, data = data)
+socio_1
+summary(socio_1)$adj.r.squared 
+
+socio_2 <- lm(gopvoteshare1996 ~ income1990 + hisp_or_black + college1990, data = data)
+socio_2
+summary(socio_2)$adj.r.squared
+
+socio_3 <- lm(gopvoteshare2000 ~ income1990 + hisp_or_black + college1990, data = data)
+socio_3
+summary(socio_3)$adj.r.squared 
+
+
+```
+
 # Conclusion
 
 \newpage
