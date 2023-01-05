@@ -295,7 +295,9 @@ text(1998,0,"medium income", col="orange")
 text(1999, 0.05, "low income", col="brown")
 ```
 
+##Regression analysis (Blanka)
 
+We would like to test whether 
 ```{r}
 #regression analysis
 #effect of Fox News subscribes 
@@ -313,6 +315,8 @@ fit3
 summary(fit3)$adj.r.squared
 
 ```
+
+
 ```{r}
 #effect of social background
 
@@ -333,6 +337,8 @@ summary(socio_3)$adj.r.squared
 
 
 ```
+
+The results of the regressions show that socio-cultural factors can better explain people's party choice than Fox News subscribes. Based on the analysis race seems have a strong effect on people's party choice. In towns where the proportion of of Hispanic and black people is higher people less likely to vote for the Republican party (the data set only includes Black and Hispanic and we interpret the rest as Caucasian). 
 
 # Conclusion
 
