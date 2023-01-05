@@ -59,6 +59,7 @@ Afterwards the two-party vote share is calculated for the other two measurement 
 ```{r}
 gop1996_by_states <- tapply(data$gopvoteshare1996, data$state, mean, na.rm = TRUE)
 gop1992_by_states <- tapply(data$gopvoteshare1992, data$state, mean, na.rm = TRUE)
+gop2000_by_states <- tapply(data$gopvoteshare2000, data$state, mean, na.rm = TRUE)
 
 # this dataframe contains the mean gop for the three years (1992, 1996, 2000) by state
 gop_by_states <- data.frame(gop1992_by_states, gop1996_by_states, gop2000_by_states)
@@ -98,7 +99,7 @@ gop1996_df<- data[ , c("state","town","college1990", "male1990", "black1990", "h
 gop2000_df<- data[ , c("state","town","college1990", "male1990", "black1990", "hisp1990", "income1990","subrf2000", "gopvoteshare2000")] 
 
 plot(gop2000_df$gopvoteshare2000, gop2000_df$subrf2000, 
-     pch = 16, col = "black",
+     pch = 16, col = "black",cex=0.5,
       xlab = "Two-party vote share for the Republicans (2000 Presidential election)",
       ylab = "Share of Fox News subscribers by town")
 
@@ -111,19 +112,40 @@ gop_by_s92<- data.frame(gop1992_by_states)
 gop_by_s96<- data.frame(gop1996_by_states)
 gop_by_s20<- data.frame(gop2000_by_states)
 
-plot(gop2000_df$state, gop2000_df$subrf2000,
-     pch = 16, col="black",
+mean(gop2000_df$subrf2000,na.rm= TRUE)
+
+subrf2000_by_states <- tapply(data$subrf2000, data$state, mean, na.rm = TRUE)
+
+
+# this dataframe contains the mean gop for the three years (1992, 1996, 2000) by state
+subrf2000_by_states_df <- data.frame(subrf2000_by_states)
+
+dim(subrf2000_by_states_df)
+dim(gop_by_s20)
+
+states<- c("Ak","Al","Ar","Ca","Ct","Hi","Ia","Id","Ma","Me","Mi","Mn","Mo","Mt","Nd","Nh","Nj","Ny","Oh","Pa","Ri","Sc","Tn","Ut","Va","Vt","Wi","Wy")
+
+
+barplot(subrf2000_by_states_df$subrf2000_by_states ~states,
+      col="steelblue2",cex.names = 0.5,
       xlab = "State",
-      ylab = "Share of Fox News subscribers")
+      ylab = "Share of Fox News subscribers", 
+      main= "Share of Fox News subscribers by state", 
+      )
 
 ```
 
 ```{r}
-towns_w_foxnews<- subset(data, (subset = subrf2000 >0))
+summary(data$subrf2000, na.rm = T)
+towns_w_foxnews<- subset(data, (subset = subrf2000 == 1))
+towns_some_foxnews<- subset(data, (subset = subrf2000 >0 & subrf2000 <0.7))
 towns_no_foxnews<-subset(data, (subset = subrf2000 ==0))
 
 means.all.elections.wFN<-colMeans(towns_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 means.all.elections.wFN
+
+means.all.elections.someFN<-colMeans(towns_some_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
+means.all.elections.someFN
 
 means.all.elections.noFN<-colMeans(towns_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 means.all.elections.noFN
@@ -131,17 +153,23 @@ means.all.elections.noFN
 years<- c(1992, 1996, 2000)
 
 plot(years, means.all.elections.noFN, pch = 16, col = "black",
-xlim = c(1992, 2000), ylim = c(0.4, 0.55), xlab = "Election years",
+xlim = c(1992, 2000), ylim = c(0.4, 0.6), xlab = "Election years",
 ylab = "Average vote share for the Republicans ",
 main = "Difference in Average vote share across towns with/without fox news")
 
 points(years, means.all.elections.wFN,pch = 16, col = "red")
+points(years, means.all.elections.someFN,pch = 16, col = "blue")
 
+abline(v=1996, lty= 2, col= "grey")
 
 lines(years, means.all.elections.noFN, type = "c")
+lines(years, means.all.elections.someFN, type = "c", col= "steelblue2")
 lines(years, means.all.elections.wFN, type = "c", col="red")
-text(1994,0.51, "Towns with Fox News", col="red")
-text(1994,0.46, "Towns without Fox News")
+
+text(1993,0.57, "Towns with Fox News", col="red")
+text(1994,0.51, "Towns with some Fox News", col="steelblue2")
+text(1993,0.46, "Towns without Fox News")
+text(1996, 0.59,"Implementation of Fox News", col="grey") 
 
 ```
 
@@ -156,8 +184,8 @@ Furthermore,Computeing the average change of votes for republican (during presid
 ```{r}
 ##SATE town with high proportion of a black population 
 summary(data$black1990)
-
 high_black_pop.t_w_foxnews<- subset(towns_w_foxnews, subset = black1990 >= 0.031380)
+
 high_black_pop.t_no_foxnews<- subset(towns_no_foxnews, subset = black1990 >= 0.031380)
 
 means_high_black_pop.t_w_foxnews<-colMeans(high_black_pop.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
@@ -194,7 +222,7 @@ sate_no_black_pop<- means_no_black_pop.t_w_foxnews - means_no_black_pop.t_no_fox
 sate_no_black_pop
 
 plot(years,sate_high_black_pop, pch = 16, col = "aquamarine3",
-xlim = c(1992, 2000), ylim = c(-0.1, 0.1), xlab = "Days of presidential election",
+xlim = c(1992, 2000), ylim = c(-0.05, 0.15), xlab = "Days of presidential election",
 ylab = "Estimated sample average fox news effect",
 main = "Trends in Fox News Effects among black population")
 
@@ -251,7 +279,7 @@ sate_low_income<- means_low_income.t_w_foxnews - means_low_income.t_no_foxnews
 sate_high_income
 
 plot(years,sate_high_income, pch = 16, col = "green",
-xlim = c(1992, 2000), ylim = c(-0.1, 0.1), xlab = "Years of presidential election",
+xlim = c(1992, 2000), ylim = c(-0.1, 0.2), xlab = "Years of presidential election",
 ylab = "Estimated sample average fox news effect",
 main = "Trends in Fox News Effects among income")
 
