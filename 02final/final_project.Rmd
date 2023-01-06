@@ -356,51 +356,75 @@ summary(data$college1990)
 
 ##SATE towns with high proportion of people who went to college
 
-high_edu.t_w_foxnews<- subset(towns_w_foxnews, subset = college1990 >= 0.19255)
+high_edu.t_w_foxnews <- subset(towns_w_foxnews, subset = college1990 >= 0.19255)
 high_edu.t_no_foxnews<- subset(towns_no_foxnews, subset = college1990 >= 0.19255)
+high_edu.t_some_foxnews<- subset(towns_some_foxnews, subset = college1990 >= 0.19255)
 
 means_high_edu.t_w_foxnews<-colMeans(high_edu.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
 means_high_edu.t_no_foxnews<-colMeans(high_edu.t_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-sate_high_edu<- means_high_income.t_w_foxnews - means_high_income.t_no_foxnews 
-sate_high_edu
+means_high_edu.t_some_foxnews<-colMeans(high_edu.t_some_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
+
+sate_high_edu.t_w_foxnews<- means_high_income.t_no_foxnews -means_high_income.t_w_foxnews
+sate_high_edu.t_w_foxnews
+
+sate_high_edu.t_some_foxnews<- means_high_income.t_no_foxnews -means_high_income.t_some_foxnews
+sate_high_edu.t_some_foxnews
 
 ##SATE town with medium education
 
 medium_edu.t_w_foxnews<- subset(towns_w_foxnews, subset = college1990 >0.08145 & college1990 <0.19255)
 medium_edu.t_no_foxnews<- subset(towns_no_foxnews, subset =college1990 >0.08145 & college1990 <0.19255)
+medium_edu.t_some_foxnews<- subset(towns_some_foxnews, subset =college1990 >0.08145 & college1990 <0.19255)
 
 means_medium_edu.t_w_foxnews<-colMeans(medium_edu.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
 means_medium_edu.t_no_foxnews<-colMeans(medium_edu.t_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-sate_medium_edu<- means_medium_edu.t_w_foxnews - means_medium_edu.t_no_foxnews 
-sate_medium_edu 
+means_medium_edu.t_some_foxnews<-colMeans(medium_edu.t_some_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
+
+sate_medium_edu.t_w_foxnews<- means_medium_edu.t_no_foxnews- means_medium_edu.t_w_foxnews
+sate_medium_edu.t_w_foxnews 
+
+sate_medium_edu.t_some_foxnews<- means_medium_edu.t_no_foxnews- means_medium_edu.t_some_foxnews
+sate_medium_edu.t_some_foxnews 
 
 ##SATE town with high proportion of poor people 
 
 low_edu.t_w_foxnews<- subset(towns_w_foxnews, subset = college1990 <= 0.08145)
 low_edu.t_no_foxnews<- subset(towns_no_foxnews, subset = college1990 <= 0.08145)
+low_edu.t_some_foxnews<- subset(towns_some_foxnews, subset = college1990 <= 0.08145)
 
 means_low_edu.t_w_foxnews<-colMeans(low_edu.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
 means_low_edu.t_no_foxnews<-colMeans(low_edu.t_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-sate_low_edu<- means_low_edu.t_w_foxnews - means_low_edu.t_no_foxnews 
-sate_high_edu
+means_low_edu.t_some_foxnews<-colMeans(low_edu.t_some_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-plot(years,sate_high_edu, pch = 16, col = "darksalmon",
-xlim = c(1992, 2000), ylim = c(-0.1, 0.2), xlab = "Years of presidential election",
+sate_low_edu.t_w_foxnews<-means_low_edu.t_no_foxnews- means_low_edu.t_w_foxnews 
+sate_high_edu.t_w_foxnews
+
+sate_low_edu.t_some_foxnews<-means_low_edu.t_no_foxnews- means_low_edu.t_some_foxnews 
+sate_high_edu.t_some_foxnews
+
+plot(years,sate_high_edu.t_w_foxnews, pch = 16, col = "darksalmon",
+xlim = c(1992, 2000), ylim = c(-0.2, 0.2), xlab = "Years of presidential election",
 ylab = "Estimated sample average fox news effect",
 main = "Trends in Fox News Effects among the level of education")
 
-points(years, sate_medium_edu,pch = 16, col = "deeppink4")
-points(years, sate_low_edu,pch = 16, col = "grey80")
+points(years, sate_medium_edu.t_some_foxnews,pch = 16, col = "darksalmon")
+points(years, sate_medium_edu.t_w_foxnews,pch = 16, col = "deeppink4")
+points(years, sate_medium_edu.t_some_foxnews,pch = 16, col = "deeppink4")
+points(years, sate_low_edu.t_w_foxnews,pch = 16, col = "grey80")
+points(years, sate_low_edu.t_some_foxnews,pch = 16, col = "grey80")
 
-lines(years,sate_high_edu, type="c", col="darksalmon")
-lines(years, sate_medium_edu,type="c", col = "deeppink4")
-lines(years, sate_low_edu,type="c", col = "grey80")
+lines(years,sate_high_edu.t_w_foxnews, type="c", col="darksalmon")
+lines(years,sate_high_edu.t_some_foxnews, type="c", col="darksalmon")
+lines(years, sate_medium_edu.t_w_foxnews,type="c", col = "deeppink4")
+lines(years, sate_medium_edu.t_some_foxnews,type="c", col = "deeppink4")
+lines(years, sate_low_edu.t_w_foxnews,type="c", col = "grey80")
+lines(years, sate_low_edu.t_w_foxnews,type="c", col = "grey80")
 
 text(1998,0.14,"High level of education", col="darksalmon")
 text(1998,0.04,"Medium level of education", col="deeppink4")
