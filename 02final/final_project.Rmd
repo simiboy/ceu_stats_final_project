@@ -23,11 +23,11 @@ However, other authors argue that issue voting explains voters' party choice whi
 
 This paper will follow Lazarsfeld et al.'s (1944) approach and main Hypotheses: The act of voting is an individual act, affected mainly by the personality of the voter and his exposure to the media.In the case of our research and our available data, we categorize the variables about socioeconomic background of the people as personality trades and the exposure to media via the existence or non-existence of Fox News.
 
-**HP1:** Fox news and the socioeconomic background effects the behavior of the electorate.
+**HP1:** Fox news and the socioeconomic background affects the behavior of the electorate.
 
 Sociological model of voting Kriesi's [@Kriesi2008]: People's voting behavior is just shaped by long-term factors (socialization).
 
-**HP2:** Just socioeconomic background effects the behavior of the electorate.
+**HP2:** Just socioeconomic background affects the behavior of the electorate.
 
 Rational expectation theories [@Bray1987] :Voters often filter out reporting bias without being influenced. The implementation of Fox News will not effect election results.
 
