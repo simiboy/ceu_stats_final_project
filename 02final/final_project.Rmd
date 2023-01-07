@@ -348,7 +348,6 @@ text(1998,0.02,"Medium income", col="orange")
 text(1998, -0.06, "Low income", col="brown")
 ```
 
-
 ```{r}
 summary(data$college1990)
 
@@ -494,23 +493,60 @@ fun_income <- fit_income_max - fit_income_min
 fun_income <- fun_income * 15
 
 #black population
-
 fit_black_1990 <- lm(gopvoteshare2000 ~ black1990, data = data)
 fit_black_max <- predict(fit_black_1990, data.frame(black1990 = 1))
 fit_black_min <- predict(fit_black_1990, data.frame(black1990 = 0))
 fun_black_1990 <- fit_black_max - fit_black_min
 
+#hispanic population
+fit_hisp_1990 <- lm(gopvoteshare2000 ~ hisp1990, data = data)
+fit_hisp_max <- predict(fit_hisp_1990, data.frame(hisp1990 = 1))
+fit_hisp_min <- predict(fit_hisp_1990, data.frame(hisp1990 = 0))
+fun_hisp_1990 <- fit_hisp_max - fit_hisp_min
+
+#education level
+fit_college_1990 <- lm(gopvoteshare2000 ~ college1990, data = data)
+fit_college_max <- predict(fit_college_1990, data.frame(college1990 = 1))
+fit_college_min <- predict(fit_college_1990, data.frame(college1990 = 0))
+fun_college_1990 <- fit_college_max - fit_college_min
+
 plot(1,
 type = "n",
   xlim = c(0, 1),
   ylim = c(0,1),
+  main = "Predicted effect of different socio-cultural factors on vote share",
   xlab="Low-High dimension",
-  ylab="GOP vote share in 2000")
+  ylab="Predicted two-party vote share for Republicans")
 
-abline(a=fit_income_min,
-  b=fun_income,
-  col="orangered",
+abline(a= fit_income_min,
+  b= fun_income,
+  col= "orangered",
   )
+abline(a= fit_black_min,
+  b= fun_black_1990,
+  col= "steelblue",
+  )
+abline(a= fit_hisp_min,
+  b= fun_hisp_1990,
+  col= "brown",
+  )
+abline(a= fit_college_min,
+  b= fun_college_1990,
+  col= "darkgreen",
+  )
+
+text(0.8, 0.8,
+     "income",
+     col="orangered")
+text(0.8, 0.6,
+     "education level",
+     col="darkgreen")
+text(0.8, 0.35,
+     "black population",
+     col="steelblue")
+text(0.5, 0.2,
+     "hispanic population",
+     col="brown")
 
 ```
 
