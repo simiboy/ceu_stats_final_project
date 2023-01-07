@@ -171,7 +171,7 @@ text(1996, 0.59,"Implementation of Fox News", col="grey")
 
 ```
 
-##A Question I (Thea) would like to do for final assignment
+##A Question I would like to do for final assignment
 
 Our hypotheses stating, that it might be possible that education, gender, and people with different race reacting differently to the implementation of Fox News. It could be also possible that voters with different incomes get effected differently by the input of Fox News.
 
@@ -182,44 +182,34 @@ Furthermore,Computeing the average change of votes for republican (during presid
 ```{r}
 ##SATE town with high proportion of a black population
 summary(data$black1990)
-high_black_pop.t_w_foxnews<- subset(towns_w_foxnews, subset = black1990 >= 0.031380)
+high_black_pop.t_w_foxnews<- subset(towns_w_foxnews, subset = black1990 >= 0.4)
 
-high_black_pop.t_no_foxnews<- subset(towns_no_foxnews, subset = black1990 >= 0.031380)
-
-high_black_pop.t_some_foxnews<- subset(towns_some_foxnews, subset = black1990 >= 0.031380)
+high_black_pop.t_no_foxnews<- subset(towns_no_foxnews, subset = black1990 >= 0.4)
 
 
 means_high_black_pop.t_w_foxnews<-colMeans(high_black_pop.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
 means_high_black_pop.t_no_foxnews<-colMeans(high_black_pop.t_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-means_high_black_pop.t_some_foxnews<-colMeans(high_black_pop.t_some_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-sate_high_black_pop_t_w_fn<- means_high_black_pop.t_no_foxnews - means_high_black_pop.t_w_foxnews
+sate_high_black_pop_t_w_fn<-  means_high_black_pop.t_w_foxnews- means_high_black_pop.t_no_foxnews
 sate_high_black_pop_t_w_fn
 
-sate_high_black_pop_t_some_fn<- means_high_black_pop.t_no_foxnews - means_high_black_pop.t_w_foxnews
-sate_high_black_pop_t_some_fn
+
 
 ####SATE town with low proportion of a black population
 
-low_black_pop.t_w_foxnews<- subset(towns_w_foxnews, subset = black1990 > 0 & black1990 < 0.013411)
+low_black_pop.t_w_foxnews<- subset(towns_w_foxnews, subset = black1990 > 0 & black1990 < 0.4)
 
-low_black_pop.t_no_foxnews<- subset(towns_no_foxnews, subset = black1990 > 0 & black1990 < 0.013411)
+low_black_pop.t_no_foxnews<- subset(towns_no_foxnews, subset = black1990 > 0 & black1990 < 0.4)
 
-low_black_pop.t_some_foxnews<- subset(towns_no_foxnews, subset = black1990 > 0 & black1990 < 0.013411)
 
 means_low_black_pop.t_w_foxnews<-colMeans(low_black_pop.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
 means_low_black_pop.t_no_foxnews<-colMeans(low_black_pop.t_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-means_low_black_pop.t_some_foxnews<-colMeans(low_black_pop.t_some_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
-
-sate_low_black_pop_t_w_fn<-  means_low_black_pop.t_no_foxnews- means_low_black_pop.t_w_foxnews
+sate_low_black_pop_t_w_fn<- means_low_black_pop.t_w_foxnews- means_low_black_pop.t_no_foxnews
 sate_low_black_pop_t_w_fn
-
-sate_low_black_pop_t_some_fn<-  means_low_black_pop.t_no_foxnews- means_low_black_pop.t_some_foxnews
-sate_low_black_pop_t_some_fn
 
 ####SATE town with no proportion of a black population
 
@@ -227,39 +217,30 @@ no_black_pop.t_w_foxnews<- subset(towns_w_foxnews, subset = black1990 == 0)
 
 no_black_pop.t_no_foxnews<- subset(towns_no_foxnews, subset = black1990 == 0)
 
-no_black_pop.t_some_foxnews<- subset(towns_no_foxnews, subset = black1990 == 0)
 
 means_no_black_pop.t_w_foxnews<-colMeans(no_black_pop.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
 means_no_black_pop.t_no_foxnews<-colMeans(no_black_pop.t_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-means_no_black_pop.t_some_foxnews<-colMeans(no_black_pop.t_some_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-
-sate_no_black_pop_t_w_fn<- means_no_black_pop.t_no_foxnews - means_no_black_pop.t_w_foxnews
+sate_no_black_pop_t_w_fn<-means_no_black_pop.t_w_foxnews- means_no_black_pop.t_no_foxnews
 sate_no_black_pop_t_w_fn
 
-sate_no_black_pop_t_some_fn<- means_no_black_pop.t_no_foxnews- means_no_black_pop.t_some_foxnews
-sate_no_black_pop_t_some_fn
 
 
 plot(years,sate_high_black_pop_t_w_fn, pch = 16, col = "aquamarine3",
-xlim = c(1992, 2000), ylim = c(-0.3, 0.15), xlab = "Days of presidential election",
+xlim = c(1992, 2000), ylim = c(-0.15, 0.2), xlab = "Days of presidential election",
 ylab = "Estimated sample average fox news effect",
 main = "Trends in Fox News Effects among black population")
 
-points(years, sate_high_black_pop_t_some_fn, pch= 16, col="aquamarine3")
 points(years, sate_low_black_pop_t_w_fn,pch=16, col = "darkseagreen4")
-points(years, sate_low_black_pop_t_some_fn,pch = 16, col = "darkseagreen4")
 points(years, sate_no_black_pop_t_w_fn,pch = 16, col = "mediumorchid1")
-points(years, sate_no_black_pop_t_some_fn,pch = 16, col = "mediumorchid1")
+
 
 lines(years,sate_high_black_pop_t_w_fn, type="c", col="aquamarine3")
-lines(years,sate_high_black_pop_t_some_fn, type="c", col="aquamarine3")
 lines(years, sate_low_black_pop_t_w_fn,type="c", col = "darkseagreen4")
-lines(years, sate_low_black_pop_t_some_fn,type="c", col = "darkseagreen4")
 lines(years, sate_no_black_pop_t_w_fn,type="c", col = "mediumorchid1")
-lines(years, sate_no_black_pop_t_some_fn,type="c", col = "mediumorchid1")
+
 
 text(1998,0.08,"High black Population", col="aquamarine3")
 text(1993,0.04,"Low black Population", col="darkseagreen4")
@@ -274,74 +255,57 @@ summary(data$income1990)
 
 high_income.t_w_foxnews<- subset(towns_w_foxnews, subset = income1990 >= 3.420)
 high_income.t_no_foxnews<- subset(towns_no_foxnews, subset = income1990 >= 3.420)
-high_income.t_some_foxnews<- subset(towns_some_foxnews, subset = income1990 >= 3.420)
 
 means_high_income.t_w_foxnews<-colMeans(high_income.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
 means_high_income.t_no_foxnews<-colMeans(high_income.t_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-means_high_income.t_some_foxnews<-colMeans(high_income.t_some_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
-
-sate_high_income.t_w_foxnews<-means_high_income.t_no_foxnews- means_high_income.t_w_foxnews
+sate_high_income.t_w_foxnews<-means_high_income.t_w_foxnews- means_high_income.t_no_foxnews
 sate_high_income.t_w_foxnews
 
-sate_high_income.t_some_foxnews<-  means_high_income.t_no_foxnews- means_high_income.t_some_foxnews
-sate_high_income.t_some_foxnews
 
 
 ##SATE town with medium income
 
 medium_income.t_w_foxnews<- subset(towns_w_foxnews, subset = income1990 >1.946 & income1990 <3.420 )
 medium_income.t_no_foxnews<- subset(towns_no_foxnews, subset =income1990 >1.946 & income1990 <3.420 )
-medium_income.t_some_foxnews<- subset(towns_no_foxnews, subset =income1990 >1.946 & income1990 <3.420 )
 
 means_medium_income.t_w_foxnews<-colMeans(medium_income.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
 means_medium_income.t_no_foxnews<-colMeans(medium_income.t_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-means_medium_income.t_some_foxnews<-colMeans(medium_income.t_some_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-sate_medium_income.t_w_foxnews<- means_medium_income.t_no_foxnews - means_medium_income.t_w_foxnews
+sate_medium_income.t_w_foxnews<-means_medium_income.t_w_foxnews - means_medium_income.t_no_foxnews
 sate_medium_income.t_w_foxnews
 
-sate_medium_income.t_some_foxnews<- means_medium_income.t_no_foxnews - means_medium_income.t_some_foxnews
-sate_medium_income.t_some_foxnews
 
 ##SATE town with high proportion of poor people
 
 low_income.t_w_foxnews<- subset(towns_w_foxnews, subset = income1990 <= 1.946)
 low_income.t_no_foxnews<- subset(towns_no_foxnews, subset = income1990 <= 1.946)
-low_income.t_some_foxnews<- subset(towns_some_foxnews, subset = income1990 <= 1.946)
+
 
 means_low_income.t_w_foxnews<-colMeans(low_income.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
 means_low_income.t_no_foxnews<-colMeans(low_income.t_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-means_low_income.t_some_foxnews<-colMeans(low_income.t_some_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-sate_low_income.t_w_foxnews<- means_low_income.t_no_foxnews- means_low_income.t_w_foxnews
+sate_low_income.t_w_foxnews<- means_low_income.t_w_foxnews- means_low_income.t_no_foxnews
 sate_high_income.t_w_foxnews
 
-sate_low_income.t_some_foxnews<- means_low_income.t_no_foxnews- means_low_income.t_some_foxnews
-sate_high_income.t_some_foxnews
 
 plot(years,sate_high_income.t_w_foxnews, pch = 16, col = "green",
 xlim = c(1992, 2000), ylim = c(-0.2, 0.2), xlab = "Years of presidential election",
 ylab = "Estimated sample average fox news effect",
 main = "Trends in Fox News Effects among income")
 
-points(years, sate_high_income.t_some_foxnews,pch = 16, col = "green")
 points(years, sate_medium_income.t_w_foxnews,pch = 16, col = "orange")
-points(years, sate_medium_income.t_some_foxnews,pch = 16, col = "orange")
 points(years, sate_low_income.t_w_foxnews,pch = 16, col = "brown")
-points(years, sate_low_income.t_some_foxnews,pch = 16, col = "brown")
+
 
 lines(years,sate_high_income.t_w_foxnews, type="c", col="green")
-lines(years,sate_high_income.t_some_foxnews, type="c", col="green")
 lines(years, sate_medium_income.t_w_foxnews,type="c", col = "orange")
-lines(years, sate_medium_income.t_some_foxnews,type="c", col = "orange")
 lines(years, sate_low_income.t_w_foxnews,type="c", col = "brown")
-lines(years, sate_low_income.t_some_foxnews,type="c", col = "brown")
 
 text(1993,0.13,"High income", col="green")
 text(1998,0.02,"Medium income", col="orange")
@@ -355,19 +319,16 @@ summary(data$college1990)
 
 high_edu.t_w_foxnews <- subset(towns_w_foxnews, subset = college1990 >= 0.19255)
 high_edu.t_no_foxnews<- subset(towns_no_foxnews, subset = college1990 >= 0.19255)
-high_edu.t_some_foxnews<- subset(towns_some_foxnews, subset = college1990 >= 0.19255)
+
 
 means_high_edu.t_w_foxnews<-colMeans(high_edu.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
 means_high_edu.t_no_foxnews<-colMeans(high_edu.t_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-means_high_edu.t_some_foxnews<-colMeans(high_edu.t_some_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
 sate_high_edu.t_w_foxnews<- means_high_income.t_no_foxnews -means_high_income.t_w_foxnews
 sate_high_edu.t_w_foxnews
 
-sate_high_edu.t_some_foxnews<- means_high_income.t_no_foxnews -means_high_income.t_some_foxnews
-sate_high_edu.t_some_foxnews
 
 ##SATE town with medium education
 
@@ -379,49 +340,40 @@ means_medium_edu.t_w_foxnews<-colMeans(medium_edu.t_w_foxnews[c('gopvoteshare199
 
 means_medium_edu.t_no_foxnews<-colMeans(medium_edu.t_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-means_medium_edu.t_some_foxnews<-colMeans(medium_edu.t_some_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-sate_medium_edu.t_w_foxnews<- means_medium_edu.t_no_foxnews- means_medium_edu.t_w_foxnews
+sate_medium_edu.t_w_foxnews<- means_medium_edu.t_w_foxnews - means_medium_edu.t_no_foxnews
 sate_medium_edu.t_w_foxnews
 
-sate_medium_edu.t_some_foxnews<- means_medium_edu.t_no_foxnews- means_medium_edu.t_some_foxnews
-sate_medium_edu.t_some_foxnews
 
 ##SATE town with high proportion of poor people
 
 low_edu.t_w_foxnews<- subset(towns_w_foxnews, subset = college1990 <= 0.08145)
 low_edu.t_no_foxnews<- subset(towns_no_foxnews, subset = college1990 <= 0.08145)
-low_edu.t_some_foxnews<- subset(towns_some_foxnews, subset = college1990 <= 0.08145)
+
 
 means_low_edu.t_w_foxnews<-colMeans(low_edu.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
 means_low_edu.t_no_foxnews<-colMeans(low_edu.t_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-means_low_edu.t_some_foxnews<-colMeans(low_edu.t_some_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
-sate_low_edu.t_w_foxnews<-means_low_edu.t_no_foxnews- means_low_edu.t_w_foxnews
+sate_low_edu.t_w_foxnews<- means_low_edu.t_w_foxnews - means_low_edu.t_no_foxnews
 sate_high_edu.t_w_foxnews
 
-sate_low_edu.t_some_foxnews<-means_low_edu.t_no_foxnews- means_low_edu.t_some_foxnews
-sate_high_edu.t_some_foxnews
 
 plot(years,sate_high_edu.t_w_foxnews, pch = 16, col = "darksalmon",
 xlim = c(1992, 2000), ylim = c(-0.2, 0.2), xlab = "Years of presidential election",
 ylab = "Estimated sample average fox news effect",
 main = "Trends in Fox News Effects among the level of education")
 
-points(years, sate_medium_edu.t_some_foxnews,pch = 16, col = "darksalmon")
+
 points(years, sate_medium_edu.t_w_foxnews,pch = 16, col = "deeppink4")
-points(years, sate_medium_edu.t_some_foxnews,pch = 16, col = "deeppink4")
 points(years, sate_low_edu.t_w_foxnews,pch = 16, col = "grey80")
-points(years, sate_low_edu.t_some_foxnews,pch = 16, col = "grey80")
+
 
 lines(years,sate_high_edu.t_w_foxnews, type="c", col="darksalmon")
-lines(years,sate_high_edu.t_some_foxnews, type="c", col="darksalmon")
 lines(years, sate_medium_edu.t_w_foxnews,type="c", col = "deeppink4")
-lines(years, sate_medium_edu.t_some_foxnews,type="c", col = "deeppink4")
 lines(years, sate_low_edu.t_w_foxnews,type="c", col = "grey80")
-lines(years, sate_low_edu.t_w_foxnews,type="c", col = "grey80")
+
 
 text(1998,0.14,"High level of education", col="darksalmon")
 text(1998,0.04,"Medium level of education", col="deeppink4")
