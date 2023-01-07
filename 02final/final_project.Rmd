@@ -450,49 +450,56 @@ text(1998, -0.02, "Low level of education", col="grey80")
 
 ## Regression analysis (Blanka)
 
-We would like to test whether
+We will test H1 (Fox news and the socioeconomic background affects the behavior of the electorate) and H2 (just socioeconomic background affects the behavior of the electorate) through regression analysis. First, we will test to what extent socioeconomic factors affect people's vote for the Republican party. We included in the analysis the proportion of inhabitants who have a college degree, the median income, and the proportion of black or Hispanic people in every city. Black and Hispanic people stand for minorities in the analysis because these are the two most significant minorities and only these two minorities were included in the data set.  
 
-```{r}
-#regression analysis
-#effect of Fox News subscribes
-
-fit1 <- lm(gopvoteshare1992 ~ subrf2000, data=data)
-fit1
-summary(fit1)$adj.r.squared
-
-fit2 <- lm(gopvoteshare1996 ~ subrf2000, data = data)
-fit2
-summary(fit2)$adj.r.squared
-
-fit3 <- lm(gopvoteshare2000 ~ subrf2000, data = data)
-fit3
-summary(fit3)$adj.r.squared
-
-```
 
 ```{r}
 #effect of social background
 
-#creating a new variable explaining the combined share of population who is black or hispanic
 data$hisp_or_black <- data$black1990 + data$hisp1990
 
-
-socio_1 <- lm(gopvoteshare1992 ~ income1990 + hisp_or_black + college1990, data = data)
-socio_1
-summary(socio_1)$adj.r.squared
-
-socio_2 <- lm(gopvoteshare1996 ~ income1990 + hisp_or_black + college1990, data = data)
-socio_2
-summary(socio_2)$adj.r.squared
-
-socio_3 <- lm(gopvoteshare2000 ~ income1990 + hisp_or_black + college1990, data = data)
-socio_3
-summary(socio_3)$adj.r.squared
+socio_economic <- lm(gopvoteshare2000 ~ income1990 + hisp_or_black + college1990, data = data)
+socio_economic
+summary(socio_economic)$adj.r.squared
 
 
 ```
+The results of the analysis show that in cities where the proportion of minorities (Hispanic and Black people) is higher the support for the Republican party is lower than in other cities. Therefore, from the socioeconomic factors that were included in the regression analysis race (`r round(coef( socio_economic )["hisp_or_black"], 4)`) has the strongest effect on support for the Republican party in American cities. The proportion of people who have a college degree is also an important explanatory factor to explain vote for the Republican party in a city. In cities where the proportion of those who have a college degree is higher citizens `r round(coef( socio_economic )["college1990"], 5)` are less likely to vote for the Republican party. Moreover, the median income in cities does not seem to have an effect on support for the Republican party. 
 
-The results of the regressions show that socio-cultural factors can better explain people's party choice than the share of Fox News subscribes. Based on the analysis race seems have a strong effect on people's party choice. In towns where the proportion of of Hispanic and black people is higher people less likely to vote for the Republican party (the data set only includes Black and Hispanic and we interpret the rest as Caucasian).
+In the following, we will test the influence of Fox News subscribers (in cities) on people's support for the Republican party. Furthermore, the proportion of Fox News subscribers will be added to the socio-economic factors to check what explains better people's vote for the Republican party. 
+
+```{r}
+
+foxnews_2000 <- lm(gopvoteshare2000 ~ subrf2000, data = data)
+foxnews_2000
+summary(foxnews_2000)$adj.r.squared
+
+
+socio_foxnews <- lm(gopvoteshare2000 ~ income1990 + hisp_or_black + college1990 + subrf2000, data = data)
+socio_foxnews
+summary(socio_foxnews)$adj.r.squared
+
+```
+
+The analysis shows that there is no real correlation (`r round(coef( foxnews_2000 )["subrf2000"], 3)`) between Fox News subscribers and the support for the Republican party. Therefore, the proportion of Fox News subscribers does not explain citizens' support for the Republican party. Furthermore, when the proportion of Fox News subscribers was added to the regression the influence of Fox News subscribers on people's support for the republican party became even weaker which means that socioeconomic factors better explain their support for the Republican party than Fox News subscribers. 
+
+However, the results can be misleading because there are much more towns in the data set where there is no access to Fox News or it is very limited. The over representation of these cities can have an effect on the results. Therefore, we created two sub groups. The first group includes cities where more than half of the inhabitants have access to Fox News and the second group includes those towns where less than the half of the population have access to Fox news. 
+
+
+```{r}
+
+foxnews_present <- subset(data, (subset = subrf2000 >= 0.5))
+foxnews_not_present <- subset(data, (subset = subrf2000 < 0.5))
+
+foxnews_present_effect <- lm(gopvoteshare2000 ~ subrf2000, data = foxnews_present)
+foxnews_present_effect
+
+foxnews_not_present_effect <- lm(gopvoteshare2000 ~ subrf2000, data = foxnews_not_present)
+foxnews_not_present_effect
+
+```
+The regression analysis shows that the effect of access to Fox News is still very marginal `r round(coef( foxnews_present_effect )["subrf2000"], 3)`. In cities where more than half of the population have access to Fox News people are more likely to support the republican party compare to those towns where less than half of the population have access to Fox News. 
+
 
 ## Prediction
 
