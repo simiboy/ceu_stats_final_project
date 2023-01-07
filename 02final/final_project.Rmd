@@ -59,7 +59,6 @@ Afterwards the two-party vote share is calculated for the other two measurement 
 ```{r}
 gop1996_by_states <- tapply(data$gopvoteshare1996, data$state, mean, na.rm = TRUE)
 gop1992_by_states <- tapply(data$gopvoteshare1992, data$state, mean, na.rm = TRUE)
-gop2000_by_states <- tapply(data$gopvoteshare2000, data$state, mean, na.rm = TRUE)
 
 # this dataframe contains the mean gop for the three years (1992, 1996, 2000) by state
 gop_by_states <- data.frame(gop1992_by_states, gop1996_by_states, gop2000_by_states)
@@ -89,9 +88,13 @@ Obviously this graph is not intended to clearly show the variance of each state,
 
 On the other hand in the time period of 1996 and 2000 there has been a strong increase (on average from `r mean(gop1996_by_states)` to `r mean(gop2000_by_states)` ). An important note is that there has been no single state where the republican vote share has decreased in this time period.
 
+Introducing the correlation analysis
+
 ```{r}
 cor(data[,c(3, 4, 5, 6, 7, 12)])
 ```
+
+Interpreting the correlation results
 
 ```{r}
 gop1992_df<- data[ , c("state","town","college1990", "male1990", "black1990", "hisp1990", "income1990","subrf2000", "gopvoteshare1992")] 
@@ -103,8 +106,6 @@ plot(gop2000_df$gopvoteshare2000, gop2000_df$subrf2000,
       xlab = "Two-party vote share for the Republicans (2000 Presidential election)",
       ylab = "Share of Fox News subscribers by town")
 
-
-tapply(gop2000_df$gopvoteshare2000, gop2000_df$subrf2000, mean,na.rm=T)
 ```
 
 ```{r}
@@ -112,7 +113,6 @@ gop_by_s92<- data.frame(gop1992_by_states)
 gop_by_s96<- data.frame(gop1996_by_states)
 gop_by_s20<- data.frame(gop2000_by_states)
 
-mean(gop2000_df$subrf2000,na.rm= TRUE)
 
 subrf2000_by_states <- tapply(data$subrf2000, data$state, mean, na.rm = TRUE)
 
@@ -120,14 +120,12 @@ subrf2000_by_states <- tapply(data$subrf2000, data$state, mean, na.rm = TRUE)
 # this dataframe contains the mean gop for the three years (1992, 1996, 2000) by state
 subrf2000_by_states_df <- data.frame(subrf2000_by_states)
 
-dim(subrf2000_by_states_df)
-dim(gop_by_s20)
 
 states<- c("Ak","Al","Ar","Ca","Ct","Hi","Ia","Id","Ma","Me","Mi","Mn","Mo","Mt","Nd","Nh","Nj","Ny","Oh","Pa","Ri","Sc","Tn","Ut","Va","Vt","Wi","Wy")
 
 
 barplot(subrf2000_by_states_df$subrf2000_by_states ~states,
-      col="steelblue2",cex.names = 0.5,
+      col="steelblue2",cex.names = 0.4,
       xlab = "State",
       ylab = "Share of Fox News subscribers", 
       main= "Share of Fox News subscribers by state in 2000", 
@@ -137,8 +135,13 @@ barplot(subrf2000_by_states_df$subrf2000_by_states ~states,
 
 ```{r}
 summary(data$subrf2000, na.rm = T)
-towns_w_foxnews<- subset(data, (subset = subrf2000 == 1))
-towns_some_foxnews<- subset(data, (subset = subrf2000 >0 & subrf2000 <0.7))
+
+#high foxnews reach
+towns_w_foxnews<- subset(data, (subset = subrf2000 <= 1 & subrf2000 >0.5))
+
+#some foxnews reach
+towns_some_foxnews<- subset(data, (subset = subrf2000 >0 & subrf2000 <0.5))
+
 towns_no_foxnews<-subset(data, (subset = subrf2000 ==0))
 
 means.all.elections.wFN<-colMeans(towns_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
@@ -294,6 +297,7 @@ text(1993,0.13,"High income", col="green")
 text(1998,0.02,"Medium income", col="orange")
 text(1998, -0.06, "Low income", col="brown")
 ```
+
 ```{r}
 summary(data$college1990)
 
@@ -351,9 +355,10 @@ text(1998, 0.1, "Low level of education", col="grey80")
 
 ```
 
-##Regression analysis (Blanka)
+## Regression analysis (Blanka)
 
-We would like to test whether 
+We would like to test whether
+
 ```{r}
 #regression analysis
 #effect of Fox News subscribes 
@@ -372,10 +377,10 @@ summary(fit3)$adj.r.squared
 
 ```
 
-
 ```{r}
 #effect of social background
 
+#creating a new variable explaining the combined share of population who is black or hispanic
 data$hisp_or_black <- data$black1990 + data$hisp1990
 
 
@@ -394,7 +399,45 @@ summary(socio_3)$adj.r.squared
 
 ```
 
-The results of the regressions show that socio-cultural factors can better explain people's party choice than Fox News subscribes. Based on the analysis race seems have a strong effect on people's party choice. In towns where the proportion of of Hispanic and black people is higher people less likely to vote for the Republican party (the data set only includes Black and Hispanic and we interpret the rest as Caucasian). 
+The results of the regressions show that socio-cultural factors can better explain people's party choice than the share of Fox News subscribes. Based on the analysis race seems have a strong effect on people's party choice. In towns where the proportion of of Hispanic and black people is higher people less likely to vote for the Republican party (the data set only includes Black and Hispanic and we interpret the rest as Caucasian).
+
+## Prediction
+
+```{r}
+
+#income 
+
+#predictions in 2000
+fit_income <- lm(gopvoteshare2000 ~ income1990, data = data)
+
+fit_income_max <- predict(fit_income, data.frame(income1990 = 15))
+fit_income_min <- predict(fit_income, data.frame(income1990 = 0))
+fun_income <- fit_income_max - fit_income_min
+
+#normalize to [0, 1] sclae
+
+fun_income <- fun_income * 15
+
+#black population
+
+fit_black_1990 <- lm(gopvoteshare2000 ~ black1990, data = data)
+fit_black_max <- predict(fit_black_1990, data.frame(black1990 = 1))
+fit_black_min <- predict(fit_black_1990, data.frame(black1990 = 0))
+fun_black_1990 <- fit_black_max - fit_black_min
+
+plot(1,
+type = "n",
+  xlim = c(0, 1),
+  ylim = c(0,1),
+  xlab="Low-High dimension",
+  ylab="GOP vote share in 2000")
+
+abline(a=fit_income_min,
+  b=fun_income,
+  col="orangered",
+  )
+
+```
 
 # Conclusion
 
