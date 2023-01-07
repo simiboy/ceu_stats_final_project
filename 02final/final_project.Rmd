@@ -132,7 +132,7 @@ barplot(subrf2000_by_states_df$subrf2000_by_states ~states,
       )
 
 ```
-
+To get a better picture of the implementation of Fox News in the USA, the share of Fox News subscribers by state in 2000 got plotted. The differences are immense. New Hampshire does not have any access to Fox News in 2000 yet, also in Vermont, Massachusetts and South Carolina is the access ratio to the Fox News Channel almost non existence. On the other hand is the  channel already very accessible in states like New Jersey,Wyoming and Alaska. According to the bar plot has the biggest proportion of Fox News subscribers. However, due to the fact, that the barplot does not represents the number of Fox News subscribers, only the the proportion of citizens with ...
 ```{r}
 summary(data$subrf2000, na.rm = T)
 towns_w_foxnews<- subset(data, (subset = subrf2000 >= 0.75))
