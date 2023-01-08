@@ -245,7 +245,7 @@ text(1999,0.08, "No black Population", col="mediumorchid1")
 
 
 ```
-The first thing we looked at was whether the introduction of Fox News had a bigger/smaller impact on black people in America. For this purpose, the cities were divided into subsets to take into account different proportions of black people in the cities. For the subdivision of cities and their black population, the different quantiles were not looked at, which is the case in the following SATE calculations,...
+The first thing we looked at was whether the introduction of Fox News had a bigger/smaller impact on black people in the USA. The cities were divided into subsets, to take into account different proportions of black people in the cities. For the subdivision of cities and their black population, the different quantiles were not looked at, which is the case in the following SATE calculations. Due to the white majority population in the states, the third quantile of the proportion of black people would have been 0.013411 but the maximum would have been 0.990427. The difference between 1% and 99% would have been too serious to categorize all cities in between as having a high black population. That's why cities with a percentage above 0.40 were considered to have a high black population. As can be seen in the plot, only the line from the cities with a high black population share has a similar shape to the lines in the plot with the general trend effect. In the cities with a low proportion or none at all, the estimated treatment effect goes in a negative direction. 
 ```{r}
 ##SATE town with high proportion of a black population
 summary(data$hisp1990)
