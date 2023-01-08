@@ -340,8 +340,8 @@ text(1993, 0.04, "No Hispanic Population", col="mediumorchid1")
 
 ##SATE town with high proportion of rich people
 
-high_income.t_w_foxnews<- subset(towns_w_foxnews, subset = income1990 >= 3.420)
-high_income.t_no_foxnews<- subset(towns_no_foxnews, subset = income1990 >= 3.420)
+high_income.t_w_foxnews<- subset(towns_w_foxnews, subset = income1990 >= 0.228)
+high_income.t_no_foxnews<- subset(towns_no_foxnews, subset = income1990 >= 0.228)
 
 means_high_income.t_w_foxnews<-colMeans(high_income.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
@@ -354,8 +354,8 @@ sate_high_income.t_w_foxnews
 
 ##SATE town with medium income
 
-medium_income.t_w_foxnews<- subset(towns_w_foxnews, subset = income1990 >1.946 & income1990 <3.420 )
-medium_income.t_no_foxnews<- subset(towns_no_foxnews, subset =income1990 >1.946 & income1990 <3.420 )
+medium_income.t_w_foxnews<- subset(towns_w_foxnews, subset = income1990 >0.13093333333 & income1990 <0.13093333333 )
+medium_income.t_no_foxnews<- subset(towns_no_foxnews, subset =income1990 >0.13093333333 & income1990 <0.13093333333 )
 
 means_medium_income.t_w_foxnews<-colMeans(medium_income.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
@@ -368,8 +368,8 @@ sate_medium_income.t_w_foxnews
 
 ##SATE town with high proportion of poor people
 
-low_income.t_w_foxnews<- subset(towns_w_foxnews, subset = income1990 <= 1.946)
-low_income.t_no_foxnews<- subset(towns_no_foxnews, subset = income1990 <= 1.946)
+low_income.t_w_foxnews<- subset(towns_w_foxnews, subset = income1990 <= 0.13093333333)
+low_income.t_no_foxnews<- subset(towns_no_foxnews, subset = income1990 <= 0.13093333333)
 
 
 means_low_income.t_w_foxnews<-colMeans(low_income.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
