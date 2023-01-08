@@ -22,9 +22,7 @@ This theory is supported by Lazarsfeld, Berelson, and Gaudet's [@Lazarsfeld1968]
 
 # Hypotheses
 
-
 Therefore, based on the existing literature the two hypotheses of the analysis, as mentioned above, will be the following:
-
 
 **HP1:** Fox news and the socioeconomic background affects the behavior of the electorate.
 
