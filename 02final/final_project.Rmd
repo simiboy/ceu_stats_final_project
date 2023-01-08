@@ -11,6 +11,11 @@ bibliography: citations.bib
 
 # **Introduction**
 
+The media landscape have changed dramatically in the last few decades. There was a change from mainly state owned and controlled media outlets to the spreading of private owned, more diverse and commercialized media outlets....
+
+Research question: 
+Therefore, the research question will be answered through two hypothesis: H1:Fox news and the socioeconomic background affects the behavior of the electorate. H2: Just socioeconomic background affects the behavior of the electorate.
+
 # Literature Review
 
 In recent decades, there has been increasing attention on the role of media during political campaigns and its effects on the actual outcomes of elections. However, it is still debated within academia to what extent news media influence the behavior of the electorate. A potential answer to the question is that news media does not have an actual effect on people's voting behavior. It is called the sociological model of voting behavior which states that people's voting behavior is determined by long-term factors. This theory is supported by Lazarsfeld, Berelson, and Gaudet's [@Lazarsfeld1968] research analysis whose results show that the effect of media on electoral decisions is minimal but people belonging to different social groups is what determines their voting behavior. Kriesi, Grande, and Lachat [@Kriesi2008] also argue people's voting behavior is determined by their belonging to different cleavages. However, instead of the old cleavages, there is a new social division within society that defines people's voting behavior which is the distinction between the winners and losers of globalization [@Kriesi2008]. Losers of globalization feel that their social status is protected by the nation-state and therefore they are strongly connected and identify themselves with the national community and that is what determines their voting behavior [@Kriesi2008]. In contrast, the winners of globalization benefit from open borders, they have more opportunities and therefore they vote differently [@Kriesi2008].
@@ -135,19 +140,19 @@ To get a better picture of the implementation of Fox News in the USA, the share 
 # The Fox News Effect
 
 ```{r, echo=FALSE}
-summary(data$subrf2000, na.rm = T)
+
 towns_w_foxnews<- subset(data, (subset = subrf2000 >= 0.75))
 towns_some_foxnews<- subset(data, (subset = subrf2000 > 0  & subrf2000 < 0.75))
 towns_no_foxnews<-subset(data, (subset = subrf2000 ==0))
 
 means.all.elections.wFN<-colMeans(towns_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
-means.all.elections.wFN
+
 
 means.all.elections.someFN<-colMeans(towns_some_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
-means.all.elections.someFN
+
 
 means.all.elections.noFN<-colMeans(towns_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
-means.all.elections.noFN
+
 
 years<- c(1992, 1996, 2000)
 
@@ -186,7 +191,7 @@ Furthermore,the average change of votes for republican (during presidential elec
 
 ```{r, echo=FALSE}
 ##SATE town with high proportion of a black population
-summary(data$black1990)
+
 high_black_pop.t_w_foxnews<- subset(towns_w_foxnews, subset = black1990 >= 0.4)
 
 high_black_pop.t_no_foxnews<- subset(towns_no_foxnews, subset = black1990 >= 0.4)
@@ -198,7 +203,6 @@ means_high_black_pop.t_no_foxnews<-colMeans(high_black_pop.t_no_foxnews[c('gopvo
 
 
 sate_high_black_pop_t_w_fn<-  means_high_black_pop.t_w_foxnews- means_high_black_pop.t_no_foxnews
-sate_high_black_pop_t_w_fn
 
 
 
@@ -214,7 +218,6 @@ means_low_black_pop.t_w_foxnews<-colMeans(low_black_pop.t_w_foxnews[c('gopvotesh
 means_low_black_pop.t_no_foxnews<-colMeans(low_black_pop.t_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
 sate_low_black_pop_t_w_fn<- means_low_black_pop.t_w_foxnews- means_low_black_pop.t_no_foxnews
-sate_low_black_pop_t_w_fn
 
 ####SATE town with no proportion of a black population
 
@@ -229,7 +232,6 @@ means_no_black_pop.t_no_foxnews<-colMeans(no_black_pop.t_no_foxnews[c('gopvotesh
 
 
 sate_no_black_pop_t_w_fn<-means_no_black_pop.t_w_foxnews- means_no_black_pop.t_no_foxnews
-sate_no_black_pop_t_w_fn
 
 
 
@@ -258,7 +260,6 @@ The first thing we looked at was whether the introduction of Fox News had a bigg
 
 ```{r, echo=FALSE}
 
-summary(data$hisp1990)
 high_hisp_pop.t_w_foxnews<- subset(towns_w_foxnews, subset = hisp1990 >= 0.2)
 
 high_hisp_pop.t_no_foxnews<- subset(towns_no_foxnews, subset = hisp1990 >= 0.2)
@@ -270,7 +271,6 @@ means_high_hisp_pop.t_no_foxnews<-colMeans(high_hisp_pop.t_no_foxnews[c('gopvote
 
 
 sate_high_hisp_pop_t_w_fn<-  means_high_hisp_pop.t_w_foxnews- means_high_hisp_pop.t_no_foxnews
-sate_high_hisp_pop_t_w_fn
 
 
 ####SATE town with low proportion of a black population
@@ -285,7 +285,7 @@ means_low_hisp_pop.t_w_foxnews<-colMeans(low_hisp_pop.t_w_foxnews[c('gopvoteshar
 means_low_hisp_pop.t_no_foxnews<-colMeans(low_hisp_pop.t_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
 sate_low_hisp_pop_t_w_fn<- means_low_hisp_pop.t_w_foxnews- means_low_hisp_pop.t_no_foxnews
-sate_low_hisp_pop_t_w_fn
+
 
 ####SATE town with no proportion of a black population
 
@@ -300,7 +300,7 @@ means_no_hisp_pop.t_no_foxnews<-colMeans(no_hisp_pop.t_no_foxnews[c('gopvoteshar
 
 
 sate_no_hisp_pop_t_w_fn<-means_no_hisp_pop.t_w_foxnews- means_no_hisp_pop.t_no_foxnews
-sate_no_hisp_pop_t_w_fn
+
 
 
 plot(years,sate_high_hisp_pop_t_w_fn, pch = 16, col = "aquamarine3",
@@ -323,7 +323,6 @@ text(1993, 0.04, "No Hispanic Population", col="mediumorchid1")
 ```
 
 ```{r, echo=FALSE}
-summary(data$income1990)
 
 ##SATE town with high proportion of rich people
 
@@ -365,7 +364,7 @@ means_low_income.t_no_foxnews<-colMeans(low_income.t_no_foxnews[c('gopvoteshare1
 
 
 sate_low_income.t_w_foxnews<- means_low_income.t_w_foxnews- means_low_income.t_no_foxnews
-sate_high_income.t_w_foxnews
+
 
 
 plot(years,sate_high_income.t_w_foxnews, pch = 16, col = "green",
@@ -389,7 +388,6 @@ text(1998, 0.02, "Low income", col="brown")
 Looking at income and the potential sample average treatment effect we can see, that only for persons with high income (towns where the average income is over or equals 3.420\$) the estimated sample average Fox News effect is increasing and more rich people voted for republicans but an the other hand the vote share for Republicans among rich people normally quite high anyways. Therefore it is hard to argue, that the implementation of Fox News is the main reason. Towns with a medium income or low income have decreasing sample average treatment effect.
 
 ```{r, echo=FALSE}
-summary(data$college1990)
 
 ##SATE towns with high proportion of people who went to college
 
@@ -403,7 +401,7 @@ means_high_edu.t_no_foxnews<-colMeans(high_edu.t_no_foxnews[c('gopvoteshare1992'
 
 
 sate_high_edu.t_w_foxnews<- means_high_income.t_no_foxnews -means_high_income.t_w_foxnews
-sate_high_edu.t_w_foxnews
+
 
 
 ##SATE town with medium education
@@ -418,7 +416,7 @@ means_medium_edu.t_no_foxnews<-colMeans(medium_edu.t_no_foxnews[c('gopvoteshare1
 
 
 sate_medium_edu.t_w_foxnews<- means_medium_edu.t_w_foxnews - means_medium_edu.t_no_foxnews
-sate_medium_edu.t_w_foxnews
+
 
 
 ##SATE town with high proportion of poor people
@@ -433,7 +431,6 @@ means_low_edu.t_no_foxnews<-colMeans(low_edu.t_no_foxnews[c('gopvoteshare1992','
 
 
 sate_low_edu.t_w_foxnews<- means_low_edu.t_w_foxnews - means_low_edu.t_no_foxnews
-sate_high_edu.t_w_foxnews
 
 
 plot(years,sate_high_edu.t_w_foxnews, pch = 16, col = "darksalmon",
@@ -457,7 +454,11 @@ text(1998, -0.02, "Low level of education", col="grey80")
 
 ```
 
+<<<<<<< HEAD
+The last measurement of finding the differences in sample average treatment effects by socioeconomic backgrounds is SATE for different levels of education. Here is it visible, that high educated regions are less likely to vote for republicans and have lower starting position. Looking at a medium or low level of education a possible .......
+=======
 The last measurement of finding the differences in sample average treatment effects by socioeconomic backgrounds is SATE for diffrent levels of education. Here is it visible, that high educated regions are less likely to vote for republicans and have lower starting position. Looking at a medium or low level of education a possible
+>>>>>>> ae7629e7d17f35d71a1f9c705d239cdc93a575b5
 
 # Regression analysis
 
@@ -591,8 +592,15 @@ text(0.5, 0.2,
 
 The results show a positive relationship between income and vote share for Republicans (if the whole population had high income, most of them would choose the republican party). With the increasing share of the ethic groups within the population has a negative effect on Republican vote share and education level has generally a low impact.
 
-# Conclusion
+# Disscusion & Conclusion
 
-We could also argue that it can be that in those states that were already more Republican those states are where Fox News became available for everybody. This would show that vote for the Republican party is not the consequence of Fox News but it might strengthened the parties position. \newpage
+After the analysis, it can be summarized that 'a Fox News Effect' is not clearly visible and verifiable. Thus, the first hypothesis of the paper must also be refuted, as there is no clear evidence that Fox News together with socioeconomic background affects the behavior of the electorate in 2000. This was evident from the results of the regressions 'foxnews_2000' and 'foxnews_present_effect' which showed no significance or clear correlation. It was also evident from the sample average treatment affect studies that all of the effects shown can only be described as minimal. 
+
+The reasons why an effect is only so minimally visible can be manifold.  First of all, it must be mentioned that a new channel may take a while to be added to a cable provider's lineup because of the talks negotiations during the implementation. Due of this, contrary to popular belief, Fox News was unable to establish itself as the first player in conservative media markets. this means that people who live in cities without fox news are still influenced by conservative TV channels, but are not recorded as such in this data set because they watch a different conservative channel. 
+Furthermore, it is important to note that while there is a small effect, covering the external and internal variables that influence an election is extremely difficult. Third, it can also be argued that Fox News has had an easier implementation in states that already have more conservative tendencies. The heavily conservative states of New Jersey and Wyoming would be the perfect example of this, ranking second and third, respectively, among the states with the largest vote share. This would mean that the effect could be weakened, since people have already voted convervatively anyway. 
+
+This would mean that the effect could be weakened, since people have already voted convervatively anyway. However, even if the aforementioned external problems were not present and the internal validity is flawless, it is possible that the Fox News effect would only play a minor role. As the theories and also the regression results have shown, socioeconomic factors play an important role.  Thus, the second hypothesis of the paper can be confirmed, namely that socioeconomic factors are crucial for voting in the American two-party system. In particular, the factors of race and the level of education were the most decisive influences. 
+ 
+ \newpage
 
 # References
