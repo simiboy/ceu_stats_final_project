@@ -31,7 +31,7 @@ Sociological model of voting Kriesi's [@Kriesi2008]: People's voting behavior is
 
 Rational expectation theories [@Bray1987] :Voters often filter out reporting bias without being influenced. The implementation of Fox News will not effect election results.
 
-# Loading Data & General Overview
+# Loading Data & General Overview over the data
 
 ```{r}
 data <- read.csv("foxnews.csv")
