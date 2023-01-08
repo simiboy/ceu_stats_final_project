@@ -5,7 +5,7 @@ data: "Due 8 January 2022, 23h59"
 output:
   bookdown::pdf_document2: default
 urlcolor: blue
-abstract: "Blablabla"
+abstract: "Media have an increasingly important role in our modern society where access to information is not a privilege anymore.    "
 bibliography: citations.bib
 ---
 
@@ -48,6 +48,12 @@ sort(gop2000_by_states)
 ```
 
 From these values it is already obvious that there is quite a big variation between the two-party vote share for the Republicans in different states (highest and lowest being Utah (`r max(gop2000_by_states)`) and Rhode Island (`r min(gop2000_by_states)`) respectively).
+
+## Socio-Cultural Descriptors of the Data Set
+
+```{r}
+summary(data[,c(3, 4, 5, 6, 7)])
+```
 
 ## Change of Vote-Share Over Time
 
