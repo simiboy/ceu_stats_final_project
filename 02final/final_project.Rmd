@@ -33,8 +33,7 @@ Rational expectation theories [@Bray1987] :Voters often filter out reporting bia
 
 # General Overview Over the Data
 
-This paper uses data that was collected in 1992, 1996 and 2000. The dataset contains town-based data on
-two-party vote share for the Republicans, socio-cultural details and share of Fox news subscribers.
+This paper uses data that was collected in 1992, 1996 and 2000. The dataset contains town-based data on two-party vote share for the Republicans, socio-cultural details and share of Fox news subscribers.
 
 In order to have a rough overview of the vote share among states, the *state* variable is converted into a factor variable. Afterwards the average two-party vote share for the Republicans at 2000 Presidential election in the different states is shown in this table in increasing order.
 
@@ -92,6 +91,8 @@ The dataset contains various measures of the towns in question. In order to get 
 cor(data[12], data[,c(3, 4, 5, 6, 7)])
 ```
 
+The correlation analysis suggest that there are a few factors that have an insignificant connection to the two-party vote share for the Republicans, such as the income or the education level. The share of males in the population has a direct relationship and the share of different ethnic categories (Hispanic or black ) in the population has an inverse relationship to the vote share. The most meaningful correlation is between the black population and the vote share (-0.331).
+
 ## Fox News Subscribers in Different Towns
 
 ```{r}
@@ -105,7 +106,9 @@ plot(gop2000_df$gopvoteshare2000, gop2000_df$subrf2000,
       ylab = "Share of Fox News subscribers by town")
 
 ```
+
 This scatter plot gives an first overview between the share of Fox News subscribers by town and the share for republicans in the presidential election in 2000.Three fundamental things, which are a basis for further analysis, can be read from the scatterplot: (1) no clear direction of the data is discernible at first glance; (2) cities that did not have access to Fox News in 2000 range across the spectrum of Republican support, from no Fox News and low support for Republicans to no Fox News and very high vote share for Republicans. (3) it looks like (purely visual 'first analysis') the majority of cities are around the cut point (0.5/0.4), which means there are a lot of cities that are relatively split between Democrats and Republicans and between having or not having Fox News. Since most of the data is expressed in proportions, this also means that there will be many values in the middle.
+
 ```{r}
 gop_by_s92<- data.frame(gop1992_by_states)
 gop_by_s96<- data.frame(gop1996_by_states)
@@ -177,7 +180,7 @@ To Test the hypotheses of the research and to measure the effect of the treatmen
 
 The graph illustrates that in all cities, no matter how much access to Fox News the various cities had, there was an increase in Republican voters in 2000, compared to the 1996 presidential election. Nevertheless, a staggered effect of the different groups can be seen, even if it is small.Cities with Fox News voted for the Republican president by a larger percentage in both 1996 (the year Fox News was implemented in some cities) and the 2000 presidential election. Cities without any Fox News access were the least likely to vote in favor of Republicans, even though the percentage of Republican voters nevertheless increased in 2000.
 
-# Sample average treatment effect ('Fox News Effect') among socioeconomic variables
+## Sample average treatment effect ('Fox News Effect') among socioeconomic variables
 
 Our hypotheses stating, that it might be possible that socioeconomic backgrouds like education and race of people influence a potential 'Fox News Effect' differently . It could be also possible that voters with different incomes get effected differently by the input of Fox News.
 
@@ -186,6 +189,7 @@ We will evaluate whether these hypotheses are supported by finding the differenc
 Furthermore,the average change of votes for republican (during presidential elections) among towns before and after the availability of Fox News could be an crucial indicator to understand the effect, therefore it wil be computed.
 
 #SATE among race (black)
+
 ```{r}
 ##SATE town with high proportion of a black population
 summary(data$black1990)
@@ -255,9 +259,11 @@ text(1999,0.08, "No black Population", col="mediumorchid1")
 
 
 ```
+
 The first thing we looked at was whether the introduction of Fox News had a bigger/smaller impact on black people in the USA. The cities were divided into subsets, to take into account different proportions of black people in the cities. For the subdivision of cities and their black population, the different quantiles were not looked at, which is the case in the following SATE calculations. Due to the white majority population in the states, the third quantile of the proportion of black people would have been 0.013411 but the maximum would have been 0.990427. The difference between 1% and 99% would have been too serious to categorize all cities in between as having a high black population. That's why cities with a percentage above 0.40 were considered to have a high black population. As can be seen in the plot, only the line from the cities with a high black population share has a similar shape to the lines in the plot with the general trend effect. In the cities with a low proportion or none at all, the estimated treatment effect goes in a negative direction.
 
 #SATE among race (hispanic)
+
 ```{r}
 
 summary(data$hisp1990)
@@ -323,7 +329,9 @@ text(1998,-0.1,"High Hispanic Population", col="aquamarine3")
 text(1993,0.12,"Low Hispanic Population", col="darkseagreen4")
 text(1993, 0.04, "No Hispanic Population", col="mediumorchid1")
 ```
+
 #SATE among income
+
 ```{r}
 summary(data$income1990)
 
@@ -387,9 +395,11 @@ text(1993,0.13,"High income", col="green")
 text(1998,-0.06,"Medium income", col="orange")
 text(1998, 0.02, "Low income", col="brown")
 ```
-Looking at income and the potential sample average treatment effect we can see, that only for persons with high income (towns where the average income is over or equals 3.420$) the estimated sample average Fox News effect is increasing and more rich people voted for republicans but an the other hand the vote share for Republicans among rich people normally quite high anyways. Therefore it is hard to argue, that the implementation of Fox News is the main reason. Towns with a medium income or low income have decresing sampel average treatment effect.
+
+Looking at income and the potential sample average treatment effect we can see, that only for persons with high income (towns where the average income is over or equals 3.420\$) the estimated sample average Fox News effect is increasing and more rich people voted for republicans but an the other hand the vote share for Republicans among rich people normally quite high anyways. Therefore it is hard to argue, that the implementation of Fox News is the main reason. Towns with a medium income or low income have decreasing sample average treatment effect.
 
 #SATE among level of education
+
 ```{r}
 summary(data$college1990)
 
@@ -458,8 +468,8 @@ text(1998,0.04,"Medium level of education", col="deeppink4")
 text(1998, -0.02, "Low level of education", col="grey80")
 
 ```
-The last measurement of finding the differences in sample average treatment effects by socioeconomic backgrounds is SATE for diffrent levels of education. Here is it visible, that high educated regions are less likely to vote for republicans and have lower starting position. Looking at a medium or low level of education a possible .......
 
+The last measurement of finding the differences in sample average treatment effects by socioeconomic backgrounds is SATE for diffrent levels of education. Here is it visible, that high educated regions are less likely to vote for republicans and have lower starting position. Looking at a medium or low level of education a possible .......
 
 # Regression analysis
 
@@ -589,8 +599,6 @@ text(0.5, 0.2,
 ```
 
 # Conclusion
-
-
 
 \newpage
 
