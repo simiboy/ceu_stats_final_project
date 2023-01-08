@@ -5,7 +5,7 @@ data: "Due 8 January 2022, 23h59"
 output:
   bookdown::pdf_document2: default
 urlcolor: blue
-abstract: "Media have an increasingly important role in our modern society where access to information is not a privilege anymore.    "
+abstract: " The conservative news channel Fox News was founded in 1996 and gradually implemented in various US cities. This led to the situation that in the year 2000 there was a presidential election in which a significant proportion of the US population already had access to this TV channel for several years and other cities had no access at all at the time of the election. The used dataset includes among controlvaribles the vote shares for the Republicans of the Presidential election in 1992, 1996 and 2000. Futhermore the share of Fox News subscribers in 2000 among cities. The available data make it possible to ask the question to which extent had the implementation of Fox News affected the US voting behavior in the presidential elections between 1996 and 2000? The analysis yields revealing results, but the idea of the highly influential TV channel, the so-called 'FOX NEWS EFFECT', had to be revised, as the analysis showed no significance in this area. "
 bibliography: citations.bib
 ---
 
@@ -13,17 +13,16 @@ bibliography: citations.bib
 
 The media landscape has changed dramatically in the last few decades. Media have an increasingly important role in our modern society where access to information is not a privilege anymore. As a consequence of media's constant presence in citizen's life, the effects of media and to what extent media bias can influence people's party choices have also become a crucial question. This research paper aims to focus on the potential influence of media on people's party choices. To examine the problem the research paper will focus on the presence of Fox News in cities in the US and how it influenced people's support for the Republican party. Therefore, the research question will be the following: to what extent had the implementation of Fox News affected the US voting behavior in the presidential elections between 1996 and 2000? To answer the research question this research paper will follow Lazarsfeld et al.'s (1944) approach and main Hypotheses: The act of voting is an individual act, affected mainly by the personality of the voter and his exposure to the media. In the case of our research and our available data, we categorize the variables about the socioeconomic background of the people as personality trades and the exposure to media via the existence or non-existence of Fox News. Therefore, the research question will be answered through two hypotheses: H1:Fox news and the socioeconomic background effect the behavior of the electorate. H2: Just socioeconomic background affects the behavior of the electorate.
 
-To answer the research question the structure of the paper will be the following: first, there will be a literature review -- do we need a structure overview?
 
 # Literature Review
 
 In recent decades, there has been increasing attention on the role of media during political campaigns and its effects on the actual outcomes of elections. It is more widespread to include factors beyond the traditional social and economical models. However, it is still debated within academia to what extent news media influence the behavior of the electorate. A potential answer to the question is that news media does not have an actual effect on people's voting behavior. It is called the sociological model of voting behavior which states that people's voting behavior is determined by long-term factors.
 
-This theory is supported by Lazarsfeld, Berelson, and Gaudet's [@Lazarsfeld1968] research analysis whose results show that the effect of media on electoral decisions is minimal but people belonging to different social groups is what determines their voting behavior. Kriesi, Grande, and Lachat [@Kriesi2008] also argue people's voting behavior is determined by their belonging to different cleavages. However, instead of the old cleavages, there is a new social division within society that defines people's voting behavior which is the distinction between the winners and losers of globalization [@Kriesi2008]. Losers of globalization feel that their social status is protected by the nation-state and therefore they are strongly connected and identify themselves with the national community and that is what determines their voting behavior [@Kriesi2008]. In contrast, the winners of globalization benefit from open borders, they have more opportunities and therefore they vote differently [@Kriesi2008]. However, some scholars argue that media has a relatively insignificant, but not at all inherent effect on voting behavior [@alotaibi2013media].
+This theory is supported by Lazarsfeld, Berelson, and Gaudet's [@Lazarsfeld1968] research analysis whose results show that the effect of media on electoral decisions is minimal but people belonging to different social groups is what determines their voting behavior. Kriesi, Grande, and Lachat [@Kriesi2008] also argue people's voting behavior is determined by their belonging to different cleavages. However, instead of the old cleavages, there is a new social division within society that defines people's voting behavior which is the distinction between the winners and losers of globalization [@Kriesi2008]. Losers of globalization feel that their social status is protected by the nation-state and therefore they are strongly connected and identify themselves with the national community and that is what determines their voting behavior [@Kriesi2008]. In contrast, the winners of globalization benefit from open borders, they have more opportunities and therefore they vote differently [@Kriesi2008]. However, some scholars argue that media has a relatively insignificant, but not at all inherent effect on voting behavior [@alotaibi2013media]. 
 
-# Hypotheses -- delete this part here?
+# Hypotheses
 
-This paper will follow Lazarsfeld et al.'s (1944) approach and main Hypotheses: The act of voting is an individual act, affected mainly by the personality of the voter and his exposure to the media.In the case of our research and our available data, we categorize the variables about socioeconomic background of the people as personality trades and the exposure to media via the existence or non-existence of Fox News.
+Therefore, based on the existing literature the two hypotheses of the analysis, as mentioned above, will be the following:
 
 **HP1:** Fox news and the socioeconomic background affects the behavior of the electorate.
 
@@ -31,7 +30,6 @@ Sociological model of voting Kriesi's [@Kriesi2008]: People's voting behavior is
 
 **HP2:** Just socioeconomic background affects the behavior of the electorate.
 
-Rational expectation theories [@Bray1987] :Voters often filter out reporting bias without being influenced. The implementation of Fox News will not effect election results.
 
 # General Overview Over the Data
 
@@ -468,7 +466,9 @@ text(1998, -0.02, "Low level of education", col="grey80")
 
 ```
 
-The last measurement of finding the differences in sample average treatment effects by socioeconomic backgrounds is SATE for different levels of education. Here is it visible, that high educated regions are less likely to vote for republicans and have lower starting position. Looking at a medium or low level of education a possible...
+The last measurement of finding the differences in sample average treatment effects by socioeconomic backgrounds is SATE for different levels of education. Here is it visible, that high educated regions are less likely to vote for republicans and have lower starting position. Looking at a medium or low level of education a decrease of the potential effect is visible, even though is  a very small one. 
+
+In summary, a sample average treatment effect was not found to be salient and decisive on the basis of various socio-economic criteria and thus no 'Fox News effect' was found. There have been changes that seem reasonable and appropriate, but it would be presumptuous to relate these to a Fox News effect, as the changes have always been marginal. 
 
 # Regression analysis
 
