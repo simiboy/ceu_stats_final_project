@@ -15,6 +15,8 @@ The media landscape has changed dramatically in the last few decades. Media have
 
 To answer the research question the structure of the paper will be the following: first, there will be a literature review -- do we need a structure overview?
 
+
+
 # Literature Review
 
 In recent decades, there has been increasing attention on the role of media during political campaigns and its effects on the actual outcomes of elections. It is more widespread to include factors beyond the traditional social and economical models. However, it is still debated within academia to what extent news media influence the behavior of the electorate. A potential answer to the question is that news media does not have an actual effect on people's voting behavior. It is called the sociological model of voting behavior which states that people's voting behavior is determined by long-term factors.
@@ -35,7 +37,7 @@ Rational expectation theories [@Bray1987] :Voters often filter out reporting bia
 
 # General Overview Over the Data
 
-This paper uses data that was collected in 1992, 1996 and 2000. The dataset contains town-based data on two-party vote share for the Republicans, socio-cultural details and share of Fox news subscribers.
+This paper uses data that was collected in 1992, 1996 and 2000. The dataset [@DellaVigna2007] contains town-based data on two-party vote share for the Republicans, socio-cultural details and share of Fox news subscribers.
 
 In order to have a rough overview of the vote share among states, the *state* variable is converted into a factor variable. Afterwards the average two-party vote share for the Republicans at 2000 Presidential election in the different states is shown in this table in increasing order.
 
