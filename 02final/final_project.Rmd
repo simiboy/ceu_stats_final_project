@@ -174,7 +174,7 @@ Our hypotheses stating, that it might be possible that socioeconomic backgrouds 
 
 We will evaluate whether these hypotheses are supported by finding the differences in sample average treatment effects by education, race and income in towns with access to Fox News and towns without access to Fox News.
 
-Furthermore,the average change of votes for republican (during presidential elections) among towns before and after the availability of Fox News could be an crucial indicator to understand the effect, therfore it wil be computed.
+Furthermore,the average change of votes for republican (during presidential elections) among towns before and after the availability of Fox News could be an crucial indicator to understand the effect, therefore it wil be computed.
 
 ```{r}
 ##SATE town with high proportion of a black population
@@ -377,7 +377,7 @@ text(1993,0.13,"High income", col="green")
 text(1998,-0.06,"Medium income", col="orange")
 text(1998, 0.02, "Low income", col="brown")
 ```
-
+Looking at income and the potential sample average treatment effect we can see, that only for persons with high income (towns where the average income is over or equals 3.420$) the estimated sample average Fox News effect is increasing and more rich people voted for republicans but an the other hand the vote share for Republicans among rich people normally quite high anyways. Therefore it is hard to argue, that the implementation of Fox News is the main reason. Towns with a medium income or low income have decresing sampel average treatment effect. 
 ```{r}
 summary(data$college1990)
 
@@ -446,7 +446,7 @@ text(1998,0.04,"Medium level of education", col="deeppink4")
 text(1998, -0.02, "Low level of education", col="grey80")
 
 ```
-
+The last measurement of finding the differences in sample average treatment effects by socioeconomic backgrounds is SATE for diffrent levels of education. Here is it visible, that high educated regions are less likely to vote for republicans and have lower starting position. Looking at a medium or low level of education a possible .......
 ## Regression analysis (Blanka)
 
 We will test H1 (Fox news and the socioeconomic background affects the behavior of the electorate) and H2 (just socioeconomic background affects the behavior of the electorate) through regression analysis. First, we will test to what extent socioeconomic factors affect people's vote for the Republican party. We included in the analysis the proportion of inhabitants who have a college degree, the median income, and the proportion of black or Hispanic people in every city. Black and Hispanic people stand for minorities in the analysis because these are the two most significant minorities and only these two minorities were included in the data set.  
