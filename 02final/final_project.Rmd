@@ -22,15 +22,9 @@ This theory is supported by Lazarsfeld, Berelson, and Gaudet's [@Lazarsfeld1968]
 
 # Hypotheses
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 Therefore, based on the existing literature the two hypotheses of the analysis, as mentioned above, will be the following:
-=======
-Therefore, based on the academic literature the two hypotheses, as was mentioned above, are the following: 
->>>>>>> Stashed changes
-=======
-Therefore, based on the academic literature the two hypotheses, as was mentioned above, are the following: 
->>>>>>> Stashed changes
+
 
 **HP1:** Fox news and the socioeconomic background affects the behavior of the electorate.
 
