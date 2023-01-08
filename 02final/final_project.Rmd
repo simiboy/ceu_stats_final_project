@@ -11,8 +11,9 @@ bibliography: citations.bib
 
 # **Introduction**
 
-The media landscape has changed dramatically in the last few decades. Media have an increasingly important role in our modern society where access to information is not a privilege anymore. As a consequence of media's constant presence in citizen's life, the effects of media and to what extent media bias can influence people's party choices have also become a crucial question. This research paper aims to focus on the potential influence of media on people's party choices. To examine the problem the research paper will focus on the presence of Fox News (independent variable) in cities in the US and how it influenced people's support for the Republican party (dependent variable). Therefore, the research question will be the following: to what extent had the implementation of Fox News affected the US voting behavior in the presidential elections between 1996 and 2000? To answer the research question this research paper will follow Lazarsfeld et al.'s (1944) approach and main Hypotheses: The act of voting is an individual act, affected mainly by the personality of the voter and his exposure to the media. In the case of our research and our available data, we categorize the variables about the socioeconomic background of the people as personality trades and the exposure to media via the existence or non-existence of Fox News. Therefore, the research question will be answered through two hypotheses: H1:Fox news and the socioeconomic background effect the behavior of the electorate. H2: Just socioeconomic background affects the behavior of the electorate.
+The media landscape has changed dramatically in the last few decades. Media have an increasingly important role in our modern society where access to information is not a privilege anymore. As a consequence of media's constant presence in citizen's life, the effects of media and to what extent media bias can influence people's party choices have also become a crucial question. This research paper aims to focus on the potential influence of media on people's party choices. To examine the problem the research paper will focus on the presence of Fox News in cities in the US and how it influenced people's support for the Republican party. Therefore, the research question will be the following: to what extent had the implementation of Fox News affected the US voting behavior in the presidential elections between 1996 and 2000? To answer the research question this research paper will follow Lazarsfeld et al.'s (1944) approach and main Hypotheses: The act of voting is an individual act, affected mainly by the personality of the voter and his exposure to the media. In the case of our research and our available data, we categorize the variables about the socioeconomic background of the people as personality trades and the exposure to media via the existence or non-existence of Fox News. Therefore, the research question will be answered through two hypotheses: H1:Fox news and the socioeconomic background effect the behavior of the electorate. H2: Just socioeconomic background affects the behavior of the electorate.
 
+To answer the research question the structure of the paper will be the following: first, there will be a literature review -- do we need a structure overview?
 
 # Literature Review
 
@@ -20,7 +21,7 @@ In recent decades, there has been increasing attention on the role of media duri
 
 This theory is supported by Lazarsfeld, Berelson, and Gaudet's [@Lazarsfeld1968] research analysis whose results show that the effect of media on electoral decisions is minimal but people belonging to different social groups is what determines their voting behavior. Kriesi, Grande, and Lachat [@Kriesi2008] also argue people's voting behavior is determined by their belonging to different cleavages. However, instead of the old cleavages, there is a new social division within society that defines people's voting behavior which is the distinction between the winners and losers of globalization [@Kriesi2008]. Losers of globalization feel that their social status is protected by the nation-state and therefore they are strongly connected and identify themselves with the national community and that is what determines their voting behavior [@Kriesi2008]. In contrast, the winners of globalization benefit from open borders, they have more opportunities and therefore they vote differently [@Kriesi2008]. However, some scholars argue that media has a relatively insignificant, but not at all inherent effect on voting behavior [@alotaibi2013media].
 
-# Hypotheses
+# Hypotheses -- delete this part here?
 
 This paper will follow Lazarsfeld et al.'s (1944) approach and main Hypotheses: The act of voting is an individual act, affected mainly by the personality of the voter and his exposure to the media.In the case of our research and our available data, we categorize the variables about socioeconomic background of the people as personality trades and the exposure to media via the existence or non-existence of Fox News.
 
@@ -34,7 +35,7 @@ Rational expectation theories [@Bray1987] :Voters often filter out reporting bia
 
 # General Overview Over the Data
 
-This paper uses data that was collected in 1992, 1996 and 2000 [@DellaVigna2007]. The data set [@DellaVigna2007] contains town-based data on two-party vote share for the Republicans, socio-cultural details and share of Fox news subscribers.
+This paper uses data that was collected in 1992, 1996 and 2000. The dataset [@DellaVigna2007] contains town-based data on two-party vote share for the Republicans, socio-cultural details and share of Fox news subscribers.
 
 In order to have a rough overview of the vote share among states, the *state* variable is converted into a factor variable. Afterwards the average two-party vote share for the Republicans at 2000 Presidential election in the different states is shown in this table in increasing order.
 
@@ -50,9 +51,16 @@ From these values it is already obvious that there is quite a big variation betw
 
 ## Socio-Cultural Descriptors of the Data Set
 
+As an initial step, since most descriptive values are measured in the range of [0, 1], the *income1990* variable is normalized in the same region as well. In our hypotheses the independent variables are the different socio-cultural descriptors such as the education level, the ethnic composition and the income share.
+
 ```{r}
-summary(data[,c(3, 4, 5, 6, 7)])
+#normalizing income to the range of [0, 1] (was originially in [0, 15])
+data[7] <- data[7]/15
+
+boxplot(data[,c(3, 4, 5, 6, 7)])
 ```
+
+The histogram above shows the general quality of the independent variables of the data set. It is visible that the mean of male population in the towns are around 0.5, however there are more towns where there are an extremity towards a high male population share than to women. The black and Hispanic population of the towns in the study is generally low, but there are cases with especially high rate from both ethnic groups. The mean of education and the income is below 0.2 and the later one has a higher expansion.
 
 ## Change of Vote-Share Over Time
 
@@ -266,9 +274,9 @@ The first thing we looked at was whether the introduction of Fox News had a bigg
 
 ```{r, echo=FALSE}
 
-high_hisp_pop.t_w_foxnews<- subset(towns_w_foxnews, subset = hisp1990 >= 0.4)
+high_hisp_pop.t_w_foxnews<- subset(towns_w_foxnews, subset = hisp1990 >= 0.2)
 
-high_hisp_pop.t_no_foxnews<- subset(towns_no_foxnews, subset = hisp1990 >= 0.4)
+high_hisp_pop.t_no_foxnews<- subset(towns_no_foxnews, subset = hisp1990 >= 0.2)
 
 
 means_high_hisp_pop.t_w_foxnews<-colMeans(high_hisp_pop.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
@@ -279,7 +287,7 @@ means_high_hisp_pop.t_no_foxnews<-colMeans(high_hisp_pop.t_no_foxnews[c('gopvote
 sate_high_hisp_pop_t_w_fn<-  means_high_hisp_pop.t_w_foxnews- means_high_hisp_pop.t_no_foxnews
 
 
-####SATE town with low proportion of a hispanic population
+####SATE town with low proportion of a black population
 
 low_hisp_pop.t_w_foxnews<- subset(towns_w_foxnews, subset = hisp1990 > 0 & hisp1990 < 0.4)
 
@@ -293,7 +301,7 @@ means_low_hisp_pop.t_no_foxnews<-colMeans(low_hisp_pop.t_no_foxnews[c('gopvotesh
 sate_low_hisp_pop_t_w_fn<- means_low_hisp_pop.t_w_foxnews- means_low_hisp_pop.t_no_foxnews
 
 
-####SATE town with no proportion of a hispanic  population
+####SATE town with no proportion of a black population
 
 no_hisp_pop.t_w_foxnews<- subset(towns_w_foxnews, subset = hisp1990 == 0)
 
@@ -309,24 +317,24 @@ sate_no_hisp_pop_t_w_fn<-means_no_hisp_pop.t_w_foxnews- means_no_hisp_pop.t_no_f
 
 
 
-plot(years,sate_high_hisp_pop_t_w_fn, pch = 16, col = "coral3",
+plot(years,sate_high_hisp_pop_t_w_fn, pch = 16, col = "aquamarine3",
 xlim = c(1992, 2000), ylim = c(-0.15, 0.2), xlab = "Days of presidential election",
 ylab = "Estimated sample average fox news effect",
-main = "Trends in Fox News Effects among the hispanic population")
+main = "Trends in Fox News Effects among black population")
 
-points(years, sate_low_hisp_pop_t_w_fn,pch=16, col = "blue4")
-points(years, sate_no_hisp_pop_t_w_fn,pch = 16, col = "cyan")
-
-lines(years,sate_high_hisp_pop_t_w_fn, type="c", col="coral3")
-lines(years, sate_low_hisp_pop_t_w_fn,type="c", col = "blue4")
-lines(years, sate_no_hisp_pop_t_w_fn,type="c", col = "cyan")
+points(years, sate_low_hisp_pop_t_w_fn,pch=16, col = "darkseagreen4")
+points(years, sate_no_hisp_pop_t_w_fn,pch = 16, col = "mediumorchid1")
 
 
-text(1998,-0.1,"High Hispanic Population", col="coral3")
-text(1993,0.12,"Low Hispanic Population", col="blue4")
-text(1993, 0.04, "No Hispanic Population", col="cyan")
+lines(years,sate_high_hisp_pop_t_w_fn, type="c", col="aquamarine3")
+lines(years, sate_low_hisp_pop_t_w_fn,type="c", col = "darkseagreen4")
+lines(years, sate_no_hisp_pop_t_w_fn,type="c", col = "mediumorchid1")
+
+
+text(1998,-0.1,"High Hispanic Population", col="aquamarine3")
+text(1993,0.12,"Low Hispanic Population", col="darkseagreen4")
+text(1993, 0.04, "No Hispanic Population", col="mediumorchid1")
 ```
-Interestingly, the data set does not include the combination of cities that have a majority of Fox News and a high Hispanic population, but cities with a high proportion of hispanic population and no fox news are close to 60.This could suggest that Fox New was more quickly and readily implemented in states that have a high proportion of conservative voters in the first place (discussed in more detail in the discussion part). As in the evaluation of the SATE among black people, the characterization of cities with no/middle and high Hispanic populations was not done using the quantiles, as the difference between the third quantile and the maximum would have been too great. Therefore, in relation to the maximum, the value 0.4 was set as the limit for a city with a high Hispanic population. However, the trends in Fox News Effects among the hispanic population are decreasing in towns with a low or a medium high hispanic population.
 
 ```{r, echo=FALSE}
 
@@ -391,7 +399,8 @@ text(1998,-0.06,"Medium income", col="orange")
 text(1998, 0.02, "Low income", col="brown")
 ```
 
-Looking at income and the potential sample average treatment effect we can see, that only for persons with high income (towns where the average income is over or equals 3.420\$) the estimated sample average Fox News effect is increasing and more rich people voted for republicans but an the other hand the vote share for Republicans among rich people normally quite high anyways. Therefore it is hard to argue, that the implementation of Fox News is the main reason. Towns with a medium income or low income have decreasing sample average treatment effect.  
+Looking at income and the potential sample average treatment effect we can see, that only for persons with high income (towns where the average income is over or equals 3.420\$) the estimated sample average Fox News effect is increasing and more rich people voted for republicans but an the other hand the vote share for Republicans among rich people normally quite high anyways. Therefore it is hard to argue, that the implementation of Fox News is the main reason. Towns with a medium income or low income have decreasing sample average treatment effect.
+
 ```{r, echo=FALSE}
 
 ##SATE towns with high proportion of people who went to college
@@ -467,15 +476,26 @@ The last measurement of finding the differences in sample average treatment effe
 
 We already tested above the influence of different socioeconomic factors effects on people's support for the republican party and how the presence of Fox News in some cities changed people's party choices. However, we are also interested in to what extent socioeconomic factors or the potential effect of Fox News' presence in some cities influence people's vote for the Republican party. To answer this questions we will test H1 (Fox news and the socioeconomic background affects the behavior of the electorate) and H2 (just socioeconomic background affects the behavior of the electorate) through regression analysis. First, we will test to what extent socioeconomic factors affect people's vote for the Republican party. We included in the analysis the proportion of inhabitants who have a college degree, the median income, and the proportion of black or Hispanic people in every city. Black and Hispanic people stand for minorities in the analysis because these are the two most significant minorities and only these two minorities were included in the data set.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, results="asis"}
 #effect of social background
 
 data$hisp_or_black <- data$black1990 + data$hisp1990
 
 socio_economic <- lm(gopvoteshare2000 ~ income1990 + hisp_or_black + college1990, data = data)
-socio_economic
-summary(socio_economic)$adj.r.squared
 
+library(stargazer)
+
+stargazer::stargazer(socio_economic,
+## Title of the table
+title = "Effect of socio-economic factors on voting",
+## Specify whether to list the intercept coefficient as first or last
+intercept.top = T, intercept.bottom = F,
+## Informative names of the predictors,
+## Be careful here the first covariate will be the intercept alpha
+covariate.labels = c("Intercept", "Income", "Share of Hispanic or black people", "Education level"),
+dep.var.labels = c("Two party vote share for Republicans"),
+header = FALSE,
+type = "latex")
 
 ```
 
