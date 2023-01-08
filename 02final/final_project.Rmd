@@ -186,9 +186,7 @@ Our hypotheses stating, that it might be possible that socioeconomic backgrouds 
 
 We will evaluate whether these hypotheses are supported by finding the differences in sample average treatment effects by education, race and income in towns with access to Fox News and towns without access to Fox News.
 
-Furthermore,the average change of votes for republican (during presidential elections) among towns before and after the availability of Fox News could be an crucial indicator to understand the effect, therefore it wil be computed.
-
-#SATE among race (black)
+Furthermore,the average change of votes for republican (during presidential elections) among towns before and after the availability of Fox News could be an crucial indicator to understand the effect, therefore is computed.
 
 ```{r, echo=FALSE}
 ##SATE town with high proportion of a black population
@@ -262,8 +260,6 @@ text(1999,0.08, "No black Population", col="mediumorchid1")
 
 The first thing we looked at was whether the introduction of Fox News had a bigger/smaller impact on black people in the USA. The cities were divided into subsets, to take into account different proportions of black people in the cities. For the subdivision of cities and their black population, the different quantiles were not looked at, which is the case in the following SATE calculations. Due to the white majority population in the states, the third quantile of the proportion of black people would have been 0.013411 but the maximum would have been 0.990427. The difference between 1% and 99% would have been too serious to categorize all cities in between as having a high black population. That's why cities with a percentage above 0.40 were considered to have a high black population. As can be seen in the plot, only the line from the cities with a high black population share has a similar shape to the lines in the plot with the general trend effect. In the cities with a low proportion or none at all, the estimated treatment effect goes in a negative direction.
 
-#SATE among race (hispanic)
-
 ```{r, echo=FALSE}
 
 summary(data$hisp1990)
@@ -330,8 +326,6 @@ text(1993,0.12,"Low Hispanic Population", col="darkseagreen4")
 text(1993, 0.04, "No Hispanic Population", col="mediumorchid1")
 ```
 
-#SATE among income
-
 ```{r, echo=FALSE}
 summary(data$income1990)
 
@@ -397,8 +391,6 @@ text(1998, 0.02, "Low income", col="brown")
 ```
 
 Looking at income and the potential sample average treatment effect we can see, that only for persons with high income (towns where the average income is over or equals 3.420\$) the estimated sample average Fox News effect is increasing and more rich people voted for republicans but an the other hand the vote share for Republicans among rich people normally quite high anyways. Therefore it is hard to argue, that the implementation of Fox News is the main reason. Towns with a medium income or low income have decreasing sample average treatment effect.
-
-#SATE among level of education
 
 ```{r, echo=FALSE}
 summary(data$college1990)
@@ -525,11 +517,12 @@ The regression analysis shows that the effect of access to Fox News is still ver
 
 # Prediction
 
+Using similar models to the ones in the previous section, predictions are made on vote share on different hypothetical setups in 2000. The varying dimension is the so-called "low-high dimension" which describes that 0 - 100 per cent of the population is black or Hispanic, the the whole population has low or high income or education level. To all values along this dimension a two-party vote share is predicted and the results are plotted below.
+
 ```{r, echo=FALSE}
 
 #income
 
-#predictions in 2000
 fit_income <- lm(gopvoteshare2000 ~ income1990, data = data)
 
 fit_income_max <- predict(fit_income, data.frame(income1990 = 15))
@@ -597,6 +590,8 @@ text(0.5, 0.2,
      col="brown")
 
 ```
+
+The results show a positive relationship between income and vote share for Republicans (if the whole population had high income, most of them would choose the republican party). With the increasing share of the ethic groups within the population has a negative effect on Republican vote share and education level has generally a low impact.
 
 # Conclusion
 
