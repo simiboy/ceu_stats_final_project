@@ -31,12 +31,6 @@ Sociological model of voting Kriesi's [@Kriesi2008]: People's voting behavior is
 
 Rational expectation theories [@Bray1987] :Voters often filter out reporting bias without being influenced. The implementation of Fox News will not effect election results.
 
-**HP3:** Neither the socioeconomic background of the electorate, nor Fox News influences the electorate
-
-Behavioral Theories [@DeMarzo2003]: assert that media influence on voters exists.
-
-**HP4:** Primarily Fox News effects the behavior of the electorate.
-
 # Loading Data & General Overview
 
 ```{r}
@@ -132,7 +126,7 @@ barplot(subrf2000_by_states_df$subrf2000_by_states ~states,
       )
 
 ```
-To get a better picture of the implementation of Fox News in the USA, the share of Fox News subscribers by state in 2000 got plotted. The differences are immense. New Hampshire does not have any access to Fox News in 2000 yet, also in Vermont, Massachusetts and South Carolina is the access ratio to the Fox News Channel almost non existence. On the other hand is the  channel already very accessible in states like New Jersey,Wyoming and Alaska. According to the bar plot has the biggest proportion of Fox News subscribers. However, due to the fact, that the barplot does not represents the number of Fox News subscribers, only the the proportion of citizens with ...
+To get a better picture of the implementation of Fox News in the USA, the share of Fox News subscribers by state in 2000 got plotted. The differences are immense. New Hampshire does not have any access to Fox News in 2000 yet, also in Vermont, Massachusetts and South Carolina is the access ratio to the Fox News Channel almost non existence. On the other hand is the  channel already very accessible in states like New Jersey,Wyoming and Alaska. According to the bar plot has the biggest proportion of Fox News subscribers. However, due to the fact, that the bar plot does not represents the number of Fox News subscribers, only the the proportion of citizens with a subscription per town it does not mean that Hawii does have the highest amount in a quantitative sense. 
 ```{r}
 summary(data$subrf2000, na.rm = T)
 towns_w_foxnews<- subset(data, (subset = subrf2000 >= 0.75))
@@ -170,14 +164,17 @@ text(1993,0.46, "Towns without Fox News")
 text(1996, 0.59,"Implementation of Fox News", col="grey")
 
 ```
+To Test the hypotheses of the research and to measure the effect of the treatment, it is crucial to define the independent variable of the paper: the access to Fox News by the year 2000.As mentioned above Fox News got implemented in 1996. Therefore, the cities without any access to Fox News in 2000 got characterized as 'Towns without Fox News'. Cities who have a share of Fox News subscribers over 0.75 got defines as 'Towns with Fox News', due to the fact, that 75% of the inhabitants is a clear majority, especially when we consider that people live in households with other persons. The data set does not elaborate the information whether children or other people who are not allowed to vote in the states ( like prisoners) are included or not,however a threshold of 0.75 this circumstance cushions instead  a threshold of 1. The third subset will be 'Towns with some Fox News', in particular all towns between the 0 and 0.75 will be part of it.
+
+The graph illustrates that in all cities, no matter how much access to Fox News the various cities had, there was an increase in Republican voters in 2000, compared to the 1996 presidential election. Nevertheless, a staggered effect of the different groups can be seen, even if it is small.Cities with Fox News voted for the Republican president by a larger percentage in both 1996 (the year Fox News was implemented in some cities) and the 2000 presidential election. Cities without any Fox News access were the least likely to vote in favor of Republicans, even though the percentage of Republican voters nevertheless increased in 2000. 
 
 ##A Question I would like to do for final assignment
 
-Our hypotheses stating, that it might be possible that education and the race of people reacting differently to the implementation of Fox News. It could be also possible that voters with different incomes get effected differently by the input of Fox News.
+Our hypotheses stating, that it might be possible that socioeconomic backgrouds like education and race of people  influence a potential 'Fox News Effect' differently . It could be also possible that voters with different incomes get effected differently by the input of Fox News.
 
-We will evaluate whether these hypotheses are supported by finding the differences in sample average treatment effects by education, gender, race and income in towns with access to Fox News and towns without access to Fox News.
+We will evaluate whether these hypotheses are supported by finding the differences in sample average treatment effects by education, race and income in towns with access to Fox News and towns without access to Fox News.
 
-Furthermore,Computeing the average change of votes for republican (during presidential elections) among towns before and after the availability of Fox News could be an crucial indicator to understand the effect.
+Furthermore,the average change of votes for republican (during presidential elections) among towns before and after the availability of Fox News could be an crucial indicator to understand the effect, therfore it wil be computed.
 
 ```{r}
 ##SATE town with high proportion of a black population
