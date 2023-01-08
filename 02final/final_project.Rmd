@@ -243,7 +243,9 @@ text(1993, 0.12,"High black Population", col="aquamarine3")
 text(1993,0.04,"Low black Population", col="darkseagreen4")
 text(1999,0.08, "No black Population", col="mediumorchid1")
 
+
 ```
+The first thing we looked at was whether the introduction of Fox News had a bigger/smaller impact on black people in America. For this purpose, the cities were divided into subsets to take into account different proportions of black people in the cities. For the subdivision of cities and their black population, the different quantiles were not looked at, which is the case in the following SATE calculations,...
 ```{r}
 ##SATE town with high proportion of a black population
 summary(data$hisp1990)
