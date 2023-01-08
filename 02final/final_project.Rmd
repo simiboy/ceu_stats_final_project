@@ -545,13 +545,9 @@ Using similar models to the ones in the previous section, predictions are made o
 
 fit_income <- lm(gopvoteshare2000 ~ income1990, data = data)
 
-fit_income_max <- predict(fit_income, data.frame(income1990 = 15))
+fit_income_max <- predict(fit_income, data.frame(income1990 = 1))
 fit_income_min <- predict(fit_income, data.frame(income1990 = 0))
 fun_income <- fit_income_max - fit_income_min
-
-#normalize to [0, 1] sclae
-
-fun_income <- fun_income * 15
 
 #black population
 fit_black_1990 <- lm(gopvoteshare2000 ~ black1990, data = data)
@@ -596,10 +592,10 @@ abline(a= fit_college_min,
   col= "darkgreen",
   )
 
-text(0.8, 0.8,
+text(0.4, 0.6,
      "income",
      col="orangered")
-text(0.8, 0.6,
+text(0.85, 0.5,
      "education level",
      col="darkgreen")
 text(0.8, 0.35,
@@ -611,7 +607,7 @@ text(0.5, 0.2,
 
 ```
 
-The results show a positive relationship between income and vote share for Republicans (if the whole population had high income, most of them would choose the republican party). With the increasing share of the ethic groups within the population has a negative effect on Republican vote share and education level has generally a low impact.
+The results show a slight positive relationship between income and vote share for Republicans. With the increasing share of the ethic groups within the population has a negative effect on Republican vote share and education level has generally a low impact.
 
 # Discussion & Conclusion
 
