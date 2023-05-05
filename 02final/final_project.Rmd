@@ -417,139 +417,96 @@ In summary, a sample average treatment effect was not found to be salient and de
 
 ## Linear models
 
-We already tested above the influence of different socioeconomic factors effects on people's support for the republican party and how the presence of Fox News in some cities changed people's party choices. However, we are also interested in to what extent socioeconomic factors or the potential effect of Fox News' presence in some cities influence people's vote for the Republican party. To answer this questions we will test H1 (Fox news and the socioeconomic background affects the behavior of the electorate) and H2 (just socioeconomic background affects the behavior of the electorate) through regression analysis. First, we will test to what extent socioeconomic factors affect people's vote for the Republican party. We included in the analysis the proportion of inhabitants who have a college degree, the median income, and the proportion of black or Hispanic people in every city. Black and Hispanic people stand for minorities in the analysis because these are the two most significant minorities and only these two minorities were included in the data set.
+We already tested above the influence of different socioeconomic factors effects on people's support for the republican party and how the presence of Fox News in some cities changed people's party choices. However, we are also interested in to what extent socioeconomic factors or the potential effect of Fox News' presence in some cities influence people's vote for the Republican party. To answer this questions we will test our hypothesis (Fox news and the socioeconomic background affects the behavior of the electorate) through regression analysis.
 
 ```{r, results="asis", echo=FALSE}
 #effect of social background
 
 data$hisp_or_black <- data$black1990 + data$hisp1990
 
-socio_economic <- lm(gopvoteshare2000 ~ income1990 + hisp_or_black + college1990, data = data)
+fox_news_effect <- lm(gopvoteshare2000 ~ subrf2000 + income1990 + hisp1990 + black1990 + college1990, data = data)
 
 library(stargazer)
 
-stargazer::stargazer(socio_economic,
+stargazer::stargazer(fox_news_effect,
 ## Title of the table
-title = "Effect of socio-economic factors on voting",
+title = "Effect of fox news and socio-economic factors on voting",
 ## Specify whether to list the intercept coefficient as first or last
 intercept.top = T, intercept.bottom = F,
 ## Informative names of the predictors,
 ## Be careful here the first covariate will be the intercept alpha
-covariate.labels = c("Intercept", "Income", "Share of Hispanic or black people", "Education level"),
-dep.var.labels = c("Two party vote share for Republicans"),
+covariate.labels = c("Intercept", "Share of Fox News subscribers", "Income", "Rate of hispanic or black people", "Education level"),
+dep.var.labels = c("Two party vote share for Republicans in 2000"),
 header = FALSE,
 type = "latex")
 
 ```
 
-The results of the analysis show that in cities where the proportion of minorities (Hispanic and Black people) is higher the support for the Republican party is lower than in other cities. Therefore, from the socioeconomic factors that were included in the regression analysis race (`r round(coef( socio_economic )["hisp_or_black"], 4)`) has the strongest effect on support for the Republican party in American cities. The proportion of people who have a college degree is also an important explanatory factor to explain vote for the Republican party in a city. In cities where the proportion of those who have a college degree is higher citizens `r round(coef( socio_economic )["college1990"], 5)` are less likely to vote for the Republican party. Moreover, the median income in cities does not seem to have an effect on support for the Republican party.
-
-In the following, we will test the influence of Fox News subscribers (in cities) on people's support for the Republican party. First, we will only test only the effect of Fox News subscribers on people's proportion who voted for the Republican party. Second, the proportion of Fox News subscribers will be added to the socio-economic factors to check what explains better people's vote for the Republican party.
-
-```{r, echo=FALSE}
-
-foxnews_2000 <- lm(gopvoteshare2000 ~ subrf2000, data = data)
-foxnews_2000
-summary(foxnews_2000)$adj.r.squared
-
-
-socio_foxnews <- lm(gopvoteshare2000 ~ income1990 + hisp_or_black + college1990 + subrf2000, data = data)
-socio_foxnews
-summary(socio_foxnews)$adj.r.squared
-
-```
-
-The analysis shows that there is no real correlation (`r round(coef( foxnews_2000 )["subrf2000"], 3)`) between Fox News subscribers and the support for the Republican party. Therefore, the proportion of Fox News subscribers does not explain citizens' support for the Republican party. Furthermore, when the proportion of Fox News subscribers was added to the regression the influence of Fox News subscribers on people's support for the republican party became even weaker which means that socioeconomic factors better explain their support for the Republican party than Fox News subscribers.
-
-However, the results can be misleading because there are much more towns in the data set where there is no access to Fox News or it is very limited. The over-representation of these cities can have an effect on the results. Therefore, we created two subgroups. The first group includes cities where more than half of the inhabitants have access to Fox News and the second group includes those towns where less than half of the population have access to Fox news. The cities were divided into two groups based on where less than 50% and more than 50% of the people because in towns where more than half of the population have access to Fox News that means that the channel is well known by more than half of the population.
-
-```{r, echo=FALSE}
-
-foxnews_present <- subset(data, (subset = subrf2000 >= 0.5))
-foxnews_not_present <- subset(data, (subset = subrf2000 < 0.5))
-
-foxnews_present_effect <- lm(gopvoteshare2000 ~ subrf2000, data = foxnews_present)
-foxnews_present_effect
-
-foxnews_not_present_effect <- lm(gopvoteshare2000 ~ subrf2000, data = foxnews_not_present)
-foxnews_not_present_effect
-
-```
-
-The regression analysis shows that the effect of access to Fox News is still very marginal `r round(coef( foxnews_present_effect )["subrf2000"], 3)`. In cities where more than half of the population have access to Fox News people are more likely to support the republican party compare to those towns where less than half of the population have access to Fox News. Therefore, the results show that socioeconomic factors are the important drivers that define people's party choice and the effect of the presence of Fox News is minimal compared to people's socioeconomic background.
+This is a linear regression model that aims to predict the vote share for republicans at the 2000 presidential election using four predictor variables: the share of Fox News subscribers in 2000, the median income in 1990, the proportion of hispanic or black population in 1990, and the proportion of population with a college degree in 1990. The model shows that the proportion of hispanic or black population and the proportion of population with a college degree are statistically significant predictors of the vote share for republicans, while the share of Fox News subscribers and median income are not significant predictors. The adjusted R-squared value of 0.1713 indicates that only about 17% of the variability in the vote share for republicans can be explained by the predictor variables included in the model.
 
 ## Prediction
 
-Using similar models to the ones in the previous section, predictions are made on vote share on different hypothetical setups in 2000. The varying dimension is the so-called "low-high dimension" which describes that 0 - 100 per cent of the population is black or Hispanic, the the whole population has low or high income or education level. To all values along this dimension a two-party vote share is predicted and the results are plotted below.
+When interpreting the results of a statistical analysis, it is important to consider not only the point estimates of the coefficients but also their associated confidence intervals. The confidence interval provides a range of plausible values for the true population parameter with a specified degree of confidence.
 
-```{r, echo=FALSE}
+The 95% confidence interval for a coefficient estimate means that if we were to repeat the study many times, in 95% of the cases the true population parameter would fall within the given interval. Thus, it provides a measure of the precision and uncertainty of the estimate.
 
-#income
+```{r foxFX, fig.show="hold", out.width="50%", fig.cap="Predicted effect of Fox News on Republican vote share and change in Republican vote share, including confidence interval.", echo=FALSE}
+printPlot <- function(var1, var2, xlab, ylab, col){
+  par(family = "serif")
+  plot(c(var1[1], var2[1]) ~ c(0, 1), 
+     ylim = c(min(c(var1[2], var2[2])), max(c(var1[3], var2[3]))), 
+     type="l", 
+     col=col, 
+     xlab=xlab,
+     ylab=ylab,
+     lwd=3)
+  polygon(c(0, 1, 1, 0), c(var1[2], var2[2], var2[3], var1[3]), col=adjustcolor(col, alpha.f = 0.2))
+}
 
-fit_income <- lm(gopvoteshare2000 ~ income1990, data = data)
+fox_0 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = 0, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95))
+fox_1 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = 1, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95))
 
-fit_income_max <- predict(fit_income, data.frame(income1990 = 1))
-fit_income_min <- predict(fit_income, data.frame(income1990 = 0))
-fun_income <- fit_income_max - fit_income_min
+printPlot(fox_0, fox_1, "Share of Fox News subscribers", "Predicted Republican vote share", "#bb9900")
 
-#black population
-fit_black_1990 <- lm(gopvoteshare2000 ~ black1990, data = data)
-fit_black_max <- predict(fit_black_1990, data.frame(black1990 = 1))
-fit_black_min <- predict(fit_black_1990, data.frame(black1990 = 0))
-fun_black_1990 <- fit_black_max - fit_black_min
+fox_news_effect_change <- lm(diff_1996_2000 ~ subrf2000 + income1990 + hisp1990 + black1990 + college1990, data = data)
 
-#hispanic population
-fit_hisp_1990 <- lm(gopvoteshare2000 ~ hisp1990, data = data)
-fit_hisp_max <- predict(fit_hisp_1990, data.frame(hisp1990 = 1))
-fit_hisp_min <- predict(fit_hisp_1990, data.frame(hisp1990 = 0))
-fun_hisp_1990 <- fit_hisp_max - fit_hisp_min
+change0 <- colMeans(predict (fox_news_effect_change, newdata = data.frame(subrf2000 = 0, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95))
+change1 <- colMeans(predict (fox_news_effect_change, newdata = data.frame(subrf2000 = 1, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95))
 
-#education level
-fit_college_1990 <- lm(gopvoteshare2000 ~ college1990, data = data)
-fit_college_max <- predict(fit_college_1990, data.frame(college1990 = 1))
-fit_college_min <- predict(fit_college_1990, data.frame(college1990 = 0))
-fun_college_1990 <- fit_college_max - fit_college_min
+printPlot(change0, change1, "Share of Fox News subscribers", "Predicted change in Republican vote share", "#22aa00")
 
-plot(1,
-type = "n",
-  xlim = c(0, 1),
-  ylim = c(0,1),
-  main = "Predicted effect of different socio-cultural factors on vote share",
-  xlab="Low-High dimension",
-  ylab="Predicted two-party vote share for Republicans")
-
-abline(a= fit_income_min,
-  b= fun_income,
-  col= "orangered",
-  )
-abline(a= fit_black_min,
-  b= fun_black_1990,
-  col= "steelblue",
-  )
-abline(a= fit_hisp_min,
-  b= fun_hisp_1990,
-  col= "brown",
-  )
-abline(a= fit_college_min,
-  b= fun_college_1990,
-  col= "darkgreen",
-  )
-
-text(0.4, 0.6,
-     "income",
-     col="orangered")
-text(0.85, 0.5,
-     "education level",
-     col="darkgreen")
-text(0.8, 0.35,
-     "black population",
-     col="steelblue")
-text(0.5, 0.2,
-     "hispanic population",
-     col="brown")
 
 ```
 
+Figure \ref{fig:foxFX} analyses the Foxnews effect both on the Republican vote share and on the change of Republican vote share between elections. The graphs show that as the share of fox news subscribers increase, both the predicted Republican vote and the positive change of Republican vote share decreases, indicating a negative Foxnews effect.
+
+Using similar models to the ones in the previous section, predictions are made on vote share on different hypothetical setups in 2000. The varying dimension is the so-called "low-high dimension" which describes that 0 - 100 per cent of the population is black or Hispanic, the the whole population has low or high income or education level. To all values along this dimension a two-party vote share is predicted and the results are plotted below.
+
+```{r incomeAndEducationFX, fig.show="hold", out.width="50%", fig.cap="Predicted effect of Income and Education on Republican vote share", echo=FALSE}
+predIncome0 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = 0, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
+predIncome1 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = 1, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
+
+printPlot(predIncome0, predIncome1, "Level of Income", "Predicted Republican vote share", "#0000aa")
+
+predEdu0 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = 0), interval = "confidence", level = 0.95), na.rm=T)
+predEdu1 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = 1), interval = "confidence", level = 0.95), na.rm=T)
+
+printPlot(predEdu0, predEdu1, "Level of Education", "Predicted Republican vote share", "#00ccaa")
+
+```
+
+```{r socioFX, fig.show="hold", out.width="50%", fig.cap="Predicted effect of  on Republican vote share", echo=FALSE}
+predBlack0 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = 0, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
+predBlack1 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = 1, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
+
+printPlot(predBlack0, predBlack1, "Share of black population", "Predicted Republican vote share", "#882222")
+
+predHisp0 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = 0, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
+predHisp1 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = 1, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
+
+printPlot(predHisp0, predHisp1, "Share of hispanic population", "Predicted Republican vote share", "#9922ff")
+
+```
 The results show a slight positive relationship between income and vote share for Republicans. With the increasing share of the ethic groups within the population has a negative effect on Republican vote share and education level has generally a low impact.
 
 # Discussion & Conclusion
