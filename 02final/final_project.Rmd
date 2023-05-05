@@ -72,10 +72,10 @@ data_melted <- reshape2::melt(plotdata, id.vars = "state")
 ggplot(data_melted, aes(x = reorder(state, value, na.rm=T), y = value, fill = variable)) +
   geom_bar(stat = "identity", position = "dodge") +
   labs(x = "State", y = "Republican vote share", fill = "Year") +
-  scale_fill_discrete(name = "Year", labels = c("1992", "1996", "2000"))
+  scale_fill_discrete(name = "Year", labels = c("1992", "1996", "2000")) +
+  theme_bw() +
+  theme(text=element_text(family="serif"))
 
-#library(usmap)
-#plot_usmap(data = data.frame(state = names(gop2000_by_states), values = gop2000_by_states)) + scale_fill_continuous(low = "white", high = "red", name = "Republican vote share") +theme(legend.position = "right")
 ```
 
 From these values it is already obvious that there is quite a big variation between the two-party vote share for the Republicans in different states. Highest and lowest vote share is measured in Utah (`r max(gop2000_by_states)`) and Rhode Island (`r min(gop2000_by_states)`) respectively. 
@@ -87,13 +87,6 @@ On the other hand in the time period of 1996 and 2000 there has been a strong in
 ## Socio-Cultural Descriptors of the Data Set
 
 As an initial step, since most descriptive values are measured in the range of [0, 1], the *income1990* variable is normalized in the same region as well. In our hypotheses the independent variables are the different socio-cultural descriptors such as the education level, the ethnic composition and the income share. The varying dimension is the so-called "low-high dimension" which describes that 0 - 100 per cent of the population is black or Hispanic, the the whole population has low or high income or education level. 
-
-```{r independentVariables, fig.cap="Independent variables in the study.", echo=FALSE}
-#normalizing income to the range of [0, 1] (was originially in [0, 15])
-data[7] <- data[7]/15
-
-boxplot(data[,c(3, 4, 5, 6, 7)], ylab="Low-high dimension", names = c("Collage eduacted", "Male", "Black", "Hispanic", "Income"))
-```
 
 ```{r, echo=FALSE}
 descriptors <- summary(data[,c(3, 4, 5, 6, 7)])[c(1, 3, 4, 6),]
@@ -107,7 +100,16 @@ knitr::kable(
 )
 ```
 
-The Figure \ref{fig:independentVariables} and Table 1 shows the general quality of the independent variables of the data set. It is visible that the median of male population in the towns are around 0.5, however there are more towns where there are an extremity towards a high male population share than to women. The black and Hispanic population of the towns in the study is generally low, but there are cases with especially high rate from both ethnic groups. The median of education and the income is below 0.2 and the later one has a higher expansion.
+
+```{r independentVariables, fig.cap="Independent variables in the study.", echo=FALSE}
+#normalizing income to the range of [0, 1] (was originially in [0, 15])
+data[7] <- data[7]/15
+
+par(family = "serif")
+boxplot(data[,c(3, 4, 5, 6, 7)], ylab="Low-high dimension", names = c("Collage eduacted", "Male", "Black", "Hispanic", "Income"))
+```
+
+The  Table 1 and Figure \ref{fig:independentVariables} shows the general quality of the independent variables of the data set. It is visible that the median of male population in the towns are around 0.5, however there are more towns where there are an extremity towards a high male population share than to women. The black and Hispanic population of the towns in the study is generally low, but there are cases with especially high rate from both ethnic groups. The median of education and the income is below 0.2 and the later one has a higher expansion.
 
 ## Change of Vote-Share Over Time
 
@@ -118,7 +120,7 @@ To have a more detailed overview, the differences in the two-party vote share fo
 change1992_1996 <- gop1996_by_states - gop1992_by_states
 change1996_2000 <- gop2000_by_states - gop1996_by_states
 
-
+par(family = "serif")
 hist(change1992_1996, 
      xlim = c(-0.2, 0.2),
      main="Distribution of change betwen 1992 and 1996",
@@ -154,40 +156,31 @@ The correlation analysis of Table 2 shows that there are a few factors that have
 ```{r scatterPlot, fig.cap="Change in vote share for republicans between the presidential elections of 1996 and 2000 versus the share of Fox News subscribers in 2000 by town", echo=FALSE}
 data$diff_1996_2000 <- data$gopvoteshare2000 - data$gopvoteshare1996
 
+
+
+par(family = "serif")
+
 plot(data$subrf2000, data$diff_1996_2000,
      pch = 16, col = "black",cex=0.5,
       ylab = "Change of vote share for the Republicans",
       xlab = "Share of Fox News subscribers by town")
-abline(h=0, col="grey")
-abline(h=mean(data$diff_1996_2000), col="red")
+abline(h=0, col="grey", lty = 2 )
+abline(h=mean(data$diff_1996_2000), col="red", lty = 1)
+text(0.8, 0.15, "mean", col="red")
 
 
 ```
 
 Figure \ref{fig:scatterPlot} gives an first overview between the change in vote share for republicans between the presidential election of 1996 and 2000 and the share of Fox News subscribers by town in 2000. Three fundamental things, which are a basis for further analysis, can be read from the scatterplot: (1) no clear direction of the data is discernible at first glance; (2) cities that did not have access to Fox News in 2000 range across the spectrum of Republican support, from no Fox News and low support for Republicans to no Fox News and very high vote share for Republicans. (3) it looks like (purely visual 'first analysis') the majority of cities are around the cut point (0.5/0.4), which means there are a lot of cities that are relatively split between Democrats and Republicans and between having or not having Fox News. Since most of the data is expressed in proportions, this also means that there will be many values in the middle.
 
-```{r, echo=FALSE}
-gop_by_s92<- data.frame(gop1992_by_states)
-gop_by_s96<- data.frame(gop1996_by_states)
-gop_by_s20<- data.frame(gop2000_by_states)
-
-
-subrf2000_by_states <- tapply(data$subrf2000, data$state, mean, na.rm = TRUE)
-
-
-# this dataframe contains the mean gop for the three years (1992, 1996, 2000) by state
-subrf2000_by_states_df <- data.frame(subrf2000_by_states)
-
-
-states<- c("Ak","Al","Ar","Ca","Ct","Hi","Ia","Id","Ma","Me","Mi","Mn","Mo","Mt","Nd","Nh","Nj","Ny","Oh","Pa","Ri","Sc","Tn","Ut","Va","Vt","Wi","Wy")
-
-
-barplot(subrf2000_by_states_df$subrf2000_by_states ~states,
-      col="steelblue2",cex.names = 0.4,
-      xlab = "State",
-      ylab = "Share of Fox News subscribers",
-      main= "Share of Fox News subscribers by state in 2000",
-      )
+```{r foxSubscribers, fig.cap="Share of Fox News subscribers by state in 2000", echo=FALSE, warning=FALSE}
+subrf2000_by_states <- data.frame(state = c("Ak","Al","Ar","Ca","Ct","Hi","Ia","Id","Ma","Me","Mi","Mn","Mo","Mt","Nd","Nh","Nj","Ny","Oh","Pa","Ri","Sc","Tn","Ut","Va","Vt","Wi","Wy")
+, values = tapply(data$subrf2000, data$state, mean, na.rm = TRUE))
+library(usmap)
+plot_usmap(data = subrf2000_by_states) + 
+  scale_fill_continuous(low = "white", high = "#00aaff", name = "Share of subscribers") +
+  theme(legend.position = "right") +
+  theme(text=element_text(family="serif"))
 
 ```
 
@@ -239,7 +232,7 @@ The graph illustrates that in all cities, no matter how much access to Fox News 
 
 ## Sample average treatment effect ('Fox News Effect') among socioeconomic variables
 
-Our hypotheses stating, that it might be possible that socioeconomic backgrouds like education and race of people influence a potential 'Fox News Effect' differently . It could be also possible that voters with different incomes get effected differently by the input of Fox News.
+Our hypotheses stating, that it might be possible that socioeconomic backgrounds like education and race of people influence a potential 'Fox News Effect' differently . It could be also possible that voters with different incomes get effected differently by the input of Fox News.
 
 We will evaluate whether these hypotheses are supported by finding the differences in sample average treatment effects by education, race and income in towns with access to Fox News and towns without access to Fox News.
 
