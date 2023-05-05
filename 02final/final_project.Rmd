@@ -14,7 +14,7 @@ bibliography: citations.bib
 
 # **Introduction**
 
-The media landscape has changed dramatically in the last few decades. Media have an increasingly important role in our modern society where access to information is not a privilege anymore. As a consequence of media's constant presence in citizen's life, the effects of media and to what extent media bias can influence people's party choices have also become a crucial question. This research paper aims to focus on the potential influence of media on people's party choices. To examine the problem the research paper will focus on the presence of Fox News in cities in the US and how it influenced people's support for the Republican party. Therefore, the research question will be the following: to what extent had the implementation of Fox News affected the US voting behavior in the presidential elections between 1996 and 2000? In the case of our research and our available data, we categorize the variables about the socioeconomic background of the people as personality trades and the exposure to media via the existence or non-existence of Fox News. Therefore, the research question will be answered through two hypotheses: H1:Fox news and the socioeconomic background effect the behavior of the electorate. H2: Just socioeconomic background affects the behavior of the electorate.
+The media landscape has changed dramatically in the last few decades. Media have an increasingly important role in our modern society where access to information is not a privilege anymore. As a consequence of media's constant presence in citizen's life, the effects of media and to what extent media bias can influence people's party choices have also become a crucial question. This research paper aims to focus on the potential influence of media on people's party choices. To examine the problem the research paper will focus on the presence of Fox News in cities in the US and how it influenced people's support for the Republican party. Therefore, the research question will be the following: to what extent had the implementation of Fox News affected the US voting behavior in the presidential elections between 1996 and 2000? In the case of our research and our available data, we categorize the variables about the socioeconomic background of the people as personality trades and the exposure to media via the existence or non-existence of Fox News. Therefore, the research question will be answered through two hypotheses: H1:Fox news and the socioeconomic background effect the behavior of the electorate.
 
 # Literature Review
 
@@ -30,7 +30,6 @@ Therefore, based on the existing literature the two hypotheses of the analysis, 
 
 Sociological model of voting Kriesi's [@Kriesi2008]: People's voting behavior is just shaped by long-term factors (socialization).
 
-**HP2:** Just socioeconomic background affects the behavior of the electorate.
 
 # General Overview Over the Data
 
@@ -230,8 +229,47 @@ Our hypotheses stating, that it might be possible that socioeconomic backgrouds 
 We will evaluate whether these hypotheses are supported by finding the differences in sample average treatment effects by education, race and income in towns with access to Fox News and towns without access to Fox News.
 
 Furthermore,the average change of votes for republican (during presidential elections) among towns before and after the availability of Fox News could be an crucial indicator to understand the effect, therefore is computed.
+```{r diffInDiffBlack, fig.cap="Difference in Average Vote Share for the Republicans With High Black Population", echo=FALSE}
+##UJJ -> no Thea's
+##SATE town with high proportion of a black population
+
+high_black_pop.t_w_foxnews<- subset(towns_w_foxnews, subset = black1990 >= 0.4)
+
+high_black_pop.t_no_foxnews<- subset(towns_no_foxnews, subset = black1990 >= 0.4)
+
+high_black_pop.t_some_foxnews<- subset(towns_some_foxnews, subset = black1990 >= 0.4)
+
+
+
+means_high_black_pop.t_w_foxnews<-colMeans(high_black_pop.t_w_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
+
+means_high_black_pop.t_no_foxnews<-colMeans(high_black_pop.t_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
+
+means_high_black_pop.t_some_foxnews<-colMeans(high_black_pop.t_some_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
+
+
+
+plot(years, means_high_black_pop.t_w_foxnews, pch = 16, col = "aquamarine3",
+xlim = c(1992, 2000), ylim = c(0.0, 0.5), xlab = "Years of presidential elections",
+ylab = "Average vote share for Republicans")
+
+points(years, means_high_black_pop.t_some_foxnews,pch=16, col = "darkseagreen4")
+points(years, means_high_black_pop.t_no_foxnews,pch = 16, col = "mediumorchid1")
+
+
+lines(years, means_high_black_pop.t_w_foxnews, type="c", col="aquamarine3")
+lines(years, means_high_black_pop.t_some_foxnews,type="c", col = "darkseagreen4")
+lines(years, means_high_black_pop.t_no_foxnews,type="c", col = "mediumorchid1")
+
+
+text(1994, 0.45,"Towns with Fox News", col="aquamarine3")
+text(1998,0.2,"Towns with some Fox News", col="darkseagreen4")
+text(1993,0.2, "Towns with no Fox News", col = "mediumorchid1")
+
+```
 
 ```{r, echo=FALSE}
+
 ##SATE town with high proportion of a black population
 
 high_black_pop.t_w_foxnews<- subset(towns_w_foxnews, subset = black1990 >= 0.4)
