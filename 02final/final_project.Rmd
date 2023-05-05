@@ -1,5 +1,5 @@
 ---
-title: "Final Project"
+title: "Revising the Fox News Effect"
 author:  Blanka Balazs, Simon Fernezelyi
 data: "May 06, 2023"
 header-includes:
@@ -8,7 +8,7 @@ fig_caption: yes
 output:
   bookdown::pdf_document2: default
 urlcolor: blue
-abstract: "The conservative news channel Fox News was founded in 1996 and gradually implemented in various US cities. This led to the situation that in the year 2000 there was a presidential election in which a significant proportion of the US population already had access to this TV     channel for several years and other cities had no access at all at the time of the election. The used dataset includes among controlvaribles the vote shares for the Republicans of the Presidential election in 1992, 1996 and 2000. Futhermore the share of Fox News subscribers in 2000 among cities. The available data make it possible to ask the question to which extent had the implementation of Fox News affected the US voting behavior in the presidential elections between 1996 and 2000? The analysis yields revealing results, but the idea of the highly influential TV channel, the so-called 'FOX NEWS EFFECT', had to be revised, as the analysis showed no significance in this area. "
+abstract: "The conservative news channel Fox News was founded in 1996 and gradually implemented in various US cities. The 2000 Presidential election was the first time in history where a significant proportion of the US population already had access to this TV channel for several years while other cities having no access. This study observes the vote shares for the Republicans of the Presidential election in years 1992, 1996 and 2000 depending on socio-economic factors and the share of Fox News subscribers in different areas. We ask the question, to which extent did the introduction of Fox News affected US voting behavior in the presidential elections between 1996 and 2000. The analysis yields revealing results, but the idea of the highly influential TV channel in terms of political outcomes, the so-called 'FOX NEWS EFFECT', had to be revised, as the analysis showed no significance in this area."
 bibliography: citations.bib
 ---
 
@@ -36,10 +36,20 @@ Sociological model of voting Kriesi's [@Kriesi2008]: People's voting behavior is
 
 This paper uses data that was collected in 1992, 1996 and 2000. The dataset [@DellaVigna2007] contains town-based data on two-party vote share for the Republicans, socio-cultural details and share of Fox news subscribers.
 
-In order to have a rough overview of the vote share among states, the *state* variable is converted into a factor variable. With this modification the average two-party vote share for the Republicans at last of the observed presidential elections in the different states could be calculated as shown in Figure \ref{fig:avgVoteShare}. 
+
+```{r, echo=FALSE}
+data <- read.csv("foxnews.csv")
+
+ntowns <- length(data$town)
+nstates <- length(unique(data$state))
+
+```
+
+The dataframe holds data from `r ntowns` towns across `r nstates` American states. 
+
+In order to have a rough overview of the vote share among states, the *state* variable is converted into a factor variable. With this modification the average two-party vote share for the Republicans at the different presidential elections (1992, 1996, 2000) in the different states could be calculated as shown in Figure \ref{fig:avgVoteShare}. 
 
 ```{r avgVoteShare, warning=FALSE, fig.cap="Average two-party vote share for the Republicans in 2000 in the different states.", echo=FALSE}
-data <- read.csv("foxnews.csv")
 data$state <- factor(data$state)
 
 gop1992_by_states <- tapply(data$gopvoteshare1992, data$state, mean, na.rm = TRUE)
@@ -76,16 +86,28 @@ On the other hand in the time period of 1996 and 2000 there has been a strong in
 
 ## Socio-Cultural Descriptors of the Data Set
 
-As an initial step, since most descriptive values are measured in the range of [0, 1], the *income1990* variable is normalized in the same region as well. In our hypotheses the independent variables are the different socio-cultural descriptors such as the education level, the ethnic composition and the income share.
+As an initial step, since most descriptive values are measured in the range of [0, 1], the *income1990* variable is normalized in the same region as well. In our hypotheses the independent variables are the different socio-cultural descriptors such as the education level, the ethnic composition and the income share. The varying dimension is the so-called "low-high dimension" which describes that 0 - 100 per cent of the population is black or Hispanic, the the whole population has low or high income or education level. 
 
 ```{r independentVariables, fig.cap="Independent variables in the study.", echo=FALSE}
 #normalizing income to the range of [0, 1] (was originially in [0, 15])
 data[7] <- data[7]/15
 
-boxplot(data[,c(3, 4, 5, 6, 7)], ylab="Proportion (first four variables) / Rate of income", names = c("Collage eduacted", "Male", "Black", "Hispanic", "Average income"))
+boxplot(data[,c(3, 4, 5, 6, 7)], ylab="Low-high dimension", names = c("Collage eduacted", "Male", "Black", "Hispanic", "Income"))
 ```
 
-The histogram in (Figure \ref{fig:independentVariables}) shows the general quality of the independent variables of the data set. It is visible that the mean of male population in the towns are around 0.5, however there are more towns where there are an extremity towards a high male population share than to women. The black and Hispanic population of the towns in the study is generally low, but there are cases with especially high rate from both ethnic groups. The mean of education and the income is below 0.2 and the later one has a higher expansion.
+```{r, echo=FALSE}
+descriptors <- summary(data[,c(3, 4, 5, 6, 7)])[c(1, 3, 4, 6),]
+
+knitr::kable(
+  descriptors,
+  "simple",
+  col.names = c("Collage eduacted", "Male", "Black", "Hispanic", "Average income"), 
+  caption = "Basic descriptors of the independent variables",
+  digits = 2
+)
+```
+
+The Figure \ref{fig:independentVariables} and Table 1 shows the general quality of the independent variables of the data set. It is visible that the median of male population in the towns are around 0.5, however there are more towns where there are an extremity towards a high male population share than to women. The black and Hispanic population of the towns in the study is generally low, but there are cases with especially high rate from both ethnic groups. The median of education and the income is below 0.2 and the later one has a higher expansion.
 
 ## Change of Vote-Share Over Time
 
@@ -109,19 +131,9 @@ hist(change1996_2000, xlim = c(-0.2, 0.2),
 
 ```
 
-```{r, echo=FALSE}
-
-ntowns <- length(unique(data$town))
-
-nstates <- length(unique(data$state))
-
-```
-
-The dataframe holds data from `r ntowns` towns across `r nstates` American states. 
-
 ## Correlation Analysis
 
-The dataset contains various measures of the towns in question. In order to get a sense what could influence the vote share a the correlation of these factors and the vote share is calculated.
+The dataset contains various measures of the towns in question. In order to get a sense what could influence the vote share the correlation of these factors and the vote share is calculated.
 
 ```{r, echo=FALSE}
 cordata <- cor(data[12], data[,c(3, 4, 5, 6, 7)])
@@ -135,7 +147,7 @@ knitr::kable(
 )
 ```
 
-The correlation analysis suggest that there are a few factors that have an insignificant connection to the two-party vote share for the Republicans, such as the income or the education level. The share of males in the population has a direct relationship and the share of different ethnic categories (Hispanic or black ) in the population has an inverse relationship to the vote share. The most meaningful correlation is between the black population and the vote share (-0.331).
+The correlation analysis of Table 2 shows that there are a few factors that have an close to zero correlation to the vote share for the Republicans, such as the income or the education level. The share of males in the population has a direct but moderate correlation with the vote share as it is a positive number and reaching ~0.2. The share of different ethnic categories (Hispanic or Black) in the population has an inverse relationship to the vote share, being both negative numbers. The highest correlation is between the black population and the vote share (-0.331) suggesting a moderate negative linear relationship between these two variables. The negative sign indicates that as the percentage of the black population increases in a given district, the vote share tends to decrease. The magnitude of the correlation coefficient indicates that this relationship is not extremely strong, but it is still statistically significant. It is however important to note that correlation does not imply causation.
 
 ## Fox News Subscribers in Different Towns
 
@@ -144,13 +156,15 @@ data$diff_1996_2000 <- data$gopvoteshare2000 - data$gopvoteshare1996
 
 plot(data$subrf2000, data$diff_1996_2000,
      pch = 16, col = "black",cex=0.5,
-      ylab = "Two-party vote share for the Republicans (2000 Presidential election)",
+      ylab = "Change of vote share for the Republicans",
       xlab = "Share of Fox News subscribers by town")
-abline(h=0, col="red")
+abline(h=0, col="grey")
+abline(h=mean(data$diff_1996_2000), col="red")
+
 
 ```
 
-Figure \ref{fig:scatterPlot} gives an first overview between the change in vote share for republicans between the presidential election of 1996 and 2000 and the share of Fox News subscribers by town in 2000.Three fundamental things, which are a basis for further analysis, can be read from the scatterplot: !!!!HAVE TO REWRITE AS THE PLOT WAS CHANGED!!! (1) no clear direction of the data is discernible at first glance; (2) cities that did not have access to Fox News in 2000 range across the spectrum of Republican support, from no Fox News and low support for Republicans to no Fox News and very high vote share for Republicans. (3) it looks like (purely visual 'first analysis') the majority of cities are around the cut point (0.5/0.4), which means there are a lot of cities that are relatively split between Democrats and Republicans and between having or not having Fox News. Since most of the data is expressed in proportions, this also means that there will be many values in the middle.
+Figure \ref{fig:scatterPlot} gives an first overview between the change in vote share for republicans between the presidential election of 1996 and 2000 and the share of Fox News subscribers by town in 2000. Three fundamental things, which are a basis for further analysis, can be read from the scatterplot: (1) no clear direction of the data is discernible at first glance; (2) cities that did not have access to Fox News in 2000 range across the spectrum of Republican support, from no Fox News and low support for Republicans to no Fox News and very high vote share for Republicans. (3) it looks like (purely visual 'first analysis') the majority of cities are around the cut point (0.5/0.4), which means there are a lot of cities that are relatively split between Democrats and Republicans and between having or not having Fox News. Since most of the data is expressed in proportions, this also means that there will be many values in the middle.
 
 ```{r, echo=FALSE}
 gop_by_s92<- data.frame(gop1992_by_states)
@@ -244,7 +258,7 @@ means_high_black_pop.t_w_foxnews<-colMeans(high_black_pop.t_w_foxnews[c('gopvote
 means_high_black_pop.t_no_foxnews<-colMeans(high_black_pop.t_no_foxnews[c('gopvoteshare1992','gopvoteshare1996','gopvoteshare2000')], na.rm = T)
 
 
-sate_high_black_pop_t_w_fn<-  means_high_black_pop.t_w_foxnews- means_high_black_pop.t_no_foxnews
+sate_high_black_pop_t_w_fn <-  means_high_black_pop.t_w_foxnews - means_high_black_pop.t_no_foxnews
 
 
 
