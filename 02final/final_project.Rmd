@@ -3,7 +3,8 @@ title: "Revising the Fox News Effect"
 author:  Blanka Balazs, Simon Fernezelyi
 data: "May 06, 2023"
 header-includes:
-  - \usepackage{float}
+ \usepackage{float}
+ \floatplacement{figure}{H}
 fig_caption: yes
 output:
   bookdown::pdf_document2: default
@@ -30,11 +31,9 @@ Therefore, based on the existing literature the two hypotheses of the analysis, 
 
 Sociological model of voting Kriesi's [@Kriesi2008]: People's voting behavior is just shaped by long-term factors (socialization).
 
-
 # General Overview Over the Data
 
 This paper uses data that was collected in 1992, 1996 and 2000. The dataset [@DellaVigna2007] contains town-based data on two-party vote share for the Republicans, socio-cultural details and share of Fox news subscribers.
-
 
 ```{r, echo=FALSE}
 data <- read.csv("foxnews.csv")
@@ -44,9 +43,9 @@ nstates <- length(unique(data$state))
 
 ```
 
-The dataframe holds data from `r ntowns` towns across `r nstates` American states. 
+The dataframe holds data from `r ntowns` towns across `r nstates` American states.
 
-In order to have a rough overview of the vote share among states, the *state* variable is converted into a factor variable. With this modification the average two-party vote share for the Republicans at the different presidential elections (1992, 1996, 2000) in the different states could be calculated as shown in Figure \ref{fig:avgVoteShare}. 
+In order to have a rough overview of the vote share among states, the *state* variable is converted into a factor variable. With this modification the average two-party vote share for the Republicans at the different presidential elections (1992, 1996, 2000) in the different states could be calculated as shown in Figure \ref{fig:avgVoteShare}.
 
 ```{r avgVoteShare, warning=FALSE, fig.cap="Average two-party vote share for the Republicans in 2000 in the different states.", echo=FALSE}
 data$state <- factor(data$state)
@@ -77,7 +76,7 @@ ggplot(data_melted, aes(x = reorder(state, value, na.rm=T), y = value, fill = va
 
 ```
 
-From these values it is already obvious that there is quite a big variation between the two-party vote share for the Republicans in different states. Highest and lowest vote share is measured in Utah (`r max(gop2000_by_states)`) and Rhode Island (`r min(gop2000_by_states)`) respectively. 
+From these values it is already obvious that there is quite a big variation between the two-party vote share for the Republicans in different states. Highest and lowest vote share is measured in Utah (`r max(gop2000_by_states)`) and Rhode Island (`r min(gop2000_by_states)`) respectively.
 
 The plot also shows general trends in the different states over time. On average there has been a slight decrease in republican vote share in the period of 1992 and 1996, however there has been differences in different region. For example Main experienced a huge drop while in Idaho a slight increase is visible.
 
@@ -85,7 +84,7 @@ On the other hand in the time period of 1996 and 2000 there has been a strong in
 
 ## Socio-Cultural Descriptors of the Data Set
 
-As an initial step, since most descriptive values are measured in the range of [0, 1], the *income1990* variable is normalized in the same region as well. In our hypotheses the independent variables are the different socio-cultural descriptors such as the education level, the ethnic composition and the income share. The varying dimension is the so-called "low-high dimension" which describes that 0 - 100 per cent of the population is black or Hispanic, the the whole population has low or high income or education level. 
+As an initial step, since most descriptive values are measured in the range of [0, 1], the *income1990* variable is normalized in the same region as well. In our hypotheses the independent variables are the different socio-cultural descriptors such as the education level, the ethnic composition and the income share. The varying dimension is the so-called "low-high dimension" which describes that 0 - 100 per cent of the population is black or Hispanic, the the whole population has low or high income or education level.
 
 ```{r, echo=FALSE}
 descriptors <- summary(data[,c(3, 4, 5, 6, 7)])[c(1, 3, 4, 6),]
@@ -99,7 +98,6 @@ knitr::kable(
 )
 ```
 
-
 ```{r independentVariables, fig.cap="Independent variables in the study.", echo=FALSE}
 #normalizing income to the range of [0, 1] (was originially in [0, 15])
 data[7] <- data[7]/15
@@ -108,11 +106,11 @@ par(family = "serif")
 boxplot(data[,c(3, 4, 5, 6, 7)], ylab="Low-high dimension", names = c("Collage eduacted", "Male", "Black", "Hispanic", "Income"))
 ```
 
-The  Table 1 and Figure \ref{fig:independentVariables} shows the general quality of the independent variables of the data set. It is visible that the median of male population in the towns are around 0.5, however there are more towns where there are an extremity towards a high male population share than to women. The black and Hispanic population of the towns in the study is generally low, but there are cases with especially high rate from both ethnic groups. The median of education and the income is below 0.2 and the later one has a higher expansion.
+The Table 1 and Figure \ref{fig:independentVariables} shows the general quality of the independent variables of the data set. It is visible that the median of male population in the towns are around 0.5, however there are more towns where there are an extremity towards a high male population share than to women. The black and Hispanic population of the towns in the study is generally low, but there are cases with especially high rate from both ethnic groups. The median of education and the income is below 0.2 and the later one has a higher expansion.
 
 ## Change of Vote-Share Over Time
 
-To have a more detailed overview, the differences in the two-party vote share for Republicans between the observed election is calculated. The histograms in Figure \ref{fig:change} indicate that there has been a slight decrease of Republican vote share between 1992 and 1996 which was replaced by a much higher increase between 1996 and 2000. It again shows that while in the first period the decrease was rather moderate, the increase in the later period was exclusive to all observed states. 
+To have a more detailed overview, the differences in the two-party vote share for Republicans between the observed election is calculated. The histograms in Figure \ref{fig:change} indicate that there has been a slight decrease of Republican vote share between 1992 and 1996 which was replaced by a much higher increase between 1996 and 2000. It again shows that while in the first period the decrease was rather moderate, the increase in the later period was exclusive to all observed states.
 
 ```{r change, fig.show="hold", out.width="50%", fig.cap="Change in Republican vote share between the three observed elections.", echo=FALSE}
 
@@ -137,18 +135,18 @@ hist(change1996_2000, xlim = c(-0.2, 0.2),
 The dataset contains various measures of the towns in question. In order to get a sense what could influence the vote share the correlation of these factors and the vote share is calculated.
 
 ```{r, echo=FALSE}
-cordata <- cor(data[12], data[,c(3, 4, 5, 6, 7)])
+cordata <- cor(data[12], data[,c(3, 7, 5, 6)])
 rownames(cordata) <- c("Republican vote share")
 knitr::kable(
   cordata,
   "simple",
-  col.names = c("Collage eduacted", "Male", "Black", "Hispanic", "Average income"), 
+  col.names = c("Level of education", "Average income", "Share of black people", "Share of hispanic people"), 
   caption = "Correlation between Republican vote share and different independent variables.",
   digits = 4,
 )
 ```
 
-The correlation analysis of Table 2 shows that there are a few factors that have an close to zero correlation to the vote share for the Republicans, such as the income or the education level. The share of males in the population has a direct but moderate correlation with the vote share as it is a positive number and reaching ~0.2. The share of different ethnic categories (Hispanic or Black) in the population has an inverse relationship to the vote share, being both negative numbers. The highest correlation is between the black population and the vote share (-0.331) suggesting a moderate negative linear relationship between these two variables. The negative sign indicates that as the percentage of the black population increases in a given district, the vote share tends to decrease. The magnitude of the correlation coefficient indicates that this relationship is not extremely strong, but it is still statistically significant. It is however important to note that correlation does not imply causation.
+The correlation analysis of Table 2 shows that there are a few factors that have an close to zero correlation to the vote share for the Republicans, such as the income or the education level. The share of males in the population has a direct but moderate correlation with the vote share as it is a positive number and reaching \~0.2. The share of different ethnic categories (Hispanic or Black) in the population has an inverse relationship to the vote share, being both negative numbers. The highest correlation is between the black population and the vote share (-0.331) suggesting a moderate negative linear relationship between these two variables. The negative sign indicates that as the percentage of the black population increases in a given district, the vote share tends to decrease. The magnitude of the correlation coefficient indicates that this relationship is not extremely strong, but it is still statistically significant. It is however important to note that correlation does not imply causation.
 
 ## Fox News Subscribers in Different Towns
 
@@ -186,7 +184,6 @@ plot_usmap(data = subrf2000_by_states) +
 To get a better picture of the implementation of Fox News in the USA, the share of Fox News subscribers by state in 2000 got plotted. The differences are immense. New Hampshire does not have any access to Fox News in 2000 yet, also in Vermont, Massachusetts and South Carolina is the access ratio to the Fox News Channel almost non existence. On the other hand is the channel already very accessible in states like New Jersey,Wyoming and Alaska. According to the bar plot has the biggest proportion of Fox News subscribers. However, due to the fact, that the bar plot does not represents the number of Fox News subscribers, only the the proportion of citizens with a subscription per town it does not mean that Hawii does have the highest amount in a quantitative sense.
 
 # The Fox News Effect
-
 
 ```{r diffInDiffFoxnews, fig.cap="Differences in Vote Share Across Towns With/Without Fox News", echo=FALSE, warning=FALSE}
 
@@ -279,10 +276,9 @@ legend(x = 1992, y = 0.7, bty = "n",
 
 ```
 
-
 The first thing we looked at was whether the introduction of Fox News had a bigger/smaller impact on black people in the USA. The cities were divided into subsets, to take into account different proportions of black people in the cities. For the subdivision of cities and their black population, the different quantiles were not looked at, which is the case in the following SATE calculations. Due to the white majority population in the states, the third quantile of the proportion of black people would have been 0.013411 but the maximum would have been 0.990427. The difference between 1% and 99% would have been too serious to categorize all cities in between as having a high black population. That's why cities with a percentage above 0.40 were considered to have a high black population. As can be seen in the plot, only the line from the cities with a high black population share has a similar shape to the lines in the plot with the general trend effect. In the cities with a low proportion or none at all, the estimated treatment effect goes in a negative direction.
 
-```{r diffInDiff_income, fig.cap="Differences in Vote Share in High and Low Income Towns", echo=FALSE, warning=FALSE}
+```{r diffInDiffIncome, fig.cap="Differences in Vote Share in High and Low Income Towns", echo=FALSE, warning=FALSE}
 ##SATE town with high proportion of rich people
 #No Thea's 
 
@@ -344,10 +340,9 @@ lines(years, means_low_income.t_some_foxnews,type="c", col = "brown")
 
 ```
 
-
 Looking at income and the potential sample average treatment effect we can see, that only for persons with high income (towns where the average income is over or equals 3.420\$) the estimated sample average Fox News effect is increasing and more rich people voted for republicans but an the other hand the vote share for Republicans among rich people normally quite high anyways. Therefore it is hard to argue, that the implementation of Fox News is the main reason. Towns with a medium income or low income have decreasing sample average treatment effect.
 
-```{r diffInDiff_income, fig.cap="Differences in Vote Share in Average Higher and Lower Educated Towns", echo=FALSE, warning=FALSE}
+```{r diffInDiffEducation, fig.cap="Differences in Vote Share in Average Higher and Lower Educated Towns", echo=FALSE, warning=FALSE}
 
 high_edu.t_w_foxnews <- subset(towns_w_foxnews, subset = college1990 >= 0.2)
 high_edu.t_no_foxnews<- subset(towns_no_foxnews, subset = college1990 >= 0.2)
@@ -408,7 +403,6 @@ lines(years, means_low_edu.t_some_foxnews,type="c", col = "grey80")
 
 ```
 
-
 The last measurement of finding the differences in sample average treatment effects by socioeconomic backgrounds is SATE for different levels of education. Here is it visible, that high educated regions are less likely to vote for republicans and have lower starting position. Looking at a medium or low level of education a decrease of the potential effect is visible, even though is a very small one.
 
 In summary, a sample average treatment effect was not found to be salient and decisive on the basis of various socio-economic criteria and thus no 'Fox News effect' was found. There have been changes that seem reasonable and appropriate, but it would be presumptuous to relate these to a Fox News effect, as the changes have always been marginal.
@@ -419,26 +413,31 @@ In summary, a sample average treatment effect was not found to be salient and de
 
 We already tested above the influence of different socioeconomic factors effects on people's support for the republican party and how the presence of Fox News in some cities changed people's party choices. However, we are also interested in to what extent socioeconomic factors or the potential effect of Fox News' presence in some cities influence people's vote for the Republican party. To answer this questions we will test our hypothesis (Fox news and the socioeconomic background affects the behavior of the electorate) through regression analysis.
 
-```{r, results="asis", echo=FALSE}
+```{r, results="asis", echo=FALSE, warning=FALSE}
 #effect of social background
 
 data$hisp_or_black <- data$black1990 + data$hisp1990
 
 fox_news_effect <- lm(gopvoteshare2000 ~ subrf2000 + income1990 + hisp1990 + black1990 + college1990, data = data)
 
-library(stargazer)
 
-stargazer::stargazer(fox_news_effect,
-## Title of the table
-title = "Effect of fox news and socio-economic factors on voting",
-## Specify whether to list the intercept coefficient as first or last
-intercept.top = T, intercept.bottom = F,
-## Informative names of the predictors,
-## Be careful here the first covariate will be the intercept alpha
-covariate.labels = c("Intercept", "Share of Fox News subscribers", "Income", "Rate of hispanic or black people", "Education level"),
-dep.var.labels = c("Two party vote share for Republicans in 2000"),
-header = FALSE,
-type = "latex")
+fox_news_effect_change <- lm(diff_1996_2000 ~ subrf2000 + income1990 + hisp1990 + black1990 + college1990, data = data)
+
+# Combine the coefficient tables into a single table
+combined_table <- rbind(cbind(summary(fox_news_effect)$coefficients[,1], summary(fox_news_effect_change)$coefficients[,1]), c(summary(fox_news_effect)$r.squared, summary(fox_news_effect_change)$r.squared), c(summary(fox_news_effect)$adj.r.squared, summary(fox_news_effect_change)$adj.r.squared), c(summary(fox_news_effect)$sigma, summary(fox_news_effect_change)$sigma), c("< 2.2e-16", "< 2.2e-16"))
+
+# Rename the column names
+colnames(combined_table) <- c("Effect of different factors \non Repubican vote share", "Effec of different factors \non the change of Republican vote share")
+
+rownames(combined_table) <- c("Intercept", "Share of Fox-news \nsubscribers", "Level of education", "Share of black people", "Share of hispanic people", "Average income", "R^2", "Adjusted R^2", "Residual Std. Error", "P value")
+
+
+library(knitr)
+library(kableExtra)
+
+# Print the combined table using kable
+kable(combined_table, "latex")%>% 
+  kable_styling(latex_options=c("scale_down","striped", stripe_index = c(1,2, 5:6)))
 
 ```
 
@@ -461,6 +460,8 @@ printPlot <- function(var1, var2, xlab, ylab, col){
      ylab=ylab,
      lwd=3)
   polygon(c(0, 1, 1, 0), c(var1[2], var2[2], var2[3], var1[3]), col=adjustcolor(col, alpha.f = 0.2))
+  
+  abline(h=0, col="grey", lty=2)
 }
 
 fox_0 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = 0, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95))
@@ -468,7 +469,20 @@ fox_1 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = 1, 
 
 printPlot(fox_0, fox_1, "Share of Fox News subscribers", "Predicted Republican vote share", "#bb9900")
 
-fox_news_effect_change <- lm(diff_1996_2000 ~ subrf2000 + income1990 + hisp1990 + black1990 + college1990, data = data)
+
+printPlot <- function(var1, var2, xlab, ylab, col){
+  par(family = "serif")
+  plot(c(var1[1], var2[1]) ~ c(0, 1), 
+     ylim = c(-0.08, 0.1), 
+     type="l", 
+     col=col, 
+     xlab=xlab,
+     ylab=ylab,
+     lwd=3)
+  polygon(c(0, 1, 1, 0), c(var1[2], var2[2], var2[3], var1[3]), col=adjustcolor(col, alpha.f = 0.2))
+  abline(h=0, col="grey", lty=2)
+}
+
 
 change0 <- colMeans(predict (fox_news_effect_change, newdata = data.frame(subrf2000 = 0, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95))
 change1 <- colMeans(predict (fox_news_effect_change, newdata = data.frame(subrf2000 = 1, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95))
@@ -478,36 +492,43 @@ printPlot(change0, change1, "Share of Fox News subscribers", "Predicted change i
 
 ```
 
-Figure \ref{fig:foxFX} analyses the Foxnews effect both on the Republican vote share and on the change of Republican vote share between elections. The graphs show that as the share of fox news subscribers increase, both the predicted Republican vote and the positive change of Republican vote share decreases, indicating a negative Foxnews effect.
+Figure \ref{fig:foxFX} analyses the Foxnews effect both on the Republican vote share and on the change of Republican vote share between elections. The graphs show that as the share of fox news subscribers increase, both the predicted Republican vote share and the positive change of Republican vote share decreases, indicating a negative Foxnews effect. It is notable that at predicted Republican vote share the uncertainty range allows for no decrease or a minor increase, allowing no strong implications.
 
-Using similar models to the ones in the previous section, predictions are made on vote share on different hypothetical setups in 2000. The varying dimension is the so-called "low-high dimension" which describes that 0 - 100 per cent of the population is black or Hispanic, the the whole population has low or high income or education level. To all values along this dimension a two-party vote share is predicted and the results are plotted below.
+In order to contrast the measured Fox news effect with other possibly determining variables, the predicted effect of other socio-economic factors in electoral outcome in terms of change of Republican vote share between elections.
 
 ```{r incomeAndEducationFX, fig.show="hold", out.width="50%", fig.cap="Predicted effect of Income and Education on Republican vote share", echo=FALSE}
-predIncome0 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = 0, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
-predIncome1 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = 1, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
+
+predIncome0 <- colMeans(predict (fox_news_effect_change, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = 0, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
+predIncome1 <- colMeans(predict (fox_news_effect_change, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = 1, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
 
 printPlot(predIncome0, predIncome1, "Level of Income", "Predicted Republican vote share", "#0000aa")
 
-predEdu0 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = 0), interval = "confidence", level = 0.95), na.rm=T)
-predEdu1 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = 1), interval = "confidence", level = 0.95), na.rm=T)
+predEdu0 <- colMeans(predict (fox_news_effect_change, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = 0), interval = "confidence", level = 0.95), na.rm=T)
+predEdu1 <- colMeans(predict (fox_news_effect_change, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = data$black1990, college1990 = 1), interval = "confidence", level = 0.95), na.rm=T)
 
 printPlot(predEdu0, predEdu1, "Level of Education", "Predicted Republican vote share", "#00ccaa")
 
 ```
 
 ```{r socioFX, fig.show="hold", out.width="50%", fig.cap="Predicted effect of  on Republican vote share", echo=FALSE}
-predBlack0 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = 0, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
-predBlack1 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = 1, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
+predBlack0 <- colMeans(predict (fox_news_effect_change, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = 0, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
+predBlack1 <- colMeans(predict (fox_news_effect_change, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = data$hisp1990, black1990 = 1, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
 
 printPlot(predBlack0, predBlack1, "Share of black population", "Predicted Republican vote share", "#882222")
 
-predHisp0 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = 0, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
-predHisp1 <- colMeans(predict (fox_news_effect, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = 1, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
+predHisp0 <- colMeans(predict (fox_news_effect_change, newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = 0, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
+predHisp1 <- colMeans(predict (fox_news_effect_change
+                               , newdata = data.frame(subrf2000 = data$subrf2000, income1990 = data$income1990, hisp1990 = 1, black1990 = data$black1990, college1990 = data$college1990), interval = "confidence", level = 0.95), na.rm=T)
 
 printPlot(predHisp0, predHisp1, "Share of hispanic population", "Predicted Republican vote share", "#9922ff")
 
 ```
-The results show a slight positive relationship between income and vote share for Republicans. With the increasing share of the ethic groups within the population has a negative effect on Republican vote share and education level has generally a low impact.
+
+Observing the different socio-economic factors clearly indicate certain tendencies, that are more far reaching than the previously seen fox-news effect. Figure \@ref(fig:incomeAndEducationFX) suggests that both lower income and lower educated neighborhoods have a higher likeliness to result in an increased Republican vote share, while both higher income and higher educated electoral districts are expected to have a slight decrease in Republican vote share. Both the intensity of the difference among the ends and the certainty of the prediciton is higher when observing the effect of the level of education.
+
+Figure \@ref(fig:socioFX) indicates that areas with lower share of hispanic and black population are more likely to result in an increase in republican vote share while higher share of black and hispanic population are morel likely to have a slight decrease in Republican vote share. However, both the intensity and the uncertainty is higher of the effect of share of black population.
+
+Consequently it is an important observation that the effect of the presence or absence of Fox-news is far less significant and far more uncertain than socio economic factors such as ethnic diversity or intellectual or material wealth. These findings highlight the importance of considering a broader range of variables when examining electoral outcomes and suggest that factors related to socio-economic conditions play a more substantial role in shaping voting patterns.
 
 # Discussion & Conclusion
 
@@ -515,9 +536,8 @@ After the analysis, it can be summarized that 'a Fox News Effect' is not clearly
 
 The reasons why an effect is only so minimally visible can be manifold. First of all, it must be mentioned that a new channel may take a while to be added to a cable provider's lineup because of the talks negotiations during the implementation. Due of this, contrary to popular belief, Fox News was unable to establish itself as the first player in conservative media markets. this means that people who live in cities without fox news are still influenced by conservative TV channels, but are not recorded as such in this data set because they watch a different conservative channel. Furthermore, it is important to note that while there is a small effect, covering the external and internal variables that influence an election is extremely difficult. Third, the heavily conservative states of New Jersey and Wyoming would be the perfect example of this, ranking second and third, respectively, among the states with the largest vote share. This would mean that the effect could be weakened, since people have already voted conservatively anyway.
 
-This would mean that the effect could be weakened, since people have already voted conservatively anyway. However, even if the aforementioned external problems were not present and the internal validity is flawless, it is possible that the Fox News effect would only play a minor role. As the theories and also the regression results have shown, socioeconomic factors play an important role. Thus, the second hypothesis of the paper can be confirmed, namely that socioeconomic factors are crucial for voting in the American two-party system. In particular, the factors of race and the level of education were the most decisive influences. Lastly, another potential explanation to the the general increase of support for the Republican party in most of the states is that the US had a democratic president (Bill Clinton) during this time period who had an impeachment. These external factors could have a more important positive effect on people's support for the Republican party than the influence of watching Fox News. 
+This would mean that the effect could be weakened, since people have already voted conservatively anyway. However, even if the aforementioned external problems were not present and the internal validity is flawless, it is possible that the Fox News effect would only play a minor role. As the theories and also the regression results have shown, socioeconomic factors play an important role. Thus, the second hypothesis of the paper can be confirmed, namely that socioeconomic factors are crucial for voting in the American two-party system. In particular, the factors of race and the level of education were the most decisive influences. Lastly, another potential explanation to the the general increase of support for the Republican party in most of the states is that the US had a democratic president (Bill Clinton) during this time period who had an impeachment. These external factors could have a more important positive effect on people's support for the Republican party than the influence of watching Fox News.
 
 \newpage
-
 
 # References
