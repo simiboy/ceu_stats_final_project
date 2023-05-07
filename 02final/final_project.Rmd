@@ -15,7 +15,7 @@ bibliography: citations.bib
 
 # **Introduction**
 
-The media landscape has changed dramatically in the last few decades. Media have an increasingly important role in our modern society where access to information is not a privilege anymore. As a consequence of media's constant presence in citizen's life, the effects of media and to what extent media bias can influence people's party choices have also become a crucial question. This research paper aims to focus on the potential influence of media on people's party choices. To examine the problem the research paper will focus on the presence of Fox News in cities in the US and how it influenced people's support for the Republican party. Therefore, the research question will be the following: to what extent had the implementation of Fox News affected the US voting behavior in the presidential elections between 1996 and 2000? In the case of our research and our available data, we categorize the variables about the socioeconomic background of the people as personality trades and the exposure to media via the existence or non-existence of Fox News. Therefore, the research question will be answered through two hypotheses: H1:Fox news and the socioeconomic background effect the behavior of the electorate.
+The media landscape has changed dramatically in the last few decades. Media have an increasingly important role in our modern society where access to information is not a privilege anymore. As a consequence of media's constant presence in citizen's life, the effects of media and to what extent media bias can influence people's party choices have also become a crucial questions. This research paper aims to focus on the potential influence of media on people's party choices. To examine the problem the research paper will focus on the presence of Fox News in cities in the US and how it influenced people's support for the Republican party. Therefore, the research question will be the following: to what extent had the implementation of Fox News affected the US voting behavior in the presidential elections between 1996 and 2000? In the case of our research and our available data, we categorize the variables about the socioeconomic background of the people as personality trades and the exposure to media via the existence or non-existence of Fox News. Therefore, our hypothesis is that the consumption of Fox News affects the behavior of the electorate as much as their socioeconomic background. The analysis to answer the research question is divided into 3 parts. The first part gives a general overview of the data. Then the second part aims to discover if the implementation of Fox News correlated with the increase in support for the Republican party. Furthermore,  this part also focuses on if the effect of Fox News differs in towns where the population's level of education, average income, and race is different. Finally, the linear regression analysis aims to answer the question of whether socioeconomic background or the effect of Fox News has a greater influence on people's voting behavior. 
 
 # Literature Review
 
@@ -27,9 +27,10 @@ This theory is supported by Lazarsfeld, Berelson, and Gaudet's [@Lazarsfeld1968]
 
 Therefore, based on the existing literature the two hypotheses of the analysis, as mentioned above, will be the following:
 
-**HP1:** Fox news and the socioeconomic background affects the behavior of the electorate.
+**HP1:** The consumption of Fox News affects the behavior of the electorate as much as their socioeconomic background.
 
 Sociological model of voting Kriesi's [@Kriesi2008]: People's voting behavior is just shaped by long-term factors (socialization).
+
 
 # General Overview Over the Data
 
