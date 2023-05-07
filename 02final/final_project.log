@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.5.7)  7 MAY 2023 21:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.5.7)  7 MAY 2023 21:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -583,160 +583,155 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 <final_project_files/figure-latex/avgVoteShare-1.pdf, id=100, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/avgVoteShare-1.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/avgVoteShare-1.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/avgVoteShare-1.pdf  used on input line 168.
+Package pdftex.def Info: final_project_files/figure-latex/avgVoteShare-1.pdf  used on input line 166.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 [3 <./final_project_files/figure-latex/avgVoteShare-1.pdf>]
 <final_project_files/figure-latex/independentVariables-1.pdf, id=113, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/independentVariables-1.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/independentVariables-1.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/independentVariables-1.pdf  used on input line 202.
+Package pdftex.def Info: final_project_files/figure-latex/independentVariables-1.pdf  used on input line 200.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[4]
-<final_project_files/figure-latex/change-1.pdf, id=122, 469.755pt x 325.215pt>
+[4 <./final_project_files/figure-latex/independentVariables-1.pdf>]
+<final_project_files/figure-latex/change-1.pdf, id=128, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/change-1.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/change-1.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/change-1.pdf  used on input line 214.
+Package pdftex.def Info: final_project_files/figure-latex/change-1.pdf  used on input line 212.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
-<final_project_files/figure-latex/change-2.pdf, id=123, 469.755pt x 325.215pt>
+<final_project_files/figure-latex/change-2.pdf, id=129, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/change-2.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/change-2.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/change-2.pdf  used on input line 214.
+Package pdftex.def Info: final_project_files/figure-latex/change-2.pdf  used on input line 212.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
 
-Overfull \hbox (2.22104pt too wide) in paragraph at lines 214--214
+Overfull \hbox (2.22104pt too wide) in paragraph at lines 212--212
 [][] [] 
  []
 
-[5 <./final_project_files/figure-latex/independentVariables-1.pdf>]
-Overfull \hbox (22.63403pt too wide) in alignment at lines 222--227
+
+Overfull \hbox (22.63403pt too wide) in alignment at lines 220--225
  [] [] [] [] [] 
  []
 
 
-Overfull \hbox (22.63403pt too wide) in alignment at lines 227--231
+Overfull \hbox (22.63403pt too wide) in alignment at lines 225--229
  [] [] [] [] [] 
  []
 
 
-Overfull \hbox (22.63403pt too wide) in alignment at lines 231--234
+Overfull \hbox (22.63403pt too wide) in alignment at lines 229--232
  [] [] [] [] [] 
  []
 
-<final_project_files/figure-latex/scatterPlot-1.pdf, id=136, 469.755pt x 325.215pt>
+<final_project_files/figure-latex/scatterPlot-1.pdf, id=130, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/scatterPlot-1.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/scatterPlot-1.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/scatterPlot-1.pdf  used on input line 243.
+Package pdftex.def Info: final_project_files/figure-latex/scatterPlot-1.pdf  used on input line 241.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[6 <./final_project_files/figure-latex/change-1.pdf> <./final_project_files/figure-latex/change-2.pdf>]
-<final_project_files/figure-latex/foxSubscribers-1.pdf, id=158, 469.755pt x 325.215pt>
+[5 <./final_project_files/figure-latex/change-1.pdf> <./final_project_files/figure-latex/change-2.pdf>]
+<final_project_files/figure-latex/foxSubscribers-1.pdf, id=154, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/foxSubscribers-1.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/foxSubscribers-1.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/foxSubscribers-1.pdf  used on input line 251.
+Package pdftex.def Info: final_project_files/figure-latex/foxSubscribers-1.pdf  used on input line 249.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[7 <./final_project_files/figure-latex/scatterPlot-1.pdf>]
-<final_project_files/figure-latex/diffInDiffFoxnews-1.pdf, id=170, 469.755pt x 325.215pt>
+[6 <./final_project_files/figure-latex/scatterPlot-1.pdf>]
+<final_project_files/figure-latex/diffInDiffFoxnews-1.pdf, id=165, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/diffInDiffFoxnews-1.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/diffInDiffFoxnews-1.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/diffInDiffFoxnews-1.pdf  used on input line 262.
+Package pdftex.def Info: final_project_files/figure-latex/diffInDiffFoxnews-1.pdf  used on input line 260.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[8 <./final_project_files/figure-latex/foxSubscribers-1.pdf>] [9 <./final_project_files/figure-latex/diffInDiffFoxnews-1.pdf>]
-<final_project_files/figure-latex/diffInDiff_black-1.pdf, id=194, 469.755pt x 325.215pt>
+[7 <./final_project_files/figure-latex/foxSubscribers-1.pdf>] [8 <./final_project_files/figure-latex/diffInDiffFoxnews-1.pdf>]
+<final_project_files/figure-latex/diffInDiff_black-1.pdf, id=190, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/diffInDiff_black-1.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/diffInDiff_black-1.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/diffInDiff_black-1.pdf  used on input line 277.
+Package pdftex.def Info: final_project_files/figure-latex/diffInDiff_black-1.pdf  used on input line 275.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-LaTeX Warning: Reference `fig:diffInDiff_black' on page 10 undefined on input line 281.
+LaTeX Warning: Reference `fig:diffInDiff_black' on page 9 undefined on input line 279.
 
-<final_project_files/figure-latex/diffInDiffIncome-1.pdf, id=195, 469.755pt x 325.215pt>
+<final_project_files/figure-latex/diffInDiffIncome-1.pdf, id=191, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/diffInDiffIncome-1.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/diffInDiffIncome-1.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/diffInDiffIncome-1.pdf  used on input line 284.
+Package pdftex.def Info: final_project_files/figure-latex/diffInDiffIncome-1.pdf  used on input line 282.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
-<final_project_files/figure-latex/diffInDiffIncome-2.pdf, id=196, 469.755pt x 325.215pt>
+<final_project_files/figure-latex/diffInDiffIncome-2.pdf, id=192, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/diffInDiffIncome-2.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/diffInDiffIncome-2.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/diffInDiffIncome-2.pdf  used on input line 284.
+Package pdftex.def Info: final_project_files/figure-latex/diffInDiffIncome-2.pdf  used on input line 282.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
 
-Overfull \hbox (2.22104pt too wide) in paragraph at lines 284--284
+Overfull \hbox (2.22104pt too wide) in paragraph at lines 282--282
 [][] [] 
  []
 
-[10 <./final_project_files/figure-latex/diffInDiff_black-1.pdf>]
+[9 <./final_project_files/figure-latex/diffInDiff_black-1.pdf>]
 
-LaTeX Warning: Reference `fig:diffInDiffincome' on page 11 undefined on input line 287.
+LaTeX Warning: Reference `fig:diffInDiffincome' on page 10 undefined on input line 285.
 
-<final_project_files/figure-latex/diffInDiffEducation-1.pdf, id=207, 469.755pt x 325.215pt>
+<final_project_files/figure-latex/diffInDiffEducation-1.pdf, id=203, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/diffInDiffEducation-1.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/diffInDiffEducation-1.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/diffInDiffEducation-1.pdf  used on input line 290.
+Package pdftex.def Info: final_project_files/figure-latex/diffInDiffEducation-1.pdf  used on input line 288.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
-<final_project_files/figure-latex/diffInDiffEducation-2.pdf, id=208, 469.755pt x 325.215pt>
+<final_project_files/figure-latex/diffInDiffEducation-2.pdf, id=204, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/diffInDiffEducation-2.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/diffInDiffEducation-2.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/diffInDiffEducation-2.pdf  used on input line 290.
+Package pdftex.def Info: final_project_files/figure-latex/diffInDiffEducation-2.pdf  used on input line 288.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
 
-Overfull \hbox (2.22104pt too wide) in paragraph at lines 290--290
+Overfull \hbox (2.22104pt too wide) in paragraph at lines 288--288
 [][] [] 
  []
 
 
-LaTeX Warning: Reference `fig:diffInDiffeducation' on page 11 undefined on input line 293.
+LaTeX Warning: Reference `fig:diffInDiffeducation' on page 10 undefined on input line 291.
 
-[11 <./final_project_files/figure-latex/diffInDiffIncome-1.pdf> <./final_project_files/figure-latex/diffInDiffIncome-2.pdf> <./final_project_files/figure-latex/diffInDiffEducation-1.pdf> <./final_project_files/figure-latex/diffInDiffEducation-2.pdf>]
-Overfull \hbox (287.63414pt too wide) in paragraph at lines 309--331
- [][] 
- []
-
-[12]
-<final_project_files/figure-latex/foxFX-1.pdf, id=247, 469.755pt x 325.215pt>
+[10 <./final_project_files/figure-latex/diffInDiffIncome-1.pdf> <./final_project_files/figure-latex/diffInDiffIncome-2.pdf> <./final_project_files/figure-latex/diffInDiffEducation-1.pdf> <./final_project_files/figure-latex/diffInDiffEducation-2.pdf>] [11]
+<final_project_files/figure-latex/foxFX-1.pdf, id=243, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/foxFX-1.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/foxFX-1.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/foxFX-1.pdf  used on input line 345.
+Package pdftex.def Info: final_project_files/figure-latex/foxFX-1.pdf  used on input line 343.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
-<final_project_files/figure-latex/foxFX-2.pdf, id=248, 469.755pt x 325.215pt>
+<final_project_files/figure-latex/foxFX-2.pdf, id=244, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/foxFX-2.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/foxFX-2.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/foxFX-2.pdf  used on input line 345.
+Package pdftex.def Info: final_project_files/figure-latex/foxFX-2.pdf  used on input line 343.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
 
-Overfull \hbox (2.22104pt too wide) in paragraph at lines 345--345
+Overfull \hbox (2.22104pt too wide) in paragraph at lines 343--343
 [][] [] 
  []
 
-<final_project_files/figure-latex/incomeAndEducationFX-1.pdf, id=250, 469.755pt x 325.215pt>
+<final_project_files/figure-latex/incomeAndEducationFX-1.pdf, id=246, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/incomeAndEducationFX-1.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/incomeAndEducationFX-1.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/incomeAndEducationFX-1.pdf  used on input line 353.
+Package pdftex.def Info: final_project_files/figure-latex/incomeAndEducationFX-1.pdf  used on input line 351.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
-<final_project_files/figure-latex/incomeAndEducationFX-2.pdf, id=251, 469.755pt x 325.215pt>
+<final_project_files/figure-latex/incomeAndEducationFX-2.pdf, id=247, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/incomeAndEducationFX-2.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/incomeAndEducationFX-2.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/incomeAndEducationFX-2.pdf  used on input line 353.
+Package pdftex.def Info: final_project_files/figure-latex/incomeAndEducationFX-2.pdf  used on input line 351.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
 
-Overfull \hbox (2.22104pt too wide) in paragraph at lines 353--353
+Overfull \hbox (2.22104pt too wide) in paragraph at lines 351--351
 [][] [] 
  []
 
-<final_project_files/figure-latex/socioFX-1.pdf, id=252, 469.755pt x 325.215pt>
+<final_project_files/figure-latex/socioFX-1.pdf, id=248, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/socioFX-1.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/socioFX-1.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/socioFX-1.pdf  used on input line 357.
+Package pdftex.def Info: final_project_files/figure-latex/socioFX-1.pdf  used on input line 355.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
-<final_project_files/figure-latex/socioFX-2.pdf, id=253, 469.755pt x 325.215pt>
+<final_project_files/figure-latex/socioFX-2.pdf, id=249, 469.755pt x 325.215pt>
 File: final_project_files/figure-latex/socioFX-2.pdf Graphic file (type pdf)
 <use final_project_files/figure-latex/socioFX-2.pdf>
-Package pdftex.def Info: final_project_files/figure-latex/socioFX-2.pdf  used on input line 357.
+Package pdftex.def Info: final_project_files/figure-latex/socioFX-2.pdf  used on input line 355.
 (pdftex.def)             Requested size: 234.87692pt x 162.6071pt.
 
-Overfull \hbox (2.22104pt too wide) in paragraph at lines 357--357
+Overfull \hbox (2.22104pt too wide) in paragraph at lines 355--355
 [][] [] 
  []
 
-[13 <./final_project_files/figure-latex/foxFX-1.pdf> <./final_project_files/figure-latex/foxFX-2.pdf> <./final_project_files/figure-latex/incomeAndEducationFX-1.pdf> <./final_project_files/figure-latex/incomeAndEducationFX-2.pdf>] [14 <./final_project_files/figure-latex/socioFX-1.pdf> <./final_project_files/figure-latex/socioFX-2.pdf>] [15] [16] (./final_project.aux)
+[12 <./final_project_files/figure-latex/foxFX-1.pdf> <./final_project_files/figure-latex/foxFX-2.pdf> <./final_project_files/figure-latex/incomeAndEducationFX-1.pdf> <./final_project_files/figure-latex/incomeAndEducationFX-2.pdf>] [13 <./final_project_files/figure-latex/socioFX-1.pdf> <./final_project_files/figure-latex/socioFX-2.pdf>] [14] [15] (./final_project.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -745,17 +740,17 @@ Package rerunfilecheck Info: File `final_project.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  13476 strings out of 477984
- 218780 string characters out of 5838480
+ 218788 string characters out of 5838480
  1865388 words of memory out of 5000000
  33329 multiletter control sequences out of 15000+600000
  567934 words of font info for 74 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,9n,76p,1850b,439s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,76p,1927b,439s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/Blanka/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</Users/Blanka/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/Blanka/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/Blanka/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></Users/Blanka/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/Blanka/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/Blanka/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/Blanka/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb></Users/Blanka/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
-Output written on final_project.pdf (16 pages, 983718 bytes).
+Output written on final_project.pdf (15 pages, 986627 bytes).
 PDF statistics:
- 384 PDF objects out of 1000 (max. 8388607)
- 309 compressed objects within 4 object streams
+ 382 PDF objects out of 1000 (max. 8388607)
+ 308 compressed objects within 4 object streams
  68 named destinations out of 1000 (max. 500000)
  211 words of extra memory for PDF output out of 10000 (max. 10000000)
 
